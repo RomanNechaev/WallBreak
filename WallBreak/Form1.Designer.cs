@@ -40,14 +40,6 @@ namespace WallBreak
             // 
             // button1
             // 
-<<<<<<< HEAD
-            this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(738, 544);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(436, 61);
-=======
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Pink;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
@@ -56,7 +48,6 @@ namespace WallBreak
             this.button1.Location = new System.Drawing.Point(550, 550);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size((int) (490*1.3), (int) (55*1.3));
->>>>>>> b4fc58c241e9200e55f3a714d726f4c888df3acc
             this.button1.TabIndex = 0;
             this.button1.Text = "Выйти из игры";
             this.button1.UseVisualStyleBackColor = true;
@@ -65,38 +56,22 @@ namespace WallBreak
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-<<<<<<< HEAD
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(758, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(388, 69);
-=======
             this.label1.Font = new System.Drawing.Font("Century Gothic", 80F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label1.Location = new System.Drawing.Point(460, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(827, 207);
->>>>>>> b4fc58c241e9200e55f3a714d726f4c888df3acc
             this.label1.TabIndex = 1;
             this.label1.Text = "WallBreak";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button2
-<<<<<<< HEAD
-            // 
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(738, 412);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(436, 55);
-=======
-            // `
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Pink;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button2.Location = new System.Drawing.Point(550, 419);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size((int) (490*1.3), (int) (55*1.3));
->>>>>>> b4fc58c241e9200e55f3a714d726f4c888df3acc
             this.button2.TabIndex = 3;
             this.button2.Text = "Настройки";
             this.button2.UseVisualStyleBackColor = true;
@@ -104,16 +79,6 @@ namespace WallBreak
             // 
             // button3
             // 
-<<<<<<< HEAD
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(738, 288);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(436, 55);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Начать игру";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-=======
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Pink;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.BackColor = System.Drawing.SystemColors.Control;
@@ -124,7 +89,7 @@ namespace WallBreak
             this.button3.TabIndex = 4;
             this.button3.Text = "Начать игру";
             this.button3.UseVisualStyleBackColor = false;
->>>>>>> b4fc58c241e9200e55f3a714d726f4c888df3acc
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
