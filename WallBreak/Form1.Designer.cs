@@ -31,7 +31,6 @@ namespace WallBreak
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -40,12 +39,12 @@ namespace WallBreak
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button1.Location = new System.Drawing.Point(830, 550);
+            this.button1.AutoSize = true;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(738, 544);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(490, 55);
+            this.button1.Size = new System.Drawing.Size(436, 61);
             this.button1.TabIndex = 0;
             this.button1.Text = "Выйти из игры";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,10 +53,10 @@ namespace WallBreak
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 28F, ((System.Drawing.FontStyle) ((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label1.Location = new System.Drawing.Point(853, 55);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 28F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(758, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(437, 69);
+            this.label1.Size = new System.Drawing.Size(388, 69);
             this.label1.TabIndex = 1;
             this.label1.Text = "WallBreak";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,10 +64,10 @@ namespace WallBreak
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button2.Location = new System.Drawing.Point(830, 412);
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(738, 412);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(490, 55);
+            this.button2.Size = new System.Drawing.Size(436, 55);
             this.button2.TabIndex = 3;
             this.button2.Text = "Настройки";
             this.button2.UseVisualStyleBackColor = true;
@@ -76,20 +75,20 @@ namespace WallBreak
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button3.Location = new System.Drawing.Point(830, 288);
+            this.button3.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button3.Location = new System.Drawing.Point(738, 288);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(490, 55);
+            this.button3.Size = new System.Drawing.Size(436, 55);
             this.button3.TabIndex = 4;
             this.button3.Text = "Начать игру";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1920, 1066);
+            this.ClientSize = new System.Drawing.Size(1707, 1055);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
@@ -99,6 +98,8 @@ namespace WallBreak
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Button button3;
