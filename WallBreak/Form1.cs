@@ -41,5 +41,6 @@ namespace WallBreak
             WMP.settings.volume = 100; // меняя значение можно регулировать громкость
             WMP.controls.play(); // Старт
         }
+       
     }
 }
