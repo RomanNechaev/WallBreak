@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
-
 namespace WallBreak
 {
     public partial class Form1 : Form
@@ -32,12 +31,15 @@ namespace WallBreak
             var settings = CreateButton("Настройки", new Point(600, 500));
             var exit = CreateButton("Выйти из игры", new Point(600, 670));
             exit.Click += (sender, args) => Application.Exit();
-            settings.DoubleClick += (sender, args) =>
+            settings.Click += (sender, args) =>
             {
-                
+                Hide();
+                var settings = new Settings();
+                settings.Show();
             };
                 
-            Music();
+
+            //Music();
             InitializeComponent();
             Controls.Add(label);
             Controls.Add(exit);
@@ -51,9 +53,7 @@ namespace WallBreak
             System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WallBreak.мекс.wav");
             SoundPlayer player = new SoundPlayer(resourceStream);
             player.Play();
-            
         }
-
         private static Button CreateButton(string text, Point coords)
         {
             var button = new Button
