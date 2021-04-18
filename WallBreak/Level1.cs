@@ -12,6 +12,7 @@ namespace WallBreak
     {
         public Level1()
         {
+            CreateLevel1();
             var platform1 = CreateAngledBox(new Point(250, 850));
             var platform2 = CreateAngledBox(new Point(450, 700));
             var platform3 = CreateAngledBox(new Point(250, 550));
@@ -76,6 +77,28 @@ namespace WallBreak
                 Size = new Size(223, 74)
             };
         }
+        private void CreateLevel1()
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.background_for_game;
+            ClientSize = new System.Drawing.Size(1920, 1080);
+            Name = "Level1";
+            Text = "Level1";
+            ResumeLayout(false);
+            //
+            DoubleBuffered = true;
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.готов_2;
+            ClientSize = new Size(1920, 1080);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Form1";
+            Text = "Form1";
+            ResumeLayout(false);
 
+        }
     }
 }
