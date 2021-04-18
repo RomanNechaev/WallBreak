@@ -92,7 +92,7 @@ namespace WallBreak
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.готов_2;
+            BackgroundImage = Properties.Resources._2x_total;
             ClientSize = new Size(1920, 1080);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
