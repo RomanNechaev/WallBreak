@@ -37,15 +37,6 @@ namespace WallBreak
             this.SuspendLayout();
             // 
             // Level1
-            // 
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
-            this.Name = "Level1";
-            this.Text = "Level1";
-            this.ResumeLayout(false);
 
             #endregion
         }
