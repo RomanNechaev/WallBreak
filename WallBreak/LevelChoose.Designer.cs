@@ -1,7 +1,7 @@
 ﻿
 namespace WallBreak
 {
-    partial class Level1
+    partial class LevelChoose
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +29,10 @@ namespace WallBreak
         /// </summary>
         private void InitializeComponent()
         {
-            //System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Level1));
-            //this.SuspendLayout();
-            //// 
-            //// Level1
-            //// 
-            //this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            //this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            //this.ClientSize = new System.Drawing.Size(1904, 1041);
-            //this.Name = "Level1";
-            //this.Text = "Level1";
-            //this.ResumeLayout(false);
-
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "LevelChoose";
         }
 
         #endregion
