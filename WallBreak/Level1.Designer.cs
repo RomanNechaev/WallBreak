@@ -1,5 +1,4 @@
-﻿
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace WallBreak
 {
@@ -32,11 +31,6 @@ namespace WallBreak
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources =
-                new System.ComponentModel.ComponentResourceManager(typeof(Level1));
-            this.SuspendLayout();
-            // 
-            // Level1
 
             #endregion
         }
