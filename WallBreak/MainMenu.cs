@@ -38,7 +38,13 @@ namespace WallBreak
                var settings  = new Settings();
                settings.Show();
             };
-            Music().Play();
+            startGame.Click += (sender, args) =>
+             {
+                 Hide();
+                 var level1 = new Level1();
+                 level1.Show();
+             };
+            //Music().Play();
             //InitializeComponent();
             CreateMenu();
             Controls.Add(label);
@@ -60,13 +66,13 @@ namespace WallBreak
             ResumeLayout(false);
         }
 
-        public static SoundPlayer Music()
-        {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WallBreak.мекс.wav");
-            SoundPlayer player = new SoundPlayer(resourceStream);
-            return player;
-        }
+        //public static SoundPlayer Music()
+        //{
+        //    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+        //    System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WallBreak.мекс.wav");
+        //    SoundPlayer player = new SoundPlayer(resourceStream);
+        //    return player;
+        //}
 
         private static Button CreateButton(string text, Point coords)
         {

@@ -34,11 +34,11 @@ namespace WallBreak
             };
             offMusic.Click += (sender, args) =>
             {
-                Form1.Music().Stop();
+                //Form1.Music().Stop();
             };
             onMusic.Click += (sender, args) =>
             {
-                Form1.Music().Play();
+                //Form1.Music().Play();
             };
 
 
