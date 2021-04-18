@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
+
 namespace WallBreak
 {
     public partial class Form1 : Form
@@ -26,34 +27,50 @@ namespace WallBreak
                 Text = "WallBreak",
                 TextAlign = ContentAlignment.MiddleCenter
             };
-
             var startGame = CreateButton("Начать игру", new Point(600, 330));
             var settings = CreateButton("Настройки", new Point(600, 500));
             var exit = CreateButton("Выйти из игры", new Point(600, 670));
             exit.Click += (sender, args) => Application.Exit();
             settings.Click += (sender, args) =>
             {
+                DoubleBuffered = true;
                 Hide();
-                var settings = new Settings();
-                settings.Show();
+                var settingsMenu = new Settings();
+                settingsMenu.Show();
             };
-                
 
-            //Music();
+            Music().Play();
             InitializeComponent();
+            CreateMenu();
             Controls.Add(label);
             Controls.Add(exit);
             Controls.Add(startGame);
             Controls.Add(settings);
         }
 
-        private static void Music()
+
+        private void CreateMenu()
+        {
+            DoubleBuffered = true;
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.background_for_game;
+            ClientSize = new Size(1920, 1080);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Form1";
+            Text = "Form1";
+            ResumeLayout(false);
+        }
+
+        public static SoundPlayer Music()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WallBreak.мекс.wav");
             SoundPlayer player = new SoundPlayer(resourceStream);
-            player.Play();
+            return player;
         }
+
         private static Button CreateButton(string text, Point coords)
         {
             var button = new Button

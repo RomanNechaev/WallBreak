@@ -20,6 +20,9 @@
       <Compile Update="Settings.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="Game.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
