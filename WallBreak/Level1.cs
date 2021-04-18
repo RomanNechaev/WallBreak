@@ -27,7 +27,24 @@ namespace WallBreak
             var platform12 = CreateAngledBox(new Point(1600, 250));
             var platform13 = CreateAngledBox(new Point(1150, 550));
             var coin1 = CreateCoin(new Point(175, 0));
+            var coins = new Coins();
+            var score = coins.Count;
             var coin2 = CreateCoin(new Point(1575, 0));
+            var label = new Label
+            {
+                BackColor = Color.Transparent,
+                Font = new Font("Century Gothic", 10F, ((FontStyle) ((FontStyle.Bold | FontStyle.Italic))),
+                    GraphicsUnit.Point),
+                Location = new Point(12, -70),
+                Name = "label1",
+                Size = new Size(200, 100),
+                Text = "Грамм травы: ",
+                TextAlign = ContentAlignment.BottomLeft
+            };
+            coin1.MouseClick += (sender, args) =>
+            {
+                label.Text += score+1;
+            };
 
             Controls.Add(coin2);
             Controls.Add(coin1);
@@ -44,8 +61,9 @@ namespace WallBreak
             Controls.Add(platform3);
             Controls.Add(platform4);
             Controls.Add(platform5);
+           Controls.Add(label);
             InitializeComponent();
-            
+           
         }
         private static PictureBox CreateCoin(Point coords)
         {
