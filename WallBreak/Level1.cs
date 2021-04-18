@@ -38,12 +38,12 @@ namespace WallBreak
                 Location = new Point(12, -70),
                 Name = "label1",
                 Size = new Size(200, 100),
-                Text = "Грамм травы: ",
                 TextAlign = ContentAlignment.BottomLeft
             };
             coin1.MouseClick += (sender, args) =>
             {
-                label.Text += score+1;
+                score += 1;
+                label.Text = "Грамм травы:" + score;
             };
 
             Controls.Add(coin2);
