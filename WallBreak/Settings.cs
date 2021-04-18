@@ -45,7 +45,6 @@ namespace WallBreak
         }
         private void CreateSettings()
         {
-            DoubleBuffered = true;
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1920, 1080);
             FormBorderStyle = FormBorderStyle.None;
