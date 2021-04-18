@@ -14,6 +14,7 @@ namespace WallBreak
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             var label = new Label
@@ -33,21 +34,19 @@ namespace WallBreak
             exit.Click += (sender, args) => Application.Exit();
             settings.Click += (sender, args) =>
             {
-                DoubleBuffered = true;
-                Hide();
-                var settingsMenu = new Settings();
-                settingsMenu.Show();
+               Hide();
+               var settings  = new Settings();
+               settings.Show();
             };
 
             Music().Play();
-            InitializeComponent();
+            //InitializeComponent();
             CreateMenu();
             Controls.Add(label);
             Controls.Add(exit);
             Controls.Add(startGame);
             Controls.Add(settings);
         }
-
 
         private void CreateMenu()
         {

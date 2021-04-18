@@ -7,7 +7,7 @@ namespace WallBreak
     {
         public Settings()
         {
-            InitializeComponent();
+            //InitializeComponent();
             var label = new Label
             {
                 BackColor = Color.Transparent,
@@ -20,21 +20,25 @@ namespace WallBreak
                 TextAlign = ContentAlignment.MiddleCenter
             };
             Controls.Add(label);
-            var offMusic = CreateButton("Выключить звук", new Point(600, 400));
+            var offMusic = CreateButton("ВКЛ/ВЫКЛ музыку", new Point(600, 400));
             var enterMenu = CreateButton("Назад", new Point(600, 670));
             CreateSettings();
             Controls.Add(enterMenu);
             Controls.Add(offMusic);
             enterMenu.Click += (sender, args) =>
-            { 
-                Hide();
-                var menu = new Form1();
-                menu.Show();
+            {
+                Program.menu.Show();
             };
             offMusic.Click += (sender, args) =>
             {
                 Form1.Music().Stop();
             };
+            offMusic.DoubleClick += (sender, args) =>
+            {
+                Form1.Music().Play();
+            };
+
+
         }
         private void CreateSettings()
         {

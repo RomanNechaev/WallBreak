@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace WallBreak
 {
@@ -17,8 +18,22 @@ namespace WallBreak
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(MenuInit());
             Application.Run(new Settings());
         }
+        
+        public static Form menu;
+        public static Form setting;
+        
+        public static Form MenuInit()
+        {
+            return menu = new Form1();
+        }
+
+        public static Form SettingInit()
+        {
+            return setting = new Settings();
+        }
+        
     }
 }
