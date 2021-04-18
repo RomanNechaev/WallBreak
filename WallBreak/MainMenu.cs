@@ -41,10 +41,9 @@ namespace WallBreak
             startGame.Click += (sender, args) =>
              {
                  Hide();
-                 var level1 = new Level1();
-                 level1.Show();
+                 var levelChoose = new LevelChoose();
+                 levelChoose.Show();
              };
-            //Music().Play();
             //InitializeComponent();
             CreateMenu();
             Controls.Add(label);
