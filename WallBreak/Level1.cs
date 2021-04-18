@@ -28,7 +28,7 @@ namespace WallBreak
             var platform13 = CreateAngledBox(new Point(1150, 550));
             var coin1 = CreateCoin(new Point(175, 0));
             var coin2 = CreateCoin(new Point(1575, 0));
-
+            
             Controls.Add(coin2);
             Controls.Add(coin1);
             Controls.Add(platform13);
@@ -43,7 +43,7 @@ namespace WallBreak
             Controls.Add(platform2);
             Controls.Add(platform3);
             Controls.Add(platform4);
-            Controls.Add(platform5);
+            Controls.Add(platform5); 
             InitializeComponent();
             
         }
@@ -80,25 +80,15 @@ namespace WallBreak
         private void CreateLevel1()
         {
             FormBorderStyle = FormBorderStyle.None;
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.background_for_game;
-            ClientSize = new System.Drawing.Size(1920, 1080);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1920, 1080);
             Name = "Level1";
             Text = "Level1";
-            ResumeLayout(false);
-            //
-            DoubleBuffered = true;
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
             AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.готов_2;
             ClientSize = new Size(1920, 1080);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "Form1";
-            Text = "Form1";
             ResumeLayout(false);
-
         }
     }
 }
