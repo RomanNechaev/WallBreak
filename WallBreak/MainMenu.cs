@@ -38,7 +38,6 @@ namespace WallBreak
                var settings  = new Settings();
                settings.Show();
             };
-
             Music().Play();
             //InitializeComponent();
             CreateMenu();
@@ -47,7 +46,6 @@ namespace WallBreak
             Controls.Add(startGame);
             Controls.Add(settings);
         }
-
         private void CreateMenu()
         {
             DoubleBuffered = true;

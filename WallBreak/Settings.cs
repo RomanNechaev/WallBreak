@@ -20,20 +20,23 @@ namespace WallBreak
                 TextAlign = ContentAlignment.MiddleCenter
             };
             Controls.Add(label);
-            var offMusic = CreateButton("ВКЛ/ВЫКЛ музыку", new Point(600, 400));
+            var offMusic = CreateButton("Выключить музыку", new Point(600, 330));
+            var onMusic = CreateButton("Включить музыку", new Point(600, 500));
             var enterMenu = CreateButton("Назад", new Point(600, 670));
             CreateSettings();
             Controls.Add(enterMenu);
             Controls.Add(offMusic);
+            Controls.Add(onMusic);
             enterMenu.Click += (sender, args) =>
             {
+                Hide();
                 Program.menu.Show();
             };
             offMusic.Click += (sender, args) =>
             {
                 Form1.Music().Stop();
             };
-            offMusic.DoubleClick += (sender, args) =>
+            onMusic.Click += (sender, args) =>
             {
                 Form1.Music().Play();
             };
