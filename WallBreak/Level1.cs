@@ -61,10 +61,10 @@ namespace WallBreak
             Controls.Add(platform3);
             Controls.Add(platform4);
             Controls.Add(platform5);
-           Controls.Add(label);
+            Controls.Add(label);
             InitializeComponent();
-           
         }
+
         private static PictureBox CreateCoin(Point coords)
         {
             return new PictureBox
@@ -75,6 +75,7 @@ namespace WallBreak
                 Size = new Size(100, 100)
             };
         }
+
         private static PictureBox CreateAngledBox(Point coords)
         {
             return new PictureBox
@@ -85,6 +86,7 @@ namespace WallBreak
                 Size = new Size(318, 74)
             };
         }
+
         private static PictureBox CreateSquaredBox(Point coords)
         {
             return new PictureBox
@@ -95,9 +97,9 @@ namespace WallBreak
                 Size = new Size(223, 74)
             };
         }
+
         private void CreateLevel1()
         {
-          
             Name = "Level1";
             Text = "Level1";
             ResumeLayout(false);
@@ -108,7 +110,6 @@ namespace WallBreak
             BackgroundImage = Properties.Resources._2x_total;
             ClientSize = new Size(1920, 1080);
             FormBorderStyle = FormBorderStyle.None;
-
         }
     }
 }

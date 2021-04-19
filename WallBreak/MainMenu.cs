@@ -12,9 +12,21 @@ using Microsoft.Win32;
 
 namespace WallBreak
 {
+    interface IScreen
+    {
+        void Draw(Form form);
+
+        void Clear(Form form);
+
+        void MoveTo(Form form, IScreen screen)
+        {
+            Clear(form);
+            screen.Draw(form);
+        }
+    }
+    
     public partial class Form1 : Form
     {
-
         public Form1()
         {
             var label = new Label
@@ -34,23 +46,25 @@ namespace WallBreak
             exit.Click += (sender, args) => Application.Exit();
             settings.Click += (sender, args) =>
             {
-               Hide();
-               var settings  = new Settings();
-               settings.Show();
+                Hide();
+                var settings = new Settings();
+                settings.Show();
             };
             startGame.Click += (sender, args) =>
-             {
-                 Hide();
-                 var levelChoose = new LevelChoose();
-                 levelChoose.Show();
-             };
+            {
+                Hide();
+                var levelChoose = new LevelChoose();
+                levelChoose.Show();
+            };
             //InitializeComponent();
+            Music();
             CreateMenu();
             Controls.Add(label);
             Controls.Add(exit);
             Controls.Add(startGame);
             Controls.Add(settings);
         }
+
         private void CreateMenu()
         {
             DoubleBuffered = true;
@@ -65,13 +79,13 @@ namespace WallBreak
             ResumeLayout(false);
         }
 
-        //public static SoundPlayer Music()
-        //{
-        //    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-        //    System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WallBreak.мекс.wav");
-        //    SoundPlayer player = new SoundPlayer(resourceStream);
-        //    return player;
-        //}
+        public static SoundPlayer Music()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.IO.Stream resourceStream = assembly.GetManifestResourceStream(@"WallBreak.мекс.wav");
+            SoundPlayer player = new SoundPlayer(resourceStream);
+            return player;
+        }
 
         private static Button CreateButton(string text, Point coords)
         {
