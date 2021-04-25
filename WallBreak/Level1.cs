@@ -18,34 +18,13 @@ namespace WallBreak
             game = new Game();
             var timer1 = new Timer();
             timer1.Start();
-            timer1.Interval = 10;
+            timer1.Interval = 20;
             timer1.Tick += new EventHandler(Update);
-            
-            var coin1 = CreateCoin(new Point(175, 0));
-            var coins = new Coins();
-            var score = coins.Count;
-            var coin2 = CreateCoin(new Point(1575, 0));
-            var label = new Label
-            {
-                BackColor = Color.Transparent,
-                Font = new Font("Century Gothic", 10F, ((FontStyle) ((FontStyle.Bold | FontStyle.Italic))),
-                    GraphicsUnit.Point),
-                Location = new Point(12, -70),
-                Name = "label1",
-                Size = new Size(200, 100),
-                TextAlign = ContentAlignment.BottomLeft
-            };
-            coin1.MouseClick += (sender, args) =>
-            {
-                score += 1;
-                label.Text = "Грамм травы:" + score;
-            };
+
             KeyDown += new KeyEventHandler(OnPress);
             KeyUp += new KeyEventHandler(OnKeyUp);
 
-            Controls.Add(coin2);
-            Controls.Add(coin1);
-            Controls.Add(label);
+            
             InitializeComponent();
             
         }
@@ -55,34 +34,56 @@ namespace WallBreak
             if (game.player.Moving)
             {
                 game.MovePlayer();
+                
             }
             Invalidate();
 
         }
         public void OnKeyUp(object sender, KeyEventArgs e)
         {
-            game.player.dirY = 0;
-            game.player.dirX = 0;
-            game.player.Moving = false;
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    game.player.dirY = 0;
+                    break;
+                case Keys.S:
+                    game.player.dirY = 0;
+                    break;
+                case Keys.A:
+                    game.player.dirX = 0;
+                    break;
+                case Keys.D:
+                    game.player.dirX = 0;
+                    break;
+            }
+
+            if (game.player.dirX == 0 && game.player.dirY == 0)
+            {
+                game.player.Moving = false;
+            }
         }
         public void OnPress(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    game.player.dirY = -5;
+                    game.player.dirY = -10;
+                    game.player.Moving = true;
                     break;
                 case Keys.S:
-                    game.player.dirY = 5;
+                    game.player.dirY = 10;
+                    game.player.Moving = true;
                     break;
                 case Keys.A:
-                    game.player.dirX = -5;
+                    game.player.dirX = -10;
+                    game.player.Moving = true;
                     break;
                 case Keys.D:
-                    game.player.dirX = 5;
+                    game.player.dirX = 10;
+                    game.player.Moving = true;
                     break;
             }
-            game.player.Moving = true;
+            
         }
         public void Init()
         {
@@ -158,11 +159,33 @@ namespace WallBreak
             BackgroundImage = Properties.Resources._2x_total;
             ClientSize = new Size(1920, 1080);
             FormBorderStyle = FormBorderStyle.None;
-            DoubleBuffered = true;
         }
     }
 }
 /*
+ *          //var coin1 = CreateCoin(new Point(175, 0));
+            //var coins = new Coins();
+            //var score = coins.Count;
+            //var coin2 = CreateCoin(new Point(1575, 0));
+            //var label = new Label
+            //{
+            //    BackColor = Color.Transparent,
+            //    Font = new Font("Century Gothic", 10F, ((FontStyle) ((FontStyle.Bold | FontStyle.Italic))),
+            //        GraphicsUnit.Point),
+            //    Location = new Point(12, -70),
+            //    Name = "label1",
+            //    Size = new Size(200, 100),
+            //    TextAlign = ContentAlignment.BottomLeft
+            //};
+            //coin1.MouseClick += (sender, args) =>
+            //{
+            //    score += 1;
+            //    label.Text = "Грамм травы:" + score;
+            //};
+
+            //Controls.Add(coin2);
+            //Controls.Add(coin1);
+            //Controls.Add(label);
             var platform1 = CreateAngledBox(new Point(250, 850));
             var platform2 = CreateAngledBox(new Point(450, 700));
             var platform3 = CreateAngledBox(new Point(250, 550));
