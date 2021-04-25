@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WallBreak
 {
-    public partial class LevelChoose : Form
+    public partial class LevelChoose : Form, IScreen
     {
         public LevelChoose()
         {
@@ -37,8 +37,7 @@ namespace WallBreak
             backTomenu.Click += (sender, args) =>
             {
                 Hide();
-                var menu = new Form1();
-                menu.Show();
+                Program.menu.Show();
             };
             CreateLevelChoose();
             Controls.Add(label);

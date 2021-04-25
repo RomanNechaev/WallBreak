@@ -16,12 +16,12 @@ namespace WallBreak
     {
         void Draw(Form form)
         {
-            
+            form.Show();
         }
 
         void Clear(Form form)
         {
-            
+            form.Hide();
         }
 
         void MoveTo(Form form, IScreen screen)
@@ -54,13 +54,12 @@ namespace WallBreak
             exit.Click += (sender, args) => Application.Exit();
             settings.Click += (sender, args) =>
             {
-                Draw(settingsForm);
+                Draw(settingsForm);                
             };
             startGame.Click += (sender, args) =>
             {
                 Draw(levelChooseForm);
             };
-            //InitializeComponent();
             Music();
             CreateMenu();
             Controls.Add(label);
@@ -75,11 +74,13 @@ namespace WallBreak
 
         public void Clear(Form form)
         {
-            form.Close();
+            form.Hide();
         }
+
         public void MoveTo(Form form, IScreen screen)
         {
-            
+            Clear(form);
+            screen.Draw(form);
         }
 
         private void CreateMenu()
@@ -119,47 +120,7 @@ namespace WallBreak
             return button;
         }
 
-        public void Settings()
-        {
-            //InitializeComponent();
-            var label1 = new Label
-            {
-                BackColor = Color.Transparent,
-                Font = new Font("Century Gothic", 80F, ((FontStyle) ((FontStyle.Bold | FontStyle.Italic))),
-                    GraphicsUnit.Point),
-                Location = new Point(430, 34),
-                Name = "label1",
-                Size = new Size(1100, 207),
-                Text = "Настройки",
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            Controls.Add(label1);
-            var offMusic = CreateButton("Выключить музыку", new Point(600, 330));
-            var onMusic = CreateButton("Включить музыку", new Point(600, 500));
-            var enterMenu = CreateButton("Назад", new Point(600, 670));
-            CreateSettings();
-            Controls.Add(enterMenu);
-            Controls.Add(offMusic);
-            Controls.Add(onMusic);
-            enterMenu.Click += (sender, args) =>
-            {
-                Hide();
-                Program.menu.Show();
-            };
-            offMusic.Click += (sender, args) => { Form1.Music().Stop(); };
-            onMusic.Click += (sender, args) => { Form1.Music().Play(); };
-        }
-
-        private void CreateSettings()
-        {
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1920, 1080);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "Settings";
-            Text = "Form1";
-            ResumeLayout(false);
-            BackgroundImage = Properties.Resources.background_for_game;
-        }
+        
         
     }
 }

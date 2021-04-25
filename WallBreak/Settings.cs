@@ -7,7 +7,6 @@ namespace WallBreak
     {
         public Settings()
         {
-            //InitializeComponent();
             var label = new Label
             {
                 BackColor = Color.Transparent,
