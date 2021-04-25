@@ -13,6 +13,7 @@ namespace WallBreak
         public Level1()
         {
             CreateLevel1();
+            /*
             var platform1 = CreateAngledBox(new Point(250, 850));
             var platform2 = CreateAngledBox(new Point(450, 700));
             var platform3 = CreateAngledBox(new Point(250, 550));
@@ -26,6 +27,7 @@ namespace WallBreak
             var platform11 = CreateSquaredBox(new Point(1500, 100));
             var platform12 = CreateAngledBox(new Point(1600, 250));
             var platform13 = CreateAngledBox(new Point(1150, 550));
+            */
             var coin1 = CreateCoin(new Point(175, 0));
             var coins = new Coins();
             var score = coins.Count;
@@ -48,6 +50,7 @@ namespace WallBreak
 
             Controls.Add(coin2);
             Controls.Add(coin1);
+            /*
             Controls.Add(platform13);
             Controls.Add(platform12);
             Controls.Add(platform11);
@@ -61,8 +64,28 @@ namespace WallBreak
             Controls.Add(platform3);
             Controls.Add(platform4);
             Controls.Add(platform5);
+            */
             Controls.Add(label);
             InitializeComponent();
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            var image = Properties.Resources.заккк;
+            var image1 = Properties.Resources._55;
+            var graphics = e.Graphics; 
+            graphics.DrawImage(image,new Point(250, 850));
+           graphics.DrawImage(image,new Point(450, 700));
+           graphics.DrawImage(image,new Point(250, 550));
+           graphics.DrawImage(image,new Point(100, 400));
+           graphics.DrawImage(image,new Point(1500, 700));
+           graphics.DrawImage(image,new Point(250, 250));
+           graphics.DrawImage(image1,new Point(100, 100));
+           graphics.DrawImage(image,new Point(700, 250));
+           graphics.DrawImage(image,new Point(950, 400));
+           graphics.DrawImage(image1,new Point(1300, 250));
+           graphics.DrawImage(image1,new Point(1500, 100));
+           graphics.DrawImage(image,new Point(1600, 250));
+           graphics.DrawImage(image,new Point(1150, 550));
         }
 
         private static PictureBox CreateCoin(Point coords)
