@@ -5,12 +5,13 @@ namespace WallBreak
 {
     public class Game
     {
-        Player player = new Player(100,0,100,100);
+        public Player player = new Player(100, 0, 100, 100);
+        
 
-        public void MovePlayer(int dX,int dY)
+        public void MovePlayer()
         {
-            player.posX += dX;
-            player.posY += dY;
+            player.posX += player.dirX;
+            player.posY += player.dirY;
         }
     }
 }

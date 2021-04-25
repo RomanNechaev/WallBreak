@@ -12,25 +12,15 @@ namespace WallBreak
     public partial class Level1 : Form
     {
         private Game game;
-        private Player _player;
         public Level1()
-        {
+        {            
             CreateLevel1();
-            /*
-            var platform1 = CreateAngledBox(new Point(250, 850));
-            var platform2 = CreateAngledBox(new Point(450, 700));
-            var platform3 = CreateAngledBox(new Point(250, 550));
-            var platform5 = CreateAngledBox(new Point(100, 400));
-            var platform4 = CreateAngledBox(new Point(1500, 700));
-            var platform6 = CreateAngledBox(new Point(250, 250));
-            var platform7 = CreateSquaredBox(new Point(100, 100));
-            var platform8 = CreateAngledBox(new Point(700, 250));
-            var platform9 = CreateAngledBox(new Point(950, 400));
-            var platform10 = CreateSquaredBox(new Point(1300, 250));
-            var platform11 = CreateSquaredBox(new Point(1500, 100));
-            var platform12 = CreateAngledBox(new Point(1600, 250));
-            var platform13 = CreateAngledBox(new Point(1150, 550));
-            */
+            game = new Game();
+            var timer1 = new Timer();
+            timer1.Start();
+            timer1.Interval = 10;
+            timer1.Tick += new EventHandler(Update);
+            
             var coin1 = CreateCoin(new Point(175, 0));
             var coins = new Coins();
             var score = coins.Count;
@@ -50,42 +40,53 @@ namespace WallBreak
                 score += 1;
                 label.Text = "Грамм травы:" + score;
             };
-            KeyDown+= new KeyEventHandler(OnPress);
+            KeyDown += new KeyEventHandler(OnPress);
+            KeyUp += new KeyEventHandler(OnKeyUp);
 
             Controls.Add(coin2);
             Controls.Add(coin1);
-            /*
-            Controls.Add(platform13);
-            Controls.Add(platform12);
-            Controls.Add(platform11);
-            Controls.Add(platform10);
-            Controls.Add(platform9);
-            Controls.Add(platform8);
-            Controls.Add(platform7);
-            Controls.Add(platform6);
-            Controls.Add(platform1);
-            Controls.Add(platform2);
-            Controls.Add(platform3);
-            Controls.Add(platform4);
-            Controls.Add(platform5);
-            */
             Controls.Add(label);
             InitializeComponent();
+            
+        }
+        public void Update(object sender, EventArgs e)
+        {
+
+            if (game.player.Moving)
+            {
+                game.MovePlayer();
+            }
+            Invalidate();
+
+        }
+        public void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            game.player.dirY = 0;
+            game.player.dirX = 0;
+            game.player.Moving = false;
         }
         public void OnPress(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.W:
-                    game.MovePlayer(0,-1);
+                    game.player.dirY = -5;
+                    break;
+                case Keys.S:
+                    game.player.dirY = 5;
                     break;
                 case Keys.A:
-                    game.MovePlayer(-1,0);
+                    game.player.dirX = -5;
                     break;
                 case Keys.D:
-                    game.MovePlayer(1,0);
+                    game.player.dirX = 5;
                     break;
             }
+            game.player.Moving = true;
+        }
+        public void Init()
+        {
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -107,8 +108,8 @@ namespace WallBreak
             graphics.DrawImage(image1, new Point(1500, 100));
             graphics.DrawImage(image, new Point(1600, 250));
             graphics.DrawImage(image, new Point(1150, 550));
-            graphics.DrawImage(player,new Point(_player.posX,_player.posY));
-            
+            graphics.DrawImage(player, new Point(game.player.posX, game.player.posY));
+
         }
         
 
@@ -157,6 +158,36 @@ namespace WallBreak
             BackgroundImage = Properties.Resources._2x_total;
             ClientSize = new Size(1920, 1080);
             FormBorderStyle = FormBorderStyle.None;
+            DoubleBuffered = true;
         }
     }
 }
+/*
+            var platform1 = CreateAngledBox(new Point(250, 850));
+            var platform2 = CreateAngledBox(new Point(450, 700));
+            var platform3 = CreateAngledBox(new Point(250, 550));
+            var platform5 = CreateAngledBox(new Point(100, 400));
+            var platform4 = CreateAngledBox(new Point(1500, 700));
+            var platform6 = CreateAngledBox(new Point(250, 250));
+            var platform7 = CreateSquaredBox(new Point(100, 100));
+            var platform8 = CreateAngledBox(new Point(700, 250));
+            var platform9 = CreateAngledBox(new Point(950, 400));
+            var platform10 = CreateSquaredBox(new Point(1300, 250));
+            var platform11 = CreateSquaredBox(new Point(1500, 100));
+            var platform12 = CreateAngledBox(new Point(1600, 250));
+            var platform13 = CreateAngledBox(new Point(1150, 550));
+            
+            Controls.Add(platform13);
+            Controls.Add(platform12);
+            Controls.Add(platform11);
+            Controls.Add(platform10);
+            Controls.Add(platform9);
+            Controls.Add(platform8);
+            Controls.Add(platform7);
+            Controls.Add(platform6);
+            Controls.Add(platform1);
+            Controls.Add(platform2);
+            Controls.Add(platform3);
+            Controls.Add(platform4);
+            Controls.Add(platform5);
+            */

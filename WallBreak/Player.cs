@@ -11,10 +11,13 @@ namespace WallBreak
             this.posX = posX;
             this.posY = posY;
         }
-        public int Health { get; }
-        public int Coins { get; }
+        public int Health { get; set; }
+        public int Coins { get; set; }
 
         public int posX;
         public int posY;
+        public int dirX;
+        public int dirY;
+        public bool Moving;
     }
 }
