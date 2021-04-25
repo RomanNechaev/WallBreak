@@ -19,7 +19,6 @@ namespace WallBreak
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(MenuInit());
-            Application.Run(new Settings());
         }
         
         public static Form menu;
@@ -34,6 +33,7 @@ namespace WallBreak
         {
             return setting = new Settings();
         }
+        
         
     }
 }

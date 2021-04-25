@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WallBreak
 {
-    public partial class Settings : Form
+    public partial class Settings : Form,IScreen
     {
         public Settings()
         {
