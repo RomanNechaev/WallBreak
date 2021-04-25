@@ -5,11 +5,14 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.Keys;
 
 namespace WallBreak
 {
     public partial class Level1 : Form
     {
+        private Game game;
+        private Player _player;
         public Level1()
         {
             CreateLevel1();
@@ -47,6 +50,7 @@ namespace WallBreak
                 score += 1;
                 label.Text = "Грамм травы:" + score;
             };
+            KeyDown+= new KeyEventHandler(OnPress);
 
             Controls.Add(coin2);
             Controls.Add(coin1);
@@ -68,25 +72,45 @@ namespace WallBreak
             Controls.Add(label);
             InitializeComponent();
         }
+        public void OnPress(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    game.MovePlayer(0,-1);
+                    break;
+                case Keys.A:
+                    game.MovePlayer(-1,0);
+                    break;
+                case Keys.D:
+                    game.MovePlayer(1,0);
+                    break;
+            }
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             var image = Properties.Resources.заккк;
             var image1 = Properties.Resources._55;
-            var graphics = e.Graphics; 
-            graphics.DrawImage(image,new Point(250, 850));
-           graphics.DrawImage(image,new Point(450, 700));
-           graphics.DrawImage(image,new Point(250, 550));
-           graphics.DrawImage(image,new Point(100, 400));
-           graphics.DrawImage(image,new Point(1500, 700));
-           graphics.DrawImage(image,new Point(250, 250));
-           graphics.DrawImage(image1,new Point(100, 100));
-           graphics.DrawImage(image,new Point(700, 250));
-           graphics.DrawImage(image,new Point(950, 400));
-           graphics.DrawImage(image1,new Point(1300, 250));
-           graphics.DrawImage(image1,new Point(1500, 100));
-           graphics.DrawImage(image,new Point(1600, 250));
-           graphics.DrawImage(image,new Point(1150, 550));
+            var player = Properties.Resources.player;
+            var graphics = e.Graphics;
+            graphics.DrawImage(image, new Point(250, 850));
+            graphics.DrawImage(image, new Point(450, 700));
+            graphics.DrawImage(image, new Point(250, 550));
+            graphics.DrawImage(image, new Point(100, 400));
+            graphics.DrawImage(image, new Point(1500, 700));
+            graphics.DrawImage(image, new Point(250, 250));
+            graphics.DrawImage(image1, new Point(100, 100));
+            graphics.DrawImage(image, new Point(700, 250));
+            graphics.DrawImage(image, new Point(950, 400));
+            graphics.DrawImage(image1, new Point(1300, 250));
+            graphics.DrawImage(image1, new Point(1500, 100));
+            graphics.DrawImage(image, new Point(1600, 250));
+            graphics.DrawImage(image, new Point(1150, 550));
+            graphics.DrawImage(player,new Point(_player.posX,_player.posY));
+            
         }
+        
 
         private static PictureBox CreateCoin(Point coords)
         {

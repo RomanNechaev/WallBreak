@@ -1,12 +1,16 @@
 ﻿using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace WallBreak
 {
-    public partial class Game : Form
+    public class Game
     {
-        public Game()
+        Player player = new Player(100,0,100,100);
+
+        public void MovePlayer(int dX,int dY)
         {
-            InitializeComponent();
+            player.posX += dX;
+            player.posY += dY;
         }
     }
 }
