@@ -28,6 +28,7 @@ namespace WallBreak
             InitializeComponent();
             var button = new Button
             {
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point),
                 Location = new Point(1820, 10),
                 Size = new Size(100, 100),
