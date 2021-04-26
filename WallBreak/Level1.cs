@@ -26,23 +26,6 @@ namespace WallBreak
 
             
             InitializeComponent();
-            var button = new Button
-            {
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point),
-                Location = new Point(1820, 10),
-                Size = new Size(100, 100),
-                BackgroundImage = Properties.Resources.cansels
-            };
-            Controls.Add(button);
-            button.Click += (sender, args) =>
-            {
-                Hide();
-                Program.menu.Show();
-            };
-            button.FlatAppearance.MouseOverBackColor = Color.Pink;
-            Controls.Add(button);
-            
         }
         public void Update(object sender, EventArgs e)
         {
@@ -52,7 +35,7 @@ namespace WallBreak
                 game.MovePlayer();
                 
             }
-            Invalidate();
+            Invalidate(new Rectangle(game.player.posX,game.player.posY-2,120,122));
 
         }
         public void OnKeyUp(object sender, KeyEventArgs e)
@@ -77,6 +60,22 @@ namespace WallBreak
             {
                 game.player.Moving = false;
             }
+            var button = new Button
+            {
+                BackColor = SystemColors.Control,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point),
+                Location = new Point(1820, 10),
+                Size = new Size(100, 100),
+                BackgroundImage = Properties.Resources.cansels
+            };
+            button.Click += (sender, args) =>
+            {
+                Hide();
+                Program.menu.Show();
+            };
+            button.FlatAppearance.MouseOverBackColor = Color.Pink;
+            Controls.Add(button);
         }
         public void OnPress(object sender, KeyEventArgs e)
         {
@@ -110,7 +109,7 @@ namespace WallBreak
         {
             var image = Properties.Resources.заккк;
             var image1 = Properties.Resources._55;
-            var player = Properties.Resources.player;
+            var player = Properties.Resources.Без_имени_3;
             var graphics = e.Graphics;
             graphics.DrawImage(image, new Point(250, 850));
             graphics.DrawImage(image, new Point(450, 700));
