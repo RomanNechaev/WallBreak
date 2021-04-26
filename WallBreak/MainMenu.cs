@@ -12,29 +12,47 @@ using Microsoft.Win32;
 
 namespace WallBreak
 {
+    
     public interface IScreen
     {
-        void Draw(Form form)
+        // void Draw(Form form);
+        //
+        // void Clear(Form form);
+        //
+        // void MoveTo(Form form, IScreen screen)
+        // {
+        //     Clear(form);
+        //     screen.Draw(form);
+        // }
+    }
+
+    /*
+    class MainScreen : IScreen
+    {
+        private Button _button;
+        public void Draw(Form form)
         {
-            form.Show();
+            _button = new Button()
+            {
+
+            };
+            
+            form.Controls.Add(_button);
         }
 
-        void Clear(Form form)
+        public void Clear(Form form)
         {
-            form.Hide();
-        }
-
-        void MoveTo(Form form, IScreen screen)
-        {
-            Clear(form);
-            screen.Draw(form);
+            form.Controls.Remove(_button);
         }
     }
+    */
 
     public partial class Form1 : Form, IScreen
     {
         public Form1()
         {
+            //var mainMenu = new MainScreen();
+            //mainMenu.Draw(this);
             var label = new Label
             {
                 BackColor = Color.Transparent,
@@ -77,11 +95,11 @@ namespace WallBreak
             form.Hide();
         }
 
-        public void MoveTo(Form form, IScreen screen)
-        {
-            Clear(form);
-            screen.Draw(form);
-        }
+        // public void MoveTo(Form form, IScreen screen)
+        // {
+        //     Clear(form);
+        //     screen.Draw(form);
+        // }
 
         private void CreateMenu()
         {
