@@ -13,5 +13,6 @@ namespace WallBreak
             player.posX += player.dirX;
             player.posY += player.dirY;
         }
+        
     }
 }

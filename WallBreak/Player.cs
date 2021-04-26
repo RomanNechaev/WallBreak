@@ -15,6 +15,7 @@ namespace WallBreak
         public int Coins { get; set; }
 
         public int posX;
+        public int speedY;
         public int posY;
         public int dirX;
         public int dirY;

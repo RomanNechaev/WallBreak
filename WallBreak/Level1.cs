@@ -26,6 +26,21 @@ namespace WallBreak
 
             
             InitializeComponent();
+            var button = new Button
+            {
+                Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point),
+                Location = new Point(1820, 10),
+                Size = new Size(100, 100),
+                BackgroundImage = Properties.Resources.cansels
+            };
+            Controls.Add(button);
+            button.Click += (sender, args) =>
+            {
+                Hide();
+                Program.menu.Show();
+            };
+            button.FlatAppearance.MouseOverBackColor = Color.Pink;
+            Controls.Add(button);
             
         }
         public void Update(object sender, EventArgs e)
@@ -182,7 +197,6 @@ namespace WallBreak
             //    score += 1;
             //    label.Text = "Грамм травы:" + score;
             //};
-
             //Controls.Add(coin2);
             //Controls.Add(coin1);
             //Controls.Add(label);

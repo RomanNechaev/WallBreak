@@ -73,6 +73,16 @@ namespace WallBreak.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2x_total123 {
+            get {
+                object obj = ResourceManager.GetObject("_2x_total123", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3_версия_закругленной {
             get {
                 object obj = ResourceManager.GetObject("3 версия закругленной", resourceCulture);
@@ -96,6 +106,26 @@ namespace WallBreak.Properties {
         internal static System.Drawing.Bitmap background_for_game {
             get {
                 object obj = ResourceManager.GetObject("background_for_game", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap c {
+            get {
+                object obj = ResourceManager.GetObject("c", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cansels {
+            get {
+                object obj = ResourceManager.GetObject("cansels", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
