@@ -1,0 +1,192 @@
+Index: Level1.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel;\r\nusing System.Data;\r\nusing System.Drawing;\r\nusing System.Text;\r\nusing System.Windows.Forms;\r\nusing static System.Windows.Forms.Keys;\r\n\r\nnamespace WallBreak\r\n{\r\n    public partial class Level1 : Form\r\n    {\r\n        private Game game;\r\n        private Player _player;\r\n        public Level1()\r\n        {\r\n            CreateLevel1();\r\n            /*\r\n            var platform1 = CreateAngledBox(new Point(250, 850));\r\n            var platform2 = CreateAngledBox(new Point(450, 700));\r\n            var platform3 = CreateAngledBox(new Point(250, 550));\r\n            var platform5 = CreateAngledBox(new Point(100, 400));\r\n            var platform4 = CreateAngledBox(new Point(1500, 700));\r\n            var platform6 = CreateAngledBox(new Point(250, 250));\r\n            var platform7 = CreateSquaredBox(new Point(100, 100));\r\n            var platform8 = CreateAngledBox(new Point(700, 250));\r\n            var platform9 = CreateAngledBox(new Point(950, 400));\r\n            var platform10 = CreateSquaredBox(new Point(1300, 250));\r\n            var platform11 = CreateSquaredBox(new Point(1500, 100));\r\n            var platform12 = CreateAngledBox(new Point(1600, 250));\r\n            var platform13 = CreateAngledBox(new Point(1150, 550));\r\n            */\r\n            var coin1 = CreateCoin(new Point(175, 0));\r\n            var coins = new Coins();\r\n            var score = coins.Count;\r\n            var coin2 = CreateCoin(new Point(1575, 0));\r\n            var label = new Label\r\n            {\r\n                BackColor = Color.Transparent,\r\n                Font = new Font(\"Century Gothic\", 10F, ((FontStyle) ((FontStyle.Bold | FontStyle.Italic))),\r\n                    GraphicsUnit.Point),\r\n                Location = new Point(12, -70),\r\n                Name = \"label1\",\r\n                Size = new Size(200, 100),\r\n                TextAlign = ContentAlignment.BottomLeft\r\n            };\r\n            coin1.MouseClick += (sender, args) =>\r\n            {\r\n                score += 1;\r\n                label.Text = \"Грамм травы:\" + score;\r\n            };\r\n            KeyDown+= new KeyEventHandler(OnPress);\r\n\r\n            Controls.Add(coin2);\r\n            Controls.Add(coin1);\r\n            /*\r\n            Controls.Add(platform13);\r\n            Controls.Add(platform12);\r\n            Controls.Add(platform11);\r\n            Controls.Add(platform10);\r\n            Controls.Add(platform9);\r\n            Controls.Add(platform8);\r\n            Controls.Add(platform7);\r\n            Controls.Add(platform6);\r\n            Controls.Add(platform1);\r\n            Controls.Add(platform2);\r\n            Controls.Add(platform3);\r\n            Controls.Add(platform4);\r\n            Controls.Add(platform5);\r\n            */\r\n            Controls.Add(label);\r\n            InitializeComponent();\r\n        }\r\n        public void OnPress(object sender, KeyEventArgs e)\r\n        {\r\n            switch (e.KeyCode)\r\n            {\r\n                case Keys.W:\r\n                    game.MovePlayer(0,-1);\r\n                    break;\r\n                case Keys.A:\r\n                    game.MovePlayer(-1,0);\r\n                    break;\r\n                case Keys.D:\r\n                    game.MovePlayer(1,0);\r\n                    break;\r\n            }\r\n        }\r\n\r\n        protected override void OnPaint(PaintEventArgs e)\r\n        {\r\n            var image = Properties.Resources.заккк;\r\n            var image1 = Properties.Resources._55;\r\n            var player = Properties.Resources.player;\r\n            var graphics = e.Graphics;\r\n            graphics.DrawImage(image, new Point(250, 850));\r\n            graphics.DrawImage(image, new Point(450, 700));\r\n            graphics.DrawImage(image, new Point(250, 550));\r\n            graphics.DrawImage(image, new Point(100, 400));\r\n            graphics.DrawImage(image, new Point(1500, 700));\r\n            graphics.DrawImage(image, new Point(250, 250));\r\n            graphics.DrawImage(image1, new Point(100, 100));\r\n            graphics.DrawImage(image, new Point(700, 250));\r\n            graphics.DrawImage(image, new Point(950, 400));\r\n            graphics.DrawImage(image1, new Point(1300, 250));\r\n            graphics.DrawImage(image1, new Point(1500, 100));\r\n            graphics.DrawImage(image, new Point(1600, 250));\r\n            graphics.DrawImage(image, new Point(1150, 550));\r\n            graphics.DrawImage(player,new Point(_player.posX,_player.posY));\r\n            \r\n        }\r\n        \r\n\r\n        private static PictureBox CreateCoin(Point coords)\r\n        {\r\n            return new PictureBox\r\n            {\r\n                BackColor = Color.Transparent,\r\n                BackgroundImage = Properties.Resources.монетка,\r\n                Location = coords,\r\n                Size = new Size(100, 100)\r\n            };\r\n        }\r\n\r\n        private static PictureBox CreateAngledBox(Point coords)\r\n        {\r\n            return new PictureBox\r\n            {\r\n                BackColor = Color.Transparent,\r\n                BackgroundImage = Properties.Resources._3_версия_закругленной,\r\n                Location = coords,\r\n                Size = new Size(318, 74)\r\n            };\r\n        }\r\n\r\n        private static PictureBox CreateSquaredBox(Point coords)\r\n        {\r\n            return new PictureBox\r\n            {\r\n                BackColor = Color.Transparent,\r\n                BackgroundImage = Properties.Resources.square2,\r\n                Location = coords,\r\n                Size = new Size(223, 74)\r\n            };\r\n        }\r\n\r\n        private void CreateLevel1()\r\n        {\r\n            Name = \"Level1\";\r\n            Text = \"Level1\";\r\n            ResumeLayout(false);\r\n            DoubleBuffered = true;\r\n            ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));\r\n            AutoScaleDimensions = new SizeF(8F, 20F);\r\n            AutoScaleMode = AutoScaleMode.Font;\r\n            BackgroundImage = Properties.Resources._2x_total;\r\n            ClientSize = new Size(1920, 1080);\r\n            FormBorderStyle = FormBorderStyle.None;\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Level1.cs	(revision f247b85e2265a8f68f623d8cc6dfdbf1a31c6bd3)
++++ Level1.cs	(date 1619359263061)
+@@ -12,25 +12,15 @@
+     public partial class Level1 : Form
+     {
+         private Game game;
+-        private Player _player;
+         public Level1()
+-        {
++        {            
+             CreateLevel1();
+-            /*
+-            var platform1 = CreateAngledBox(new Point(250, 850));
+-            var platform2 = CreateAngledBox(new Point(450, 700));
+-            var platform3 = CreateAngledBox(new Point(250, 550));
+-            var platform5 = CreateAngledBox(new Point(100, 400));
+-            var platform4 = CreateAngledBox(new Point(1500, 700));
+-            var platform6 = CreateAngledBox(new Point(250, 250));
+-            var platform7 = CreateSquaredBox(new Point(100, 100));
+-            var platform8 = CreateAngledBox(new Point(700, 250));
+-            var platform9 = CreateAngledBox(new Point(950, 400));
+-            var platform10 = CreateSquaredBox(new Point(1300, 250));
+-            var platform11 = CreateSquaredBox(new Point(1500, 100));
+-            var platform12 = CreateAngledBox(new Point(1600, 250));
+-            var platform13 = CreateAngledBox(new Point(1150, 550));
+-            */
++            game = new Game();
++            var timer1 = new Timer();
++            timer1.Start();
++            timer1.Interval = 10;
++            timer1.Tick += new EventHandler(Update);
++            
+             var coin1 = CreateCoin(new Point(175, 0));
+             var coins = new Coins();
+             var score = coins.Count;
+@@ -50,42 +40,53 @@
+                 score += 1;
+                 label.Text = "Грамм травы:" + score;
+             };
+-            KeyDown+= new KeyEventHandler(OnPress);
++            KeyDown += new KeyEventHandler(OnPress);
++            KeyUp += new KeyEventHandler(OnKeyUp);
+ 
+             Controls.Add(coin2);
+             Controls.Add(coin1);
+-            /*
+-            Controls.Add(platform13);
+-            Controls.Add(platform12);
+-            Controls.Add(platform11);
+-            Controls.Add(platform10);
+-            Controls.Add(platform9);
+-            Controls.Add(platform8);
+-            Controls.Add(platform7);
+-            Controls.Add(platform6);
+-            Controls.Add(platform1);
+-            Controls.Add(platform2);
+-            Controls.Add(platform3);
+-            Controls.Add(platform4);
+-            Controls.Add(platform5);
+-            */
+             Controls.Add(label);
+             InitializeComponent();
++            
++        }
++        public void Update(object sender, EventArgs e)
++        {
++
++            if (game.player.Moving)
++            {
++                game.MovePlayer();
++            }
++            Invalidate();
++
++        }
++        public void OnKeyUp(object sender, KeyEventArgs e)
++        {
++            game.player.dirY = 0;
++            game.player.dirX = 0;
++            game.player.Moving = false;
+         }
+         public void OnPress(object sender, KeyEventArgs e)
+         {
+             switch (e.KeyCode)
+             {
+                 case Keys.W:
+-                    game.MovePlayer(0,-1);
++                    game.player.dirY = -5;
++                    break;
++                case Keys.S:
++                    game.player.dirY = 5;
+                     break;
+                 case Keys.A:
+-                    game.MovePlayer(-1,0);
++                    game.player.dirX = -5;
+                     break;
+                 case Keys.D:
+-                    game.MovePlayer(1,0);
++                    game.player.dirX = 5;
+                     break;
+             }
++            game.player.Moving = true;
++        }
++        public void Init()
++        {
++
+         }
+ 
+         protected override void OnPaint(PaintEventArgs e)
+@@ -107,8 +108,8 @@
+             graphics.DrawImage(image1, new Point(1500, 100));
+             graphics.DrawImage(image, new Point(1600, 250));
+             graphics.DrawImage(image, new Point(1150, 550));
+-            graphics.DrawImage(player,new Point(_player.posX,_player.posY));
+-            
++            graphics.DrawImage(player, new Point(game.player.posX, game.player.posY));
++
+         }
+         
+ 
+@@ -157,6 +158,36 @@
+             BackgroundImage = Properties.Resources._2x_total;
+             ClientSize = new Size(1920, 1080);
+             FormBorderStyle = FormBorderStyle.None;
++            DoubleBuffered = true;
+         }
+     }
+-}
+\ No newline at end of file
++}
++/*
++            var platform1 = CreateAngledBox(new Point(250, 850));
++            var platform2 = CreateAngledBox(new Point(450, 700));
++            var platform3 = CreateAngledBox(new Point(250, 550));
++            var platform5 = CreateAngledBox(new Point(100, 400));
++            var platform4 = CreateAngledBox(new Point(1500, 700));
++            var platform6 = CreateAngledBox(new Point(250, 250));
++            var platform7 = CreateSquaredBox(new Point(100, 100));
++            var platform8 = CreateAngledBox(new Point(700, 250));
++            var platform9 = CreateAngledBox(new Point(950, 400));
++            var platform10 = CreateSquaredBox(new Point(1300, 250));
++            var platform11 = CreateSquaredBox(new Point(1500, 100));
++            var platform12 = CreateAngledBox(new Point(1600, 250));
++            var platform13 = CreateAngledBox(new Point(1150, 550));
++            
++            Controls.Add(platform13);
++            Controls.Add(platform12);
++            Controls.Add(platform11);
++            Controls.Add(platform10);
++            Controls.Add(platform9);
++            Controls.Add(platform8);
++            Controls.Add(platform7);
++            Controls.Add(platform6);
++            Controls.Add(platform1);
++            Controls.Add(platform2);
++            Controls.Add(platform3);
++            Controls.Add(platform4);
++            Controls.Add(platform5);
++            */
+\ No newline at end of file
+Index: Player.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Drawing;\r\n\r\nnamespace WallBreak\r\n{\r\n    public class Player\r\n    {\r\n        public Player(int health, int coins,int posX,int posY)\r\n        {\r\n            Health = health;\r\n            Coins = coins;\r\n            this.posX = posX;\r\n            this.posY = posY;\r\n        }\r\n        public int Health { get; }\r\n        public int Coins { get; }\r\n\r\n        public int posX;\r\n        public int posY;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Player.cs	(revision f247b85e2265a8f68f623d8cc6dfdbf1a31c6bd3)
++++ Player.cs	(date 1619359294236)
+@@ -11,10 +11,13 @@
+             this.posX = posX;
+             this.posY = posY;
+         }
+-        public int Health { get; }
+-        public int Coins { get; }
++        public int Health { get; set; }
++        public int Coins { get; set; }
+ 
+         public int posX;
+         public int posY;
++        public int dirX;
++        public int dirY;
++        public bool Moving;
+     }
+ }
+\ No newline at end of file

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\romen\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\romen\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="C:\Users\romen\OneDrive\Документы\GitHub\WallBreak\WallBreak" t="IncludeRecursive">
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Coins.cs" t="Include" />
+      <e p="Level1.resx" t="Include" />
+      <e p="LevelChoose.cs" t="Include" />
+      <e p="LevelChoose.Designer.cs" t="Include" />
+      <e p="LevelChoose.resx" t="Include" />
+      <e p="MainMenu.cs" t="Include" />
+      <e p="MainMenu.resx" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="WallBreak.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="Resources.Designer.cs" t="Include" />
+        <e p="Resources.resx" t="Include" />
+      </e>
+      <e p="Resources" t="Include">
+        <e p="2x total.png" t="Include" />
+        <e p="2x total123.jpg" t="Include" />
+        <e p="3 версия закругленной.png" t="Include" />
+        <e p="55.png" t="Include" />
+        <e p="background for game.jpg" t="Include" />
+        <e p="player.png" t="Include" />
+        <e p="square2.png" t="Include" />
+        <e p="готов 2.jpg" t="Include" />
+        <e p="заккк.png" t="Include" />
+        <e p="монетка.png" t="Include" />
+      </e>
+      <e p="Settings.cs" t="Include" />
+      <e p="Settings.Designer.cs" t="Include" />
+      <e p="Settings.resx" t="Include" />
+      <e p="WallBreak.csproj" t="IncludeRecursive" />
+      <e p="мекс.wav" t="Include" />
+    </e>
+  </component>
+</project>
