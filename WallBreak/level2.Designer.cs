@@ -47,25 +47,42 @@ namespace WallBreak
             // 
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
-
-
+            this.WorldFloor = new System.Windows.Forms.PictureBox();
+            this.WorldFloor.SuspendLayout();
+            this.SuspendLayout();
+            
+            this.WorldFloor.BackgroundImage = Properties.Resources.floordesert;
+            this.WorldFloor.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.WorldFloor.Location = new System.Drawing.Point(0, 240);
+            this.WorldFloor.Name = "WorldFloor";
+            this.WorldFloor.Size = new System.Drawing.Size(656, 45);
+            this.WorldFloor.TabIndex = 1;
+            
+            
             this.pb_Player = new System.Windows.Forms.PictureBox();
+            this.Controls.Add(this.WorldFloor);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Player)).BeginInit();
             Controls.Add(pb_Player);
             this.pb_Player.BackColor = System.Drawing.Color.Transparent;
             this.pb_Player.Image = Properties.Resources.player;
-            this.pb_Player.Location = new System.Drawing.Point(500, 94);
+            this.pb_Player.Location = new System.Drawing.Point(100, 800);
             this.pb_Player.Name = "pb_Player";
             this.pb_Player.Size = new System.Drawing.Size(100, 100);
             this.pb_Player.TabIndex = 0;
             this.pb_Player.TabStop = false; 
             ((System.ComponentModel.ISupportInitialize)(this.pb_Player)).EndInit();
+            this.WorldFloor.ResumeLayout(false);
+            this.WorldFloor.PerformLayout();
+            this.ResumeLayout(false);
             
             }
         private System.Windows.Forms.PictureBox pb_Player;
         private System.Windows.Forms.Timer timer_Gravity;
         private System.Windows.Forms.Timer timer_Jump;
-        }
+        private System.Windows.Forms.PictureBox WorldFloor;
+
+
+    }
 
         #endregion
     }

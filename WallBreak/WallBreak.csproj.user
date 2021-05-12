@@ -5,9 +5,6 @@
     <Compile Update="Level1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="LevelChoose.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>

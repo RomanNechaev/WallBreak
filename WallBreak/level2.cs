@@ -139,13 +139,13 @@ namespace WallBreak
 
         private void timer_Gravity_Tick(object sender, EventArgs e)
         {
-            if (!Player_Jump)
+            if (!Player_Jump&&pb_Player.Location.Y+pb_Player.Height<1062)
             {
                 //If Player doesnt jump, Location is above the floor or is standing on object
                 pb_Player.Top += Speed_Fall; //Player falls
             }
 
-            if (!Player_Jump)
+            if (!Player_Jump && pb_Player.Location.Y + pb_Player.Height > 1062)
             {
                 //If player would for some reason be under the floor, move him up
                 pb_Player.Top--;
