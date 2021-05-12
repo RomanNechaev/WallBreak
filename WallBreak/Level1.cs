@@ -72,7 +72,6 @@ namespace WallBreak
             button.Click += (sender, args) =>
             {
                 Hide();
-                Program.menu.Show();
             };
             button.FlatAppearance.MouseOverBackColor = Color.Pink;
             Controls.Add(button);

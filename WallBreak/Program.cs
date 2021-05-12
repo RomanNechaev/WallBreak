@@ -18,21 +18,9 @@ namespace WallBreak
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(MenuInit());
+            Application.Run(new Form1());
         }
         
-        public static Form menu;
-        public static Form setting;
-        
-        public static Form MenuInit()
-        {
-            return menu = new Form1();
-        }
-
-        public static Form SettingInit()
-        {
-            return setting = new Settings();
-        }
         
         
     }

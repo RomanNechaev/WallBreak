@@ -12,47 +12,28 @@ using Microsoft.Win32;
 
 namespace WallBreak
 {
-    
     public interface IScreen
     {
-        // void Draw(Form form);
-        //
-        // void Clear(Form form);
-        //
-        // void MoveTo(Form form, IScreen screen)
-        // {
-        //     Clear(form);
-        //     screen.Draw(form);
-        // }
-    }
+        void Draw(Form form);
 
-    /*
-    class MainScreen : IScreen
-    {
-        private Button _button;
-        public void Draw(Form form)
+        void Clear(Form form);
+
+        void MoveTo(Form form, IScreen screen)
         {
-            _button = new Button()
-            {
-
-            };
-            
-            form.Controls.Add(_button);
-        }
-
-        public void Clear(Form form)
-        {
-            form.Controls.Remove(_button);
+            Clear(form);
+            screen.Draw(form);
         }
     }
-    */
 
-    public partial class Form1 : Form, IScreen
+
+    public class Form1 : Form
     {
         public Form1()
         {
-            //var mainMenu = new MainScreen();
-            //mainMenu.Draw(this);
+            var mainMenu = new MainScreen();
+            var levelMenu = new LevelChooseScreen();
+            var settinsMenu = new SettingsScreen();
+            mainMenu.Draw(this);
             var label = new Label
             {
                 BackColor = Color.Transparent,
@@ -64,48 +45,45 @@ namespace WallBreak
                 Text = "WallBreak",
                 TextAlign = ContentAlignment.MiddleCenter
             };
-            var startGame = CreateButton("Начать игру", new Point(600, 330));
-            var settings = CreateButton("Настройки", new Point(600, 500));
-            var exit = CreateButton("Выйти из игры", new Point(600, 670));
-            var settingsForm= new Settings();
-            var levelChooseForm  = new LevelChoose();
-            exit.Click += (sender, args) => Application.Exit();
-            settings.Click += (sender, args) =>
+            mainMenu.exit.Click += (sender, args) => Application.Exit();
+            mainMenu.settings.Click += (sender, args) =>
             {
-                Draw(settingsForm);                
+                mainMenu.Clear(this);
+                settinsMenu.Draw(this);
             };
-            startGame.Click += (sender, args) =>
+            mainMenu.startGame.Click += (sender, args) =>
             {
-                Draw(levelChooseForm);
+                mainMenu.Clear(this);
+                levelMenu.Draw(this);
             };
+            settinsMenu.enterMenu.Click += (sender, args) =>
+            {
+                settinsMenu.Clear(this);
+                mainMenu.Draw(this);
+            };
+            settinsMenu.offMusic.Click += (sender, args) => { Music().Stop(); };
+            settinsMenu.onMusic.Click += (sender, args) => { Music().Play(); };
+            levelMenu.firstLevel.Click += (sender, args) =>
+            {
+                Hide();
+                var level1 = new Level1();
+                level1.Show();
+            };
+            levelMenu.backTomenu.Click += (sender, args) =>
+            {
+                levelMenu.Clear(this);
+                mainMenu.Draw(this);
+            };
+            
             Music();
             CreateMenu();
             Controls.Add(label);
-            Controls.Add(exit);
-            Controls.Add(startGame);
-            Controls.Add(settings);
         }
-        public void Draw(Form form)
-        {
-            form.Show();
-        }
-
-        public void Clear(Form form)
-        {
-            form.Hide();
-        }
-
-        // public void MoveTo(Form form, IScreen screen)
-        // {
-        //     Clear(form);
-        //     screen.Draw(form);
-        // }
 
         private void CreateMenu()
         {
             DoubleBuffered = true;
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
-            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.background_for_game;
             ClientSize = new Size(1920, 1080);
@@ -122,23 +100,5 @@ namespace WallBreak
             SoundPlayer player = new SoundPlayer(resourceStream);
             return player;
         }
-
-        private static Button CreateButton(string text, Point coords)
-        {
-            var button = new Button
-            {
-                Text = text,
-                BackColor = SystemColors.Control,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Century Gothic", 28F, FontStyle.Bold, GraphicsUnit.Point),
-                Location = coords,
-                Size = new Size(700, 90),
-            };
-            button.FlatAppearance.MouseOverBackColor = Color.Pink;
-            return button;
-        }
-
-        
-        
     }
 }
