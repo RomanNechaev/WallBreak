@@ -31,6 +31,7 @@ namespace WallBreak
         /// </summary>
         private void InitializeComponent()
         {
+            
         }
     }
 } 

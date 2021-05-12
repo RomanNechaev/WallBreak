@@ -92,6 +92,7 @@ namespace WallBreak
             Text = "Form1";
             ResumeLayout(false);
         }
+        
 
         public static SoundPlayer Music()
         {
