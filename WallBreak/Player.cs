@@ -4,21 +4,24 @@ namespace WallBreak
 {
     public class Player
     {
-        public Player(int health, int coins,int posX,int posY)
+        public Player(int health, int coins)
         {
             Health = health;
             Coins = coins;
-            this.posX = posX;
-            this.posY = posY;
         }
         public int Health { get; set; }
         public int Coins { get; set; }
-
-        public int posX;
-        public int speedY;
-        public int posY;
-        public int dirX;
-        public int dirY;
-        public bool Moving;
+        public  bool PlayerJump;    
+        public bool PlayerLeft;
+        public  bool PlayerRight;
+        public bool LastDirRight;
+        public  bool GameOn; 
+        public  int Gravity = 20;
+        public  int Anim = 0;
+        public  int Force = 0;
+        public  int SpeedMovement = 3;
+        public  int SpeedJump = 3;
+        public  int SpeedFall = 3;
+        public  int Score = 0;
     }
 }

@@ -65,9 +65,6 @@ namespace WallBreak
             settinsMenu.onMusic.Click += (sender, args) => { Music().Play(); };
             levelMenu.firstLevel.Click += (sender, args) =>
             {
-                Hide();
-                var level1 = new Level1();
-                level1.Show();
             };
             levelMenu.backTomenu.Click += (sender, args) =>
             {
