@@ -34,7 +34,7 @@ namespace WallBreak
             {
                 case Keys.Left: // On Left Keypress down
                     if (player.GameOn)
-                    {
+                    {                        
                         player.LastDirRight = false; //For the animation, stand right or left
                         player.PlayerLeft = true; //Walk left
                     }

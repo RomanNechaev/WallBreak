@@ -14,8 +14,8 @@ namespace WallBreak
         public  bool PlayerJump;    
         public bool PlayerLeft;
         public  bool PlayerRight;
-        public bool LastDirRight;
-        public  bool GameOn; 
+        public bool LastDirRight = true;
+        public  bool GameOn = true; 
         public  int Gravity = 20;
         public  int Anim = 0;
         public  int Force = 0;
