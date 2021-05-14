@@ -7,13 +7,25 @@ namespace WallBreak
 {
     public partial class level2 : Form
     {
+        Platforms platforms = new Platforms();
         public level2()
         {
+            
             InitializeComponent();
             CreateLevel1();
+            CreatePlatforms();
         }
         Player player = new Player(100,0);
 
+        private void CreatePlatforms()
+        {
+            WorldFrame.Controls.Add(platforms.CreatePlatform(0, 0));
+            WorldFrame.Controls.Add(platforms.CreatePlatform(0, 200));
+            WorldFrame.Controls.Add(platforms.CreatePlatform(0, 400));
+            WorldFrame.Controls.Add(platforms.CreatePlatform(0, 600));
+            WorldFrame.Controls.Add(platforms.CreatePlatform(0, 800));
+            WorldFrame.Controls.Add(platforms.CreatePlatform(0, 1000));
+        }
         private void CreateLevel1()
         {
             Name = "Level1";
@@ -32,15 +44,15 @@ namespace WallBreak
         {
             switch (e.KeyCode)
             {
-                case Keys.Left: // On Left Keypress down
+                case Keys.Left:
                     if (player.GameOn)
                     {                        
-                        player.LastDirRight = false; //For the animation, stand right or left
-                        player.PlayerLeft = true; //Walk left
+                        player.LastDirRight = false; 
+                        player.PlayerLeft = true; 
                     }
 
                     break;
-                case Keys.Right: // On Right Keypress down
+                case Keys.Right: 
                     if (player.GameOn)
                     {
                         player.LastDirRight = true;
@@ -48,13 +60,12 @@ namespace WallBreak
                     }
 
                     break;
-                case Keys.Space: // On Space Keypress down
+                case Keys.Space: 
                     if (!player.PlayerJump)
                     {
-                        //Anti multijump - If the player doesnt jump, is in the air and not colliding with anything
-                        pb_Player.Top -= player.SpeedJump; //Player moves up a bit
-                        player.Force = player.Gravity; //Force to be moved up changes
-                        player.PlayerJump = true; //Sets a variable that player is jumping
+                        pb_Player.Top -= player.SpeedJump; 
+                        player.Force = player.Gravity;
+                        player.PlayerJump = true; 
                     }
 
                     break;
@@ -67,9 +78,9 @@ namespace WallBreak
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.Left: //On Left Key press UP
-                        player.LastDirRight = false; //Last move was to the left
-                        player.PlayerLeft = false; //Doesnt move left anymore
+                    case Keys.Left: 
+                        player.LastDirRight = false;
+                        player.PlayerLeft = false; 
                         break;
                     case Keys.Right:
                         player.LastDirRight = true;
@@ -85,56 +96,48 @@ namespace WallBreak
             {
                 if (player.PlayerRight)
                 {
-                    //Stops the player from moving out of screen
-                    pb_Player.Left += player.SpeedMovement; //Moves right
+                    pb_Player.Left += player.SpeedMovement; 
                 }
 
                 if (player.PlayerLeft)
                 {
-                    //Stops the player from moving out of screen
-                    pb_Player.Left -= player.SpeedMovement; //Moves left
+                    pb_Player.Left -= player.SpeedMovement;
                 }
             }
             else
             {
-                //If game is not on, stops the player
                 player.PlayerRight = false;
                 player.PlayerLeft = false;
             }
 
             if (player.Force > 0)
             {
-                //If any force still exists
                 if (false)
                 {
-                    //Unless players head is banging in a wall
                     player.Force = 0;
                 }
                 else
                 {
-                    //Move player up, lower force each "move"
                     player.Force--;
                     pb_Player.Top -= player.SpeedJump;
                 }
             }
             else
             {
-                //If no force, player is not jumping.
                 player.PlayerJump = false;
             }
         }
 
         private void timer_Gravity_Tick(object sender, EventArgs e)
         {
-            if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height +30) 
+            if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height)  
             {
-                //If Player doesnt jump, Location is above the floor or is standing on object
                 pb_Player.Top += player.SpeedFall; //Player falls
             }
 
-            if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height +30)
+            if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height) 
             {
-                //If player would for some reason be under the floor, move him up
+                //under the floor
                 pb_Player.Top--;
             }
         }

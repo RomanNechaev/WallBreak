@@ -73,26 +73,6 @@ namespace WallBreak.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2_entity_000_ATTACK_000 {
-            get {
-                object obj = ResourceManager.GetObject("_2_entity_000_ATTACK_000", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _22 {
-            get {
-                object obj = ResourceManager.GetObject("_22", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap _2x_total {
             get {
                 object obj = ResourceManager.GetObject("_2x_total", resourceCulture);
@@ -206,6 +186,16 @@ namespace WallBreak.Properties {
         internal static System.Drawing.Bitmap player {
             get {
                 object obj = ResourceManager.GetObject("player", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sprite_23_2 {
+            get {
+                object obj = ResourceManager.GetObject("sprite_23_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
