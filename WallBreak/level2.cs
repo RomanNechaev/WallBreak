@@ -8,22 +8,30 @@ namespace WallBreak
     public partial class level2 : Form
     {
         Platforms platforms = new Platforms();
+        Player player = new Player(100, 0);
+        private PictureBox[] WorldObjects;
         public level2()
         {
-            WorldObjects = new PictureBox[1] {platforms.CreatePlatform(900, 740)};
+            
 
             InitializeComponent();
             CreateLevel1();
+            WorldObjects = new PictureBox[6] {
+                platforms.CreatePlatform(1000, 900),
+                platforms.CreatePlatform(1500, 850),
+                platforms.CreatePlatform(500, 950),
+                platforms.CreatePlatform(500, 850),
+                platforms.CreatePlatform(500, 700),
+                platforms.CreatePlatform(500, 950)
+            };
             CreatePlatforms();
-        }
-        Player player = new Player(100,0);
-        private PictureBox[] WorldObjects;
+        }        
 
         private void CreatePlatforms()
         {
-            foreach (var VARIABLE in WorldObjects)
+            foreach (var platform in WorldObjects)
             {
-                WorldFrame.Controls.Add(VARIABLE);
+                WorldFrame.Controls.Add(platform);
             }
         }
         
@@ -31,7 +39,7 @@ namespace WallBreak
         {
             Name = "Level1";
             Text = "Level1";
-            ResumeLayout(false);
+            //ResumeLayout(false);
             DoubleBuffered = true;
             ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -48,7 +56,7 @@ namespace WallBreak
                 {   //Or if it's not colliding with anything
                     if (!tar.Bounds.IntersectsWith(Obj.Bounds))
                     {
-                        if (tar.Location.Y < WorldFrame.Width)
+                        if (tar.Location.Y < WorldFrame.Width && !Collision_Top(pb_Player))
                         {   //And it's not under ground for some reason
                             return true;
                         }
@@ -75,38 +83,8 @@ namespace WallBreak
             }
             return false;
         }
-        public Boolean Collision_Top(PictureBox tar)
-        {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp1 = new PictureBox();    //Creates a single pixel above the target picturebox, asks if anything is colliding with it
-                    temp1.Bounds = ob.Bounds;
-                    //PaintBox(temp1.Location.X, temp1.Location.Y - 1, temp1.Width, 1, Color.Blue); //Super laggy doing this, troubleshooting only
-                    temp1.SetBounds(temp1.Location.X - 6, temp1.Location.Y - 1, temp1.Width + 6, 1);
-                    if (tar.Bounds.IntersectsWith(temp1.Bounds))
-                        return true;
-                }
-            }
-            return false;
-        }
-        public Boolean Collision_Bottom(PictureBox tar)
-        {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp1 = new PictureBox();
-                    temp1.Bounds = ob.Bounds;
-                    //PaintBox(temp1.Location.X, temp1.Location.Y+temp1.Height, temp1.Width, 1, Color.Red); //Super laggy doing this, troubleshooting only
-                    temp1.SetBounds(temp1.Location.X, temp1.Location.Y + temp1.Height, temp1.Width, 1);
-                    if (tar.Bounds.IntersectsWith(temp1.Bounds))
-                        return true;
-                }
-            }
-            return false;
-        }
+
+
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -128,7 +106,7 @@ namespace WallBreak
                     }
 
                     break;
-                case Keys.Space: 
+                case Keys.Up: 
                     if (!player.PlayerJump && !InAirNoCollision(pb_Player))
                     {
                         pb_Player.Top -= player.SpeedJump; 
@@ -167,7 +145,7 @@ namespace WallBreak
                     pb_Player.Left += player.SpeedMovement; 
                 }
 
-                if (player.PlayerLeft && pb_Player.Location.X >= 3 && !Collision_Right(pb_Player))
+                if (player.PlayerLeft && pb_Player.Left >= 3 && !Collision_Right(pb_Player))
                 {
                     pb_Player.Left -= player.SpeedMovement;
                 }
@@ -183,7 +161,7 @@ namespace WallBreak
                 if (Collision_Bottom(pb_Player))
                 {
                     player.Force = 0;
-                    
+
                 }
                 else
                 {
@@ -196,33 +174,59 @@ namespace WallBreak
                 player.PlayerJump = false;
             }
         }
-        public Boolean Collision_Left(PictureBox tar)
+        public Boolean Collision_Top(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
             {
                 if (ob != null)
                 {
-                    PictureBox temp1 = new PictureBox();
-                    temp1.Bounds = ob.Bounds;
-                    //PaintBox(temp1.Location.X - 1, temp1.Location.Y + 1, 1, temp1.Height - 1, Color.Green); //Super laggy doing this, troubleshooting only
-                    temp1.SetBounds(temp1.Location.X - 1, temp1.Location.Y + 1, 1, temp1.Height - 1);
-                    if (tar.Bounds.IntersectsWith(temp1.Bounds))
+                    PictureBox temp = new PictureBox(); 
+                    temp.Bounds = ob.Bounds;
+                    temp.SetBounds(temp.Location.X - 3, temp.Location.Y - 3, temp.Width -1 , 1);
+                    if (tar.Bounds.IntersectsWith(temp.Bounds))
                         return true;
                 }
             }
             return false;
         }
+        public Boolean Collision_Left(PictureBox tar)
+        {
+            foreach (PictureBox ob in WorldObjects)
+            {
+                PictureBox temp = new PictureBox();
+                temp.Bounds = ob.Bounds;
+                temp.SetBounds(temp.Location.X - 5, temp.Location.Y + 1, 1, temp.Height + 1);
+                if (tar.Bounds.IntersectsWith(temp.Bounds))
+                    return true;
+            }
+            return false;
+        }
+        public Boolean Collision_Bottom(PictureBox tar)
+        {
+            foreach (PictureBox ob in WorldObjects)
+            {
+                if (ob != null)
+                {
+                    PictureBox temp = new PictureBox();
+                    temp.Bounds = ob.Bounds;
+                    temp.SetBounds(temp.Location.X, temp.Location.Y + temp.Height - 5, temp.Width - 2, 6);
+                    if (tar.Bounds.IntersectsWith(temp.Bounds))
+                        return true;
+                }
+            }
+            return false;
+        }
+       
         public Boolean Collision_Right(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
             {
                 if (ob != null)
                 {
-                    PictureBox temp2 = new PictureBox();
-                    temp2.Bounds = ob.Bounds;
-                    //PaintBox(temp2.Location.X + temp2.Width, temp2.Location.Y + 1, 1, temp2.Height - 1, Color.Yellow); //Super laggy doing this, troubleshooting only
-                    temp2.SetBounds(temp2.Location.X + temp2.Width, temp2.Location.Y + 1, 1, temp2.Height - 1);
-                    if (tar.Bounds.IntersectsWith(temp2.Bounds))
+                    PictureBox temp = new PictureBox();
+                    temp.Bounds = ob.Bounds;
+                    temp.SetBounds(temp.Location.X + temp.Width + 1, temp.Location.Y + 1, 2, temp.Height + 1);
+                    if (tar.Bounds.IntersectsWith(temp.Bounds))
                         return true;
                 }
             }

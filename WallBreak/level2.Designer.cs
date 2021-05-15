@@ -38,18 +38,17 @@ namespace WallBreak
 
             this.WorldFrame = new System.Windows.Forms.Panel();            
             this.pb_Player = new System.Windows.Forms.PictureBox();
-            //this.back = new System.Windows.Forms.PictureBox();
 
             this.timer_Gravity = new System.Windows.Forms.Timer(this.components);
             this.timer_Jump = new System.Windows.Forms.Timer(this.components);
             this.WorldFloor = new System.Windows.Forms.PictureBox();
-            //this.pb_Block2 = new System.Windows.Forms.PictureBox();///
 
-            this.WorldFrame.SuspendLayout();            
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Player)).BeginInit();
-            this.WorldFloor.SuspendLayout();
-            this.SuspendLayout();
-            // 
+            
+            //((System.ComponentModel.ISupportInitialize)(this.pb_Player)).BeginInit();
+            //this.WorldFrame.SuspendLayout();
+            //this.WorldFloor.SuspendLayout();
+            //this.SuspendLayout();
+            //// 
             // WorldFrame
             // 
 
@@ -68,24 +67,18 @@ namespace WallBreak
             this.WorldFrame.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WorldFrame.Location = new System.Drawing.Point(0, 0);
             this.WorldFrame.Name = "WorldFloor";
-            this.WorldFrame.Size = new System.Drawing.Size(960, 1035);
+            this.WorldFrame.Size = new System.Drawing.Size(0, 0);
             this.WorldFrame.TabIndex = 1;
             this.Controls.Add(this.WorldFrame);
-            this.WorldFrame.ResumeLayout(false);
-            this.WorldFrame.PerformLayout();
-            //    
-
-            //this.back.BackgroundImage = Properties.Resources._2;
-            //this.back.Location = new System.Drawing.Point(0, 0);
-            //this.back.Size = new System.Drawing.Size(500, 500);
-
-           
+            //this.WorldFrame.ResumeLayout(false);
+            //this.WorldFrame.PerformLayout();
+            //               
             // pb_Player
             // 
             this.pb_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_Player.BackColor = Color.Transparent;
+            this.pb_Player.BackColor = Color.White;
             this.pb_Player.Image = Properties.Resources.sprite_23_2;
-            this.pb_Player.Location = new System.Drawing.Point(1000, 800);
+            this.pb_Player.Location = new System.Drawing.Point(1200, 800);
             this.pb_Player.Name = "pb_Player";
             this.pb_Player.Size = new System.Drawing.Size(100, 100);
             this.pb_Player.TabIndex = 0;
@@ -107,7 +100,7 @@ namespace WallBreak
             // 
             this.WorldFloor.BackgroundImage = Properties.Resources.floordesert;
             this.WorldFloor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.WorldFloor.Location = new System.Drawing.Point(0, 1035);
+            this.WorldFloor.Location = new System.Drawing.Point(0, 900);
             this.WorldFloor.Name = "WorldFloor";
             this.WorldFloor.Size = new System.Drawing.Size(1920, 45);
             this.WorldFloor.TabIndex = 1;
@@ -116,7 +109,7 @@ namespace WallBreak
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1920, 1800);
             this.Controls.Add(this.WorldFloor);
             
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -127,10 +120,10 @@ namespace WallBreak
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             
-            ((System.ComponentModel.ISupportInitialize)(this.pb_Player)).EndInit();
-            this.WorldFloor.ResumeLayout(false);
-            this.WorldFloor.PerformLayout();
-            this.ResumeLayout(false);
+            //((System.ComponentModel.ISupportInitialize)(this.pb_Player)).EndInit();
+            //this.WorldFloor.ResumeLayout(false);
+            //this.WorldFloor.PerformLayout();
+            //this.ResumeLayout(false);
 
         }
 

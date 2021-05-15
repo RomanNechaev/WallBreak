@@ -16,12 +16,12 @@ namespace WallBreak
         public  bool PlayerRight;
         public bool LastDirRight;
         public  bool GameOn = true; 
-        public  int Gravity = 20;
+        public  int Gravity = 50;
         public  int Anim = 0;
         public  int Force = 0;
-        public  int SpeedMovement = 3;
-        public  int SpeedJump = 3;
-        public  int SpeedFall = 3;
+        public  int SpeedMovement = 4;
+        public  int SpeedJump = 4;
+        public  int SpeedFall = 4;
         public  int Score = 0;
     }
 }
