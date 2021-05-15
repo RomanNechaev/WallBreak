@@ -38,13 +38,6 @@ namespace WallBreak
 
             this.WorldFrame = new System.Windows.Forms.Panel();            
             this.pb_Player = new System.Windows.Forms.PictureBox();
-            this.platform1 = new System.Windows.Forms.PictureBox();
-            this.platform2 = new System.Windows.Forms.PictureBox();
-            this.platform3 = new System.Windows.Forms.PictureBox();
-            this.platform4 = new System.Windows.Forms.PictureBox();
-            this.platform5 = new System.Windows.Forms.PictureBox();
-            this.platform6 = new System.Windows.Forms.PictureBox();
-            this.platform7 = new System.Windows.Forms.PictureBox();
             //this.back = new System.Windows.Forms.PictureBox();
 
             this.timer_Gravity = new System.Windows.Forms.Timer(this.components);
@@ -86,41 +79,7 @@ namespace WallBreak
             //this.back.Location = new System.Drawing.Point(0, 0);
             //this.back.Size = new System.Drawing.Size(500, 500);
 
-            this.platform1.BackColor = System.Drawing.Color.Transparent;
-            this.platform1.Image = Properties.Resources.заккк;
-            this.platform1.Location = new System.Drawing.Point(0, 800);
-            this.platform1.Size = new System.Drawing.Size(100, 100);
-
-            this.platform2.BackColor = System.Drawing.Color.Transparent;
-            this.platform2.Image = Properties.Resources.заккк;
-            this.platform2.Location = new System.Drawing.Point(100, 800);
-            this.platform2.Size = new System.Drawing.Size(100, 100);
-
-            this.platform3.BackColor = System.Drawing.Color.Transparent;
-            this.platform3.Image = Properties.Resources.заккк;
-            this.platform3.Location = new System.Drawing.Point(200, 800);
-            this.platform3.Size = new System.Drawing.Size(100, 100);
-
-            this.platform4.BackColor = System.Drawing.Color.Transparent;
-            this.platform4.Image = Properties.Resources.заккк;
-            this.platform4.Location = new System.Drawing.Point(300, 800);
-            this.platform4.Size = new System.Drawing.Size(100, 100);
-
-            this.platform5.BackColor = System.Drawing.Color.Transparent;
-            this.platform5.Image = Properties.Resources.заккк;
-            this.platform5.Location = new System.Drawing.Point(400, 800);
-            this.platform5.Size = new System.Drawing.Size(100, 100);
-
-            this.platform6.BackColor = System.Drawing.Color.Transparent;
-            this.platform6.Image = Properties.Resources.заккк;
-            this.platform6.Location = new System.Drawing.Point(500, 800);
-            this.platform6.Size = new System.Drawing.Size(100, 100);
-
-            this.platform7.BackColor = System.Drawing.Color.Transparent;
-            this.platform7.Image = Properties.Resources.заккк;
-            this.platform7.Location = new System.Drawing.Point(600, 800);
-            this.platform7.Size = new System.Drawing.Size(100, 100);
-
+           
             // pb_Player
             // 
             this.pb_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -180,13 +139,6 @@ namespace WallBreak
         //private System.Windows.Forms.PictureBox back;
         private System.Windows.Forms.PictureBox WorldFloor;
         private System.Windows.Forms.PictureBox pb_Player;
-        private System.Windows.Forms.PictureBox platform1;
-        private System.Windows.Forms.PictureBox platform7;
-        private System.Windows.Forms.PictureBox platform6;
-        private System.Windows.Forms.PictureBox platform5;
-        private System.Windows.Forms.PictureBox platform4;
-        private System.Windows.Forms.PictureBox platform3;
-        private System.Windows.Forms.PictureBox platform2;
         private System.Windows.Forms.Timer timer_Gravity;
         private System.Windows.Forms.Timer timer_Jump;
 
