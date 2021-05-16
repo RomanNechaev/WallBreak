@@ -9,22 +9,27 @@ namespace WallBreak
     {
         Platforms platforms = new Platforms();
         Player player = new Player(100, 0);
+        Coins coins = new Coins();
         private PictureBox[] WorldObjects;
+        private PictureBox[] CoinsArray; 
         public level2()
-        {
-            
-
+        { 
             InitializeComponent();
             CreateLevel1();
-            WorldObjects = new PictureBox[6] {
-                platforms.CreatePlatform(1000, 900),
-                platforms.CreatePlatform(1500, 850),
-                platforms.CreatePlatform(500, 950),
-                platforms.CreatePlatform(500, 850),
-                platforms.CreatePlatform(500, 700),
-                platforms.CreatePlatform(500, 950)
+            WorldObjects = new PictureBox[1] 
+            {
+                platforms.CreatePlatform(300, 900)
             };
+
+            CoinsArray = new PictureBox[1]
+            {
+                coins.CreateCoin(800,900)
+            };
+
+
+
             CreatePlatforms();
+            CreateCoins();
         }        
 
         private void CreatePlatforms()
@@ -32,6 +37,14 @@ namespace WallBreak
             foreach (var platform in WorldObjects)
             {
                 WorldFrame.Controls.Add(platform);
+            }            
+        }
+
+        private void CreateCoins()
+        {
+            foreach (var coin in CoinsArray)
+            {
+                WorldFrame.Controls.Add(coin);
             }
         }
         
@@ -127,6 +140,7 @@ namespace WallBreak
                     case Keys.Left: 
                         player.LastDirRight = false;
                         player.PlayerLeft = false; 
+                        
                         break;
                     case Keys.Right:
                         player.LastDirRight = true;
@@ -142,13 +156,15 @@ namespace WallBreak
             {
                 if (player.PlayerRight &&pb_Player.Right <= WorldFrame.Width - 3 && !Collision_Left(pb_Player))
                 {
-                    pb_Player.Left += player.SpeedMovement; 
+                    pb_Player.Left += player.SpeedMovement;
+
                 }
 
                 if (player.PlayerLeft && pb_Player.Left >= 3 && !Collision_Right(pb_Player))
                 {
                     pb_Player.Left -= player.SpeedMovement;
                 }
+                
             }
             else
             {
@@ -168,12 +184,38 @@ namespace WallBreak
                     player.Force--;
                     pb_Player.Top -= player.SpeedJump;
                 }
-            }
+            }            
             else
             {
                 player.PlayerJump = false;
             }
         }
+
+        public bool PlayerTookCoin(PictureBox tar, PictureBox coin)
+        {
+            if (coin != null)
+            {
+                var temp = new PictureBox();
+                temp.SetBounds(coin.Location.X, coin.Location.Y, coin.Width, coin.Height);
+                if (!tar.Bounds.IntersectsWith(temp.Bounds))
+                    return false;
+            }
+            return true;
+        }
+
+        public bool PlayerTookPlatformRight(PictureBox tar, PictureBox platform)
+        {
+            if (platform != null)
+            {
+                PictureBox temp = new PictureBox();
+                temp.Bounds = platform.Bounds;
+                temp.SetBounds(temp.Location.X + temp.Width + 1, temp.Location.Y + 1, 10, 1000);
+                if (tar.Bounds.IntersectsWith(temp.Bounds))
+                    return true;
+            }
+            return true;
+        }
+
         public Boolean Collision_Top(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
@@ -193,11 +235,14 @@ namespace WallBreak
         {
             foreach (PictureBox ob in WorldObjects)
             {
-                PictureBox temp = new PictureBox();
-                temp.Bounds = ob.Bounds;
-                temp.SetBounds(temp.Location.X - 5, temp.Location.Y + 1, 1, temp.Height + 1);
-                if (tar.Bounds.IntersectsWith(temp.Bounds))
-                    return true;
+                if (ob != null)
+                {
+                    PictureBox temp = new PictureBox();
+                    temp.Bounds = ob.Bounds;
+                    temp.SetBounds(temp.Location.X - 5, temp.Location.Y + 1, 1, temp.Height + 1);
+                    if (tar.Bounds.IntersectsWith(temp.Bounds))
+                        return true;
+                }
             }
             return false;
         }
@@ -245,6 +290,21 @@ namespace WallBreak
                 //under the floor
                 pb_Player.Top--;
             }
+            foreach(var coin in CoinsArray)
+            {
+                if (PlayerTookCoin(pb_Player, coin))
+                {
+                    coin.Visible = false;
+                }
+            }
+
+            //foreach (var plat in WorldObjects)
+            //{
+            //    if (PlayerTookPlatformRight(pb_Player, plat))
+            //    {
+            //        plat.BackColor = Color.Red;
+            //    }
+            //}
         }
     }
 }

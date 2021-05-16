@@ -76,7 +76,7 @@ namespace WallBreak
             // pb_Player
             // 
             this.pb_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_Player.BackColor = Color.White;
+            this.pb_Player.BackColor = Color.Transparent;
             this.pb_Player.Image = Properties.Resources.sprite_23_2;
             this.pb_Player.Location = new System.Drawing.Point(1200, 800);
             this.pb_Player.Name = "pb_Player";
