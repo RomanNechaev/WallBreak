@@ -87,7 +87,7 @@ namespace WallBreak
             // timer_Gravity
             // 
             this.timer_Gravity.Enabled = true;
-            this.timer_Gravity.Interval = 10;
+            this.timer_Gravity.Interval = 1;
             this.timer_Gravity.Tick += new System.EventHandler(this.timer_Gravity_Tick);
             // 
             // timer_Jump

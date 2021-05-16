@@ -17,12 +17,6 @@ namespace WallBreak
         void Draw(Form form);
 
         void Clear(Form form);
-
-        void MoveTo(Form form, IScreen screen)
-        {
-            Clear(form);
-            screen.Draw(form);
-        }
     }
 
 
@@ -70,6 +64,13 @@ namespace WallBreak
             {
                 levelMenu.Clear(this);
                 mainMenu.Draw(this);
+            };
+            mainMenu.startGame.Click += (sender, args) =>
+            {
+                var game = new level2();
+                Program.Forms.Hide();
+                game.Show();
+
             };
             
             Music();

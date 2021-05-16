@@ -18,8 +18,9 @@ namespace WallBreak
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new level2());
+            Application.Run(Forms);
         }
+        public static Form Forms = new Form1();
         
         
         
