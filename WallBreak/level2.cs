@@ -78,7 +78,7 @@ namespace WallBreak
                 {
                     if (!tar.Bounds.IntersectsWith(Obj.Bounds))
                     {
-                        if (tar.Location.Y < WorldFrame.Width && !Collision_Top(pb_Player))
+                        if (tar.Location.Y < WorldFrame.Width && !CollisionTop(pb_Player))
                             return true;
                     }
                 }
@@ -108,7 +108,7 @@ namespace WallBreak
         }
 
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Level2KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -131,7 +131,7 @@ namespace WallBreak
             }
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void Level2KeyUp(object sender, KeyEventArgs e)
         {
             if (player.GameOn)
             {
@@ -147,34 +147,7 @@ namespace WallBreak
             }
         }
 
-        private void timer_Jump_Tick(object sender, EventArgs e)
-        {
-            if (player.GameOn)
-            {
-                if (player.PlayerRight && pb_Player.Right <= WorldFrame.Width - 3 && !Collision_Left(pb_Player))
-                    pb_Player.Left += player.SpeedMovement;
-                if (player.PlayerLeft && pb_Player.Left >= 3 && !Collision_Right(pb_Player))
-                    pb_Player.Left -= player.SpeedMovement;
-            }
-            else
-            {
-                player.PlayerRight = false;
-                player.PlayerLeft = false;
-            }
-
-            if (player.Force > 0)
-            {
-                if (Collision_Bottom(pb_Player))
-                    player.Force = 0;
-                else
-                {
-                    player.Force--;
-                    pb_Player.Top -= player.SpeedJump;
-                }
-            }
-            else
-                player.PlayerJump = false;
-        }
+        
 
         public bool PlayerTookCoin(PictureBox tar, PictureBox coin)
         {
@@ -188,7 +161,9 @@ namespace WallBreak
 
             return true;
         }
-        public Boolean Collision_Top(PictureBox tar)
+
+        
+        public bool CollisionTop(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
             {
@@ -205,7 +180,9 @@ namespace WallBreak
             return false;
         }
 
-        public bool Collision_Left(PictureBox tar)
+        
+
+        public bool CollisionLeft(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
             {
@@ -222,7 +199,7 @@ namespace WallBreak
             return false;
         }
 
-        public Boolean Collision_Bottom(PictureBox tar)
+        public bool CollisionBottom(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
             {
@@ -239,7 +216,7 @@ namespace WallBreak
             return false;
         }
 
-        public Boolean Collision_Right(PictureBox tar)
+        public bool CollisionRight(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
             {
@@ -256,10 +233,38 @@ namespace WallBreak
             return false;
         }
 
-        private void timer_Gravity_Tick(object sender, EventArgs e)
+        private void timer_Jump_Tick(object sender, EventArgs e)
+        {
+            if (player.GameOn)
+            {
+                if (player.PlayerRight && pb_Player.Right <= WorldFrame.Width - 3 && !CollisionLeft(pb_Player))
+                    pb_Player.Left += player.SpeedMovement;
+                if (player.PlayerLeft && pb_Player.Left >= 3 && !CollisionRight(pb_Player))
+                    pb_Player.Left -= player.SpeedMovement;
+            }
+            else
+            {
+                player.PlayerRight = false;
+                player.PlayerLeft = false;
+            }
+
+            if (player.Force > 0)
+            {
+                if (CollisionBottom(pb_Player))
+                    player.Force = 0;
+                else
+                {
+                    player.Force--;
+                    pb_Player.Top -= player.SpeedJump;
+                }
+            }
+            else
+                player.PlayerJump = false;
+        }
+        private void GravityTimer(object sender, EventArgs e)
         {
             if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
-                !Collision_Top(pb_Player))
+                !CollisionTop(pb_Player))
                 pb_Player.Top += player.SpeedFall;
 
             if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height)
@@ -270,6 +275,22 @@ namespace WallBreak
                 if (PlayerTookCoin(pb_Player, coin))
                     coin.Visible = false;
             }
+        }
+        public bool Collision(PictureBox target, int x, int y, int width, int height)
+        {
+            foreach (PictureBox ob in WorldObjects)
+            {
+                if (ob != null)
+                {
+                    PictureBox temp = new PictureBox();
+                    temp.Bounds = ob.Bounds;
+                    temp.SetBounds(x, y, width, height);
+                    if (target.Bounds.IntersectsWith(temp.Bounds))
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }
