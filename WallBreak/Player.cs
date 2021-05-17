@@ -22,6 +22,6 @@ namespace WallBreak
         public int SpeedMovement = 4;
         public int SpeedJump = 4;
         public int SpeedFall = 4;
-        public int Score = 0;
+        public int  Score = 0;
     }
 }

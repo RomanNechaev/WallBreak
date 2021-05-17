@@ -88,7 +88,7 @@ namespace WallBreak
             // 
             this.timer_Gravity.Enabled = true;
             this.timer_Gravity.Interval = 1;
-            this.timer_Gravity.Tick += new System.EventHandler(this.timer_Gravity_Tick);
+            this.timer_Gravity.Tick += new System.EventHandler(this.GravityTimer);
             // 
             // timer_Jump
             // 
@@ -117,8 +117,8 @@ namespace WallBreak
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = " ";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Level2KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Level2KeyUp);
             
             //((System.ComponentModel.ISupportInitialize)(this.pb_Player)).EndInit();
             //this.WorldFloor.ResumeLayout(false);
