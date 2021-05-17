@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
+
 namespace WallBreak
 {
     static class Program
@@ -18,7 +19,7 @@ namespace WallBreak
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Forms);
+            Application.Run(Forms);            
         }
         public static Form Forms = new Form1();
         

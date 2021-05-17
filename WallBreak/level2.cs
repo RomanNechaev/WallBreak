@@ -316,5 +316,21 @@ namespace WallBreak
 
             return false;
         }
+        public bool Collision(PictureBox target, int x, int y, int width, int height)
+        {
+            foreach (PictureBox ob in WorldObjects)
+            {
+                if (ob != null)
+                {
+                    PictureBox temp = new PictureBox();
+                    temp.Bounds = ob.Bounds;
+                    temp.SetBounds(x, y, width, height);
+                    if (target.Bounds.IntersectsWith(temp.Bounds))
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
