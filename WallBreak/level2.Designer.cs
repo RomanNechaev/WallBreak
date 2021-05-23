@@ -5,7 +5,11 @@ namespace WallBreak
 {
     partial class level2
     {
+<<<<<<< HEAD
         //Player players = new Player(100, 0);
+=======
+        Player players = new Player(100,0);
+>>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -79,9 +83,15 @@ namespace WallBreak
             this.pb_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_Player.BackColor = Color.Transparent;
             this.pb_Player.Image = Properties.Resources.sprite_23_2;
+<<<<<<< HEAD
             this.pb_Player.Location = new System.Drawing.Point(Physics.player.X, Physics.player.Y);
             this.pb_Player.Name = "pb_Player";
             this.pb_Player.Size = new System.Drawing.Size(Physics.player.Size, Physics.player.Size);
+=======
+            this.pb_Player.Location = new System.Drawing.Point(player.X, player.Y);
+            this.pb_Player.Name = "pb_Player";
+            this.pb_Player.Size = new System.Drawing.Size(player.Size, player.Size);
+>>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
             this.pb_Player.TabIndex = 0;
             this.pb_Player.TabStop = false;
             // 

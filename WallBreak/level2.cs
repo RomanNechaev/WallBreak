@@ -83,6 +83,11 @@ namespace WallBreak
             FormBorderStyle = FormBorderStyle.None;
         }
 
+<<<<<<< HEAD
+=======
+        
+
+>>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
         private void Level2KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -96,7 +101,11 @@ namespace WallBreak
                         Physics.setRightValue(true);
                     break;
                 case Keys.Up:
+<<<<<<< HEAD
                     if (!Physics.player.PlayerJump && !Physics.InAirNoCollision(pb_Player, WorldFrame, WorldObjects))
+=======
+                    if (!player.PlayerJump && !Physics.InAirNoCollision(pb_Player,WorldFrame,WorldObjects))
+>>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
                     {
                         Physics.UpdateY(Physics.player.SpeedJump);
                         pb_Player.Top = Physics.player.Y;
@@ -123,6 +132,7 @@ namespace WallBreak
             }
         }       
 
+<<<<<<< HEAD
         private void timer_Jump_Tick(object sender, EventArgs e)
         {
             if (Physics.player.GameOn)
@@ -137,6 +147,32 @@ namespace WallBreak
                     Physics.UpdateX(-Physics.player.SpeedMovement);
                     pb_Player.Left = Physics.player.X + 200;
                 }
+=======
+        public bool PlayerTookCoin(PictureBox tar, PictureBox coin)
+        {
+            if (coin != null)
+            {
+                var temp = new PictureBox();
+                temp.SetBounds(coin.Location.X, coin.Location.Y, coin.Width, coin.Height);
+                if (!tar.Bounds.IntersectsWith(temp.Bounds))
+                    return false;
+            }
+
+            return true;
+        }
+
+
+        
+
+        private void timer_Jump_Tick(object sender, EventArgs e)
+        {
+            if (player.GameOn)
+            {
+                if (player.PlayerRight && pb_Player.Right <= WorldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player,WorldObjects))
+                    pb_Player.Left += player.SpeedMovement;
+                if (player.PlayerLeft && pb_Player.Left >= 3 && !Physics.CollisionRight(pb_Player,WorldObjects))
+                    pb_Player.Left -= player.SpeedMovement;
+>>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
             }
             else
             {
@@ -146,8 +182,13 @@ namespace WallBreak
 
             if (Physics.player.Force > 0)
             {
+<<<<<<< HEAD
                 if (Physics.CollisionBottom(pb_Player, WorldObjects))
                     Physics.SetForce(0);
+=======
+                if (Physics.CollisionBottom(pb_Player,WorldObjects))
+                    player.Force = 0;
+>>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
                 else
                 {
                     Physics.UpdateForce(-1);
@@ -161,11 +202,17 @@ namespace WallBreak
 
         private void GravityTimer(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjects))
             {
                 Physics.UpdateY(Physics.player.SpeedFall);
                 pb_Player.Top = Physics.player.Y;
             }
+=======
+            if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
+                !Physics.CollisionTop(pb_Player,WorldObjects))
+                pb_Player.Top += player.SpeedFall;
+>>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
 
             if (Physics.PlayeCanJump(pb_Player, WorldFrame))
             {
