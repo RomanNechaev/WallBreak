@@ -48,7 +48,7 @@ namespace WallBreak
             CoinsArray = new PictureBox[5]
             {
                 coins.CreateCoin(800, 900),
-                coins.CreateCoin(190,850),
+                coins.CreateCoin(190, 850),
                 coins.CreateCoin(410, 670),
                 coins.CreateCoin(180, 490),
                 coins.CreateCoin(820, 725),
@@ -141,6 +141,7 @@ namespace WallBreak
                         player.Force = player.Gravity;
                         player.PlayerJump = true;
                     }
+
                     break;
             }
         }
@@ -161,7 +162,7 @@ namespace WallBreak
             }
         }
 
-        
+
 
         public bool PlayerTookCoin(PictureBox tar, PictureBox coin)
         {
@@ -172,12 +173,12 @@ namespace WallBreak
                 if (!tar.Bounds.IntersectsWith(temp.Bounds))
                     return false;
             }
-            
+
             return true;
-            
+
         }
 
-        
+
         public bool CollisionTop(PictureBox tar)
         {
             foreach (PictureBox ob in WorldObjects)
@@ -195,7 +196,7 @@ namespace WallBreak
             return false;
         }
 
-        
+
 
         public bool CollisionLeft(PictureBox tar)
         {
@@ -233,13 +234,22 @@ namespace WallBreak
 
         public bool CollisionRight(PictureBox tar)
         {
+            return Collision(tar, 
+                temp => temp.Location.X + temp.Width + 1, 
+                temp => temp.Location.Y + 1, 
+                _ => 2,
+                temp => temp.Height + 1);
+        }
+
+        private bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY, Func<PictureBox, int> getW, Func<PictureBox, int> getH)
+        {
             foreach (PictureBox ob in WorldObjects)
             {
                 if (ob != null)
                 {
                     PictureBox temp = new PictureBox();
                     temp.Bounds = ob.Bounds;
-                    temp.SetBounds(temp.Location.X + temp.Width + 1, temp.Location.Y + 1, 2, temp.Height + 1);
+                    temp.SetBounds(getX(temp), getY(temp), getW(temp), getH(temp));
                     if (tar.Bounds.IntersectsWith(temp.Bounds))
                         return true;
                 }
@@ -276,6 +286,7 @@ namespace WallBreak
             else
                 player.PlayerJump = false;
         }
+
         private void GravityTimer(object sender, EventArgs e)
         {
             if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
@@ -284,7 +295,7 @@ namespace WallBreak
 
             if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height)
                 pb_Player.Top--;
-            
+
             foreach (var coin in CoinsArray)
             {
                 if (PlayerTookCoin(pb_Player, coin))
@@ -292,45 +303,12 @@ namespace WallBreak
                     if (coin.Visible)
                     {
                         player.Score++;
-                        score.Text = "Количество монет:" + player.Score ;
+                        score.Text = "Количество монет:" + player.Score;
                         coin.Visible = false;
                     }
-                   
-                }
-            }
-        }
-        
-        public bool Collision(PictureBox target, int x, int y, int width, int height)
-        {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp = new PictureBox();
-                    temp.Bounds = ob.Bounds;
-                    temp.SetBounds(x, y, width, height);
-                    if (target.Bounds.IntersectsWith(temp.Bounds))
-                        return true;
-                }
-            }
 
-            return false;
-        }
-        public bool Collision(PictureBox target, int x, int y, int width, int height)
-        {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp = new PictureBox();
-                    temp.Bounds = ob.Bounds;
-                    temp.SetBounds(x, y, width, height);
-                    if (target.Bounds.IntersectsWith(temp.Bounds))
-                        return true;
                 }
             }
-
-            return false;
         }
     }
 }
