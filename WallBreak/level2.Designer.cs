@@ -5,6 +5,7 @@ namespace WallBreak
 {
     partial class level2
     {
+        Player players = new Player(100,0);
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -78,9 +79,9 @@ namespace WallBreak
             this.pb_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_Player.BackColor = Color.Transparent;
             this.pb_Player.Image = Properties.Resources.sprite_23_2;
-            this.pb_Player.Location = new System.Drawing.Point(1200, 800);
+            this.pb_Player.Location = new System.Drawing.Point(player.X, player.Y);
             this.pb_Player.Name = "pb_Player";
-            this.pb_Player.Size = new System.Drawing.Size(100, 100);
+            this.pb_Player.Size = new System.Drawing.Size(player.Size, player.Size);
             this.pb_Player.TabIndex = 0;
             this.pb_Player.TabStop = false;
             // 
@@ -131,7 +132,7 @@ namespace WallBreak
         public System.Windows.Forms.Panel WorldFrame;
         //private System.Windows.Forms.PictureBox back;
         private System.Windows.Forms.PictureBox WorldFloor;
-        private System.Windows.Forms.PictureBox pb_Player;
+        public System.Windows.Forms.PictureBox pb_Player;
         private System.Windows.Forms.Timer timer_Gravity;
         private System.Windows.Forms.Timer timer_Jump;
 

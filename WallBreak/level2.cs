@@ -10,7 +10,7 @@ namespace WallBreak
         Platforms platforms = new Platforms();
         static Player player = new Player(100, 0);
         Coins coins = new Coins();
-        private PictureBox[] WorldObjects;
+        public static PictureBox[] WorldObjects;
         private PictureBox[] CoinsArray;
 
         private Label score = new Label()
@@ -31,7 +31,7 @@ namespace WallBreak
             CreateLevel1();
             WorldObjects = new PictureBox[11]
             {
-                platforms.CreatePlatform(155, 900),
+                platforms.CreatePlatform(160, 900),
                 platforms.CreatePlatform(360, 720),
                 platforms.CreatePlatform(140, 540),
                 platforms.CreatePlatform(760, 775),
@@ -83,43 +83,7 @@ namespace WallBreak
             FormBorderStyle = FormBorderStyle.None;
         }
 
-        public Boolean InAirNoCollision(PictureBox tar)
-        {
-            if (!OutsideWorldFrame(tar))
-            {
-                foreach (PictureBox Obj in WorldObjects)
-                {
-                    if (!tar.Bounds.IntersectsWith(Obj.Bounds))
-                    {
-                        if (tar.Location.Y < WorldFrame.Width && !CollisionTop(pb_Player))
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        public Boolean OutsideWorldFrame(PictureBox tar)
-        {
-            if (tar.Location.X < 0)
-                return true;
-            if (tar.Location.X > WorldFrame.Width)
-                return true;
-            if (tar.Location.Y + tar.Height > WorldFrame.Height - 3)
-                return true;
-            foreach (PictureBox Obj in WorldObjects)
-            {
-                if (Obj != null)
-                {
-                    if (tar.Bounds.IntersectsWith(Obj.Bounds))
-                        return true;
-                }
-            }
-
-            return false;
-        }
-
+        
 
         private void Level2KeyDown(object sender, KeyEventArgs e)
         {
@@ -134,7 +98,7 @@ namespace WallBreak
                         player.PlayerRight = true;
                     break;
                 case Keys.Up:
-                    if (!player.PlayerJump && !InAirNoCollision(pb_Player))
+                    if (!player.PlayerJump && !Physics.InAirNoCollision(pb_Player,WorldFrame,WorldObjects))
                     {
                         pb_Player.Top -= player.SpeedJump;
                         player.Force = player.Gravity;
@@ -176,67 +140,15 @@ namespace WallBreak
         }
 
 
-        public bool CollisionTop(PictureBox tar)
-        {
-            return Collision(tar,
-                temp => temp.Location.X - 3,
-                temp => temp.Location.Y - 3,
-                temp => temp.Width - 1,
-                _ => 1);
-        }
-
-
-        public bool CollisionLeft(PictureBox tar)
-        {
-            return Collision(tar,
-                temp => temp.Location.X - 5,
-                temp => temp.Location.Y + 1,
-                _ => 1,
-                temp => temp.Height + 1); 
-        }
-
-        public bool CollisionBottom(PictureBox tar)
-        {
-            return Collision(tar, temp => temp.Location.X,
-                temp => temp.Location.Y + temp.Height - 5,
-                temp => temp.Width - 2,
-                _ => 6);
-        }
-
-        public bool CollisionRight(PictureBox tar)
-        {
-            return Collision(tar,
-                temp => temp.Location.X + temp.Width + 1,
-                temp => temp.Location.Y + 1,
-                _ => 2,
-                temp => temp.Height + 1);
-        }
- 
-        private bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
-            Func<PictureBox, int> getW, Func<PictureBox, int> getH)
-        {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp = new PictureBox();
-                    temp.Bounds = ob.Bounds;
-                    temp.SetBounds(getX(temp), getY(temp), getW(temp), getH(temp));
-                    if (tar.Bounds.IntersectsWith(temp.Bounds))
-                        return true;
-                }
-            }
-
-            return false;
-        }
+        
 
         private void timer_Jump_Tick(object sender, EventArgs e)
         {
             if (player.GameOn)
             {
-                if (player.PlayerRight && pb_Player.Right <= WorldFrame.Width - 3 && !CollisionLeft(pb_Player))
+                if (player.PlayerRight && pb_Player.Right <= WorldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player,WorldObjects))
                     pb_Player.Left += player.SpeedMovement;
-                if (player.PlayerLeft && pb_Player.Left >= 3 && !CollisionRight(pb_Player))
+                if (player.PlayerLeft && pb_Player.Left >= 3 && !Physics.CollisionRight(pb_Player,WorldObjects))
                     pb_Player.Left -= player.SpeedMovement;
             }
             else
@@ -247,7 +159,7 @@ namespace WallBreak
 
             if (player.Force > 0)
             {
-                if (CollisionBottom(pb_Player))
+                if (Physics.CollisionBottom(pb_Player,WorldObjects))
                     player.Force = 0;
                 else
                 {
@@ -262,7 +174,7 @@ namespace WallBreak
         private void GravityTimer(object sender, EventArgs e)
         {
             if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
-                !CollisionTop(pb_Player))
+                !Physics.CollisionTop(pb_Player,WorldObjects))
                 pb_Player.Top += player.SpeedFall;
 
             if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height)
