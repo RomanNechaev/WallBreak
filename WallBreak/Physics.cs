@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 
@@ -7,7 +8,7 @@ namespace WallBreak
 {
     class Physics
     {
-        public static Player player = new Player(100, 0, 1200, 800);
+        public static Player player = new Player(5, 0, 1200, 800);
 
         public static bool CollisionTop(PictureBox tar, List<PictureBox> WorldObjects)
         {
@@ -101,7 +102,7 @@ namespace WallBreak
 
         public static void SetLeftValue(bool value) => player.PlayerLeft = value;
         
-        public static void setRightValue(bool value) => player.PlayerRight = value;
+        public static void SetRightValue(bool value) => player.PlayerRight = value;
 
         public static void UpdateY(int value) => player.Y += value;
 
@@ -129,7 +130,7 @@ namespace WallBreak
             return !player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
                             !CollisionTop(pb_Player, WorldObjects);
         }
-        public static bool PlayeCanJump(PictureBox pb_Player, Panel WorldFrame)
+        public static bool PlayerCanJump(PictureBox pb_Player, Panel WorldFrame)
         {
             return !player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height;
         }
@@ -145,6 +146,16 @@ namespace WallBreak
 
             return true;
         }
+        public static void ChangeHealth(int fallingTime)
+        {
+            if (fallingTime > 200)
+                player.Health -= 4;
+            else if (fallingTime > 150)
+                player.Health -= 3;
+            else if (fallingTime > 100)
+                player.Health -= 2;
+            else if (fallingTime > 70)
+                player.Health -= 1;
+        }
     }
-
 }

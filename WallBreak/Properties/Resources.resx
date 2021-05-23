@@ -172,4 +172,25 @@
   <data name="sprite_23_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sprite-23-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gameover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gameover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_0_hp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0 hp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1_hp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1 hp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2_hp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2 hp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3_hp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3 hp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_4_hp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4 hp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5_hp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5 hp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

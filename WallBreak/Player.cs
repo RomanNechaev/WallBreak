@@ -27,6 +27,7 @@ namespace WallBreak
         public int SpeedFall = 4;
         public int Score = 0;
         public int Size = 100;
+        public int FallingTime;
 
 
 
