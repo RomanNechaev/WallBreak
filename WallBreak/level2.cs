@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,8 +10,9 @@ namespace WallBreak
     {
         Platforms platforms = new Platforms();
         Coins coins = new Coins();
-        public static PictureBox[] WorldObjects;
-        private PictureBox[] CoinsArray;
+        public static List<PictureBox> WorldObjects;
+        private List<PictureBox> CoinsArray;
+        Level11 leve1 = new Level11();
 
         private Label score = new Label()
         {
@@ -29,22 +31,23 @@ namespace WallBreak
             InitializeComponent();
             CreateLevel1();
 
-            WorldObjects = new PictureBox[11]
+            WorldObjects = new List<PictureBox>
             {
-                platforms.CreatePlatform(160, 900),
-                platforms.CreatePlatform(360, 720),
-                platforms.CreatePlatform(140, 540),
-                platforms.CreatePlatform(760, 775),
-                platforms.CreatePlatform(640, 430),
-                platforms.CreatePlatform(236, 240),
-                platforms.CreatePlatform(800, 180),
-                platforms.CreatePlatform(1100, 530),
-                platforms.CreatePlatform(1400, 730),
-                platforms.CreatePlatform(1100, 950),
-                platforms.CreatePlatform(1436, 358)
+                platforms.CreatePlatform(leve1.coords[0].Item1, leve1.coords[0].Item2),
+                platforms.CreatePlatform(leve1.coords[1].Item1, leve1.coords[1].Item2),
+                platforms.CreatePlatform(leve1.coords[2].Item1, leve1.coords[2].Item2),
+                platforms.CreatePlatform(leve1.coords[3].Item1, leve1.coords[3].Item2),
+                platforms.CreatePlatform(leve1.coords[4].Item1, leve1.coords[4].Item2),
+                platforms.CreatePlatform(leve1.coords[5].Item1, leve1.coords[5].Item2),
+                platforms.CreatePlatform(leve1.coords[6].Item1, leve1.coords[6].Item2),
+                platforms.CreatePlatform(leve1.coords[7].Item1, leve1.coords[7].Item2),
+                platforms.CreatePlatform(leve1.coords[8].Item1, leve1.coords[8].Item2),
+                platforms.CreatePlatform(leve1.coords[9].Item1, leve1.coords[9].Item2),
+                platforms.CreatePlatform(leve1.coords[10].Item1, leve1.coords[10].Item2)
+                
             };
 
-            CoinsArray = new PictureBox[5]
+            CoinsArray = new List<PictureBox>
             {
                 coins.CreateCoin(800, 900),
                 coins.CreateCoin(190, 850),
@@ -62,8 +65,17 @@ namespace WallBreak
         private void CreatePlatforms()
         {
             foreach (var platform in WorldObjects)
+            {
                 WorldFrame.Controls.Add(platform);
+            }
+
         }
+        private void RemovePlatforms()
+        {
+            foreach (var platform in WorldObjects)
+                WorldFrame.Controls.Remove(platform);
+        }
+
 
         private void CreateCoins()
         {
@@ -106,6 +118,7 @@ namespace WallBreak
                     break;
             }
         }
+        
 
         private void Level2KeyUp(object sender, KeyEventArgs e)
         {
@@ -144,7 +157,7 @@ namespace WallBreak
                 Physics.SetLeftValue(false);
             }
 
-            if (Physics.player.Force > 0)
+            if (Physics.player.Force >0 )
             {
                 if (Physics.CollisionBottom(pb_Player, WorldObjects))
                     Physics.SetForce(0);

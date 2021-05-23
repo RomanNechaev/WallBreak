@@ -9,7 +9,7 @@ namespace WallBreak
     {
         public static Player player = new Player(100, 0, 1200, 800);
 
-        public static bool CollisionTop(PictureBox tar, PictureBox[] WorldObjects)
+        public static bool CollisionTop(PictureBox tar, List<PictureBox> WorldObjects)
         {
             return Collision(tar,
                     temp => temp.Location.X - 3,
@@ -19,7 +19,7 @@ namespace WallBreak
         }
 
 
-        public static bool CollisionLeft(PictureBox tar, PictureBox[] WorldObjects)
+        public static bool CollisionLeft(PictureBox tar, List<PictureBox> WorldObjects)
         {
             return Collision(tar,
                     temp => temp.Location.X - 5,
@@ -28,7 +28,7 @@ namespace WallBreak
                     temp => temp.Height + 1, WorldObjects);
         }
 
-        public static bool CollisionBottom(PictureBox tar, PictureBox[] WorldObjects)
+        public static bool CollisionBottom(PictureBox tar, List<PictureBox> WorldObjects)
         {
             return Collision(tar, temp => temp.Location.X,
                     temp => temp.Location.Y + temp.Height - 5,
@@ -36,7 +36,7 @@ namespace WallBreak
                     _ => 6, WorldObjects);
         }
 
-        public static bool CollisionRight(PictureBox tar, PictureBox[] WorldObjects)
+        public static bool CollisionRight(PictureBox tar, List<PictureBox> WorldObjects)
         {
             return Collision(tar,
                     temp => temp.Location.X + temp.Width + 1,
@@ -46,7 +46,7 @@ namespace WallBreak
         }
 
         public static bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
-            Func<PictureBox, int> getW, Func<PictureBox, int> getH, PictureBox[] WorldObjects)
+            Func<PictureBox, int> getW, Func<PictureBox, int> getH, List<PictureBox> WorldObjects)
         {
             foreach (PictureBox ob in WorldObjects)
             {
@@ -62,7 +62,7 @@ namespace WallBreak
 
             return false;
         }
-        public static bool InAirNoCollision(PictureBox tar, Panel WorldFrame, PictureBox[] worldobjects)
+        public static bool InAirNoCollision(PictureBox tar, Panel WorldFrame, List<PictureBox> worldobjects)
         {
             if (!OutsideWorldFrame(tar, WorldFrame, worldobjects))
             {
@@ -79,7 +79,7 @@ namespace WallBreak
             return false;
         }
 
-        public static bool OutsideWorldFrame(PictureBox tar, Panel WorldFrame, PictureBox[] WorldObjects)
+        public static bool OutsideWorldFrame(PictureBox tar, Panel WorldFrame, List<PictureBox> WorldObjects)
         {
             if (tar.Location.X < 0)
                 return true;
@@ -107,11 +107,11 @@ namespace WallBreak
 
         public static void UpdateX(int value) => player.X += value;
 
-        public static bool CanMoveRigth(PictureBox pb_Player, Panel worldFrame, PictureBox[] WorldObjects)
+        public static bool CanMoveRigth(PictureBox pb_Player, Panel worldFrame, List<PictureBox> WorldObjects)
         {
             return player.PlayerRight && player.X <= worldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player, WorldObjects);
         }
-        public static bool CanMoveLeft(PictureBox pb_Player, PictureBox[] WorldObjects)
+        public static bool CanMoveLeft(PictureBox pb_Player, List<PictureBox> WorldObjects)
         {
             return player.PlayerLeft && pb_Player.Left >= 3 && !Physics.CollisionRight(pb_Player, WorldObjects);
         }
@@ -124,7 +124,7 @@ namespace WallBreak
 
         public static void InrementScore() => player.Score++;
 
-        public static bool PLayerIsFalling(PictureBox pb_Player, Panel WorldFrame, PictureBox[] WorldObjects)
+        public static bool PLayerIsFalling(PictureBox pb_Player, Panel WorldFrame, List<PictureBox> WorldObjects)
         {
             return !player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
                             !CollisionTop(pb_Player, WorldObjects);
