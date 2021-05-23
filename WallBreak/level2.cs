@@ -23,7 +23,6 @@ namespace WallBreak
             Size = new Size(100, 100),
             Text = "Количество монет:" + player.Score,
             TextAlign = ContentAlignment.MiddleCenter
-
         };
 
         public level2()
@@ -163,7 +162,6 @@ namespace WallBreak
         }
 
 
-
         public bool PlayerTookCoin(PictureBox tar, PictureBox coin)
         {
             if (coin != null)
@@ -175,73 +173,47 @@ namespace WallBreak
             }
 
             return true;
-
         }
 
 
         public bool CollisionTop(PictureBox tar)
         {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp = new PictureBox();
-                    temp.Bounds = ob.Bounds;
-                    temp.SetBounds(temp.Location.X - 3, temp.Location.Y - 3, temp.Width - 1, 1);
-                    if (tar.Bounds.IntersectsWith(temp.Bounds))
-                        return true;
-                }
-            }
-
-            return false;
+            return Collision(tar,
+                temp => temp.Location.X - 3,
+                temp => temp.Location.Y - 3,
+                temp => temp.Width - 1,
+                _ => 1);
         }
-
 
 
         public bool CollisionLeft(PictureBox tar)
         {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp = new PictureBox();
-                    temp.Bounds = ob.Bounds;
-                    temp.SetBounds(temp.Location.X - 5, temp.Location.Y + 1, 1, temp.Height + 1);
-                    if (tar.Bounds.IntersectsWith(temp.Bounds))
-                        return true;
-                }
-            }
-
-            return false;
+            return Collision(tar,
+                temp => temp.Location.X - 5,
+                temp => temp.Location.Y + 1,
+                _ => 1,
+                temp => temp.Height + 1); 
         }
 
         public bool CollisionBottom(PictureBox tar)
         {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp = new PictureBox();
-                    temp.Bounds = ob.Bounds;
-                    temp.SetBounds(temp.Location.X, temp.Location.Y + temp.Height - 5, temp.Width - 2, 6);
-                    if (tar.Bounds.IntersectsWith(temp.Bounds))
-                        return true;
-                }
-            }
-
-            return false;
+            return Collision(tar, temp => temp.Location.X,
+                temp => temp.Location.Y + temp.Height - 5,
+                temp => temp.Width - 2,
+                _ => 6);
         }
 
         public bool CollisionRight(PictureBox tar)
         {
-            return Collision(tar, 
-                temp => temp.Location.X + temp.Width + 1, 
-                temp => temp.Location.Y + 1, 
+            return Collision(tar,
+                temp => temp.Location.X + temp.Width + 1,
+                temp => temp.Location.Y + 1,
                 _ => 2,
                 temp => temp.Height + 1);
         }
-
-        private bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY, Func<PictureBox, int> getW, Func<PictureBox, int> getH)
+ 
+        private bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
+            Func<PictureBox, int> getW, Func<PictureBox, int> getH)
         {
             foreach (PictureBox ob in WorldObjects)
             {
@@ -306,7 +278,6 @@ namespace WallBreak
                         score.Text = "Количество монет:" + player.Score;
                         coin.Visible = false;
                     }
-
                 }
             }
         }

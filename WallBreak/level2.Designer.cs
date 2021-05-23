@@ -85,7 +85,7 @@ namespace WallBreak
             this.pb_Player.TabStop = false;
             // 
             // timer_Gravity
-            // 
+            //     
             this.timer_Gravity.Enabled = true;
             this.timer_Gravity.Interval = 1;
             this.timer_Gravity.Tick += new System.EventHandler(this.GravityTimer);
