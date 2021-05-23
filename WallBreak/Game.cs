@@ -6,7 +6,7 @@ namespace WallBreak
     public class Game
     {
         public readonly bool GameOn;
-        public Player player = new Player(100, 0);
+        //public Player player = new Player(100, 0);
         
     }
 }

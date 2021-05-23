@@ -8,20 +8,19 @@ namespace WallBreak
     public partial class level2 : Form
     {
         Platforms platforms = new Platforms();
-        static Player player = new Player(100, 0);
         Coins coins = new Coins();
-        private PictureBox[] WorldObjects;
+        public static PictureBox[] WorldObjects;
         private PictureBox[] CoinsArray;
 
         private Label score = new Label()
         {
             BackColor = Color.Transparent,
-            Font = new Font("Century Gothic", 12F, ((FontStyle) ((FontStyle.Bold | FontStyle.Italic))),
+            Font = new Font("Century Gothic", 12F, ((FontStyle)((FontStyle.Bold | FontStyle.Italic))),
                 GraphicsUnit.Point),
             Location = new Point(20, 34),
             Name = "label1",
             Size = new Size(100, 100),
-            Text = "Количество монет:" + player.Score,
+            Text = "Количество монет:" + Physics.player.Score,
             TextAlign = ContentAlignment.MiddleCenter
         };
 
@@ -29,9 +28,10 @@ namespace WallBreak
         {
             InitializeComponent();
             CreateLevel1();
+
             WorldObjects = new PictureBox[11]
             {
-                platforms.CreatePlatform(155, 900),
+                platforms.CreatePlatform(160, 900),
                 platforms.CreatePlatform(360, 720),
                 platforms.CreatePlatform(140, 540),
                 platforms.CreatePlatform(760, 775),
@@ -53,9 +53,9 @@ namespace WallBreak
                 coins.CreateCoin(820, 725),
             };
 
-
             CreatePlatforms();
             CreateCoins();
+
             WorldFrame.Controls.Add(score);
         }
 
@@ -83,203 +83,108 @@ namespace WallBreak
             FormBorderStyle = FormBorderStyle.None;
         }
 
-        public Boolean InAirNoCollision(PictureBox tar)
-        {
-            if (!OutsideWorldFrame(tar))
-            {
-                foreach (PictureBox Obj in WorldObjects)
-                {
-                    if (!tar.Bounds.IntersectsWith(Obj.Bounds))
-                    {
-                        if (tar.Location.Y < WorldFrame.Width && !CollisionTop(pb_Player))
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        public Boolean OutsideWorldFrame(PictureBox tar)
-        {
-            if (tar.Location.X < 0)
-                return true;
-            if (tar.Location.X > WorldFrame.Width)
-                return true;
-            if (tar.Location.Y + tar.Height > WorldFrame.Height - 3)
-                return true;
-            foreach (PictureBox Obj in WorldObjects)
-            {
-                if (Obj != null)
-                {
-                    if (tar.Bounds.IntersectsWith(Obj.Bounds))
-                        return true;
-                }
-            }
-
-            return false;
-        }
-
-
         private void Level2KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    if (player.GameOn)
-                        player.PlayerLeft = true;
+                    if (Physics.player.GameOn)
+                        Physics.SetLeftValue(true);
                     break;
                 case Keys.Right:
-                    if (player.GameOn)
-                        player.PlayerRight = true;
+                    if (Physics.player.GameOn)
+                        Physics.setRightValue(true);
                     break;
                 case Keys.Up:
-                    if (!player.PlayerJump && !InAirNoCollision(pb_Player))
+                    if (!Physics.player.PlayerJump && !Physics.InAirNoCollision(pb_Player, WorldFrame, WorldObjects))
                     {
-                        pb_Player.Top -= player.SpeedJump;
-                        player.Force = player.Gravity;
-                        player.PlayerJump = true;
+                        Physics.UpdateY(Physics.player.SpeedJump);
+                        pb_Player.Top = Physics.player.Y;
+                        Physics.SetForce(Physics.player.Gravity);
+                        Physics.SetJump(true);
                     }
-
                     break;
             }
-        }
+        }        
 
         private void Level2KeyUp(object sender, KeyEventArgs e)
         {
-            if (player.GameOn)
+            if (Physics.player.GameOn)
             {
                 switch (e.KeyCode)
                 {
                     case Keys.Left:
-                        player.PlayerLeft = false;
+                        Physics.SetLeftValue(false);
                         break;
                     case Keys.Right:
-                        player.PlayerRight = false;
+                        Physics.setRightValue(false);
                         break;
                 }
             }
-        }
-
-
-        public bool PlayerTookCoin(PictureBox tar, PictureBox coin)
-        {
-            if (coin != null)
-            {
-                var temp = new PictureBox();
-                temp.SetBounds(coin.Location.X, coin.Location.Y, coin.Width, coin.Height);
-                if (!tar.Bounds.IntersectsWith(temp.Bounds))
-                    return false;
-            }
-
-            return true;
-        }
-
-
-        public bool CollisionTop(PictureBox tar)
-        {
-            return Collision(tar,
-                temp => temp.Location.X - 3,
-                temp => temp.Location.Y - 3,
-                temp => temp.Width - 1,
-                _ => 1);
-        }
-
-
-        public bool CollisionLeft(PictureBox tar)
-        {
-            return Collision(tar,
-                temp => temp.Location.X - 5,
-                temp => temp.Location.Y + 1,
-                _ => 1,
-                temp => temp.Height + 1); 
-        }
-
-        public bool CollisionBottom(PictureBox tar)
-        {
-            return Collision(tar, temp => temp.Location.X,
-                temp => temp.Location.Y + temp.Height - 5,
-                temp => temp.Width - 2,
-                _ => 6);
-        }
-
-        public bool CollisionRight(PictureBox tar)
-        {
-            return Collision(tar,
-                temp => temp.Location.X + temp.Width + 1,
-                temp => temp.Location.Y + 1,
-                _ => 2,
-                temp => temp.Height + 1);
-        }
- 
-        private bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
-            Func<PictureBox, int> getW, Func<PictureBox, int> getH)
-        {
-            foreach (PictureBox ob in WorldObjects)
-            {
-                if (ob != null)
-                {
-                    PictureBox temp = new PictureBox();
-                    temp.Bounds = ob.Bounds;
-                    temp.SetBounds(getX(temp), getY(temp), getW(temp), getH(temp));
-                    if (tar.Bounds.IntersectsWith(temp.Bounds))
-                        return true;
-                }
-            }
-
-            return false;
-        }
+        }       
 
         private void timer_Jump_Tick(object sender, EventArgs e)
         {
-            if (player.GameOn)
+            if (Physics.player.GameOn)
             {
-                if (player.PlayerRight && pb_Player.Right <= WorldFrame.Width - 3 && !CollisionLeft(pb_Player))
-                    pb_Player.Left += player.SpeedMovement;
-                if (player.PlayerLeft && pb_Player.Left >= 3 && !CollisionRight(pb_Player))
-                    pb_Player.Left -= player.SpeedMovement;
-            }
-            else
-            {
-                player.PlayerRight = false;
-                player.PlayerLeft = false;
-            }
-
-            if (player.Force > 0)
-            {
-                if (CollisionBottom(pb_Player))
-                    player.Force = 0;
-                else
+                if (Physics.CanMoveRigth(pb_Player, WorldFrame, WorldObjects))
                 {
-                    player.Force--;
-                    pb_Player.Top -= player.SpeedJump;
+                    Physics.UpdateX(Physics.player.SpeedMovement);
+                    pb_Player.Left = Physics.player.X + 200;
+                }
+                if (Physics.CanMoveLeft(pb_Player, WorldObjects))
+                {
+                    Physics.UpdateX(-Physics.player.SpeedMovement);
+                    pb_Player.Left = Physics.player.X + 200;
                 }
             }
             else
-                player.PlayerJump = false;
-        }
+            {
+                Physics.setRightValue(false);
+                Physics.SetLeftValue(false);
+            }
+
+            if (Physics.player.Force > 0)
+            {
+                if (Physics.CollisionBottom(pb_Player, WorldObjects))
+                    Physics.SetForce(0);
+                else
+                {
+                    Physics.UpdateForce(-1);
+                    Physics.UpdateY(Physics.player.SpeedJump);
+                    pb_Player.Top = Physics.player.Y;
+                }
+            }
+            else
+                Physics.SetJump(false);
+        }        
 
         private void GravityTimer(object sender, EventArgs e)
         {
-            if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
-                !CollisionTop(pb_Player))
-                pb_Player.Top += player.SpeedFall;
+            if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjects))
+            {
+                Physics.UpdateY(Physics.player.SpeedFall);
+                pb_Player.Top = Physics.player.Y;
+            }
 
-            if (!player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height)
-                pb_Player.Top--;
+            if (Physics.PlayeCanJump(pb_Player, WorldFrame))
+            {
+                Physics.UpdateY(-1);
+                pb_Player.Top = Physics.player.Y;
+            }
 
             foreach (var coin in CoinsArray)
             {
-                if (PlayerTookCoin(pb_Player, coin))
+                if (Physics.PlayerTookCoin(pb_Player, coin))
                 {
                     if (coin.Visible)
                     {
-                        player.Score++;
-                        score.Text = "Количество монет:" + player.Score;
+                        Physics.InrementScore();
+                        score.Text = "Количество монет:" + Physics.player.Score;
                         coin.Visible = false;
                     }
                 }
             }
-        }
+        }      
     }
 }

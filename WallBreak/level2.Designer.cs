@@ -5,6 +5,7 @@ namespace WallBreak
 {
     partial class level2
     {
+        //Player players = new Player(100, 0);
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -34,16 +35,16 @@ namespace WallBreak
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.components = new System.ComponentModel.Container();
-            
 
-            this.WorldFrame = new System.Windows.Forms.Panel();            
+
+            this.WorldFrame = new System.Windows.Forms.Panel();
             this.pb_Player = new System.Windows.Forms.PictureBox();
 
             this.timer_Gravity = new System.Windows.Forms.Timer(this.components);
             this.timer_Jump = new System.Windows.Forms.Timer(this.components);
             this.WorldFloor = new System.Windows.Forms.PictureBox();
 
-            
+
             //((System.ComponentModel.ISupportInitialize)(this.pb_Player)).BeginInit();
             //this.WorldFrame.SuspendLayout();
             //this.WorldFloor.SuspendLayout();
@@ -78,9 +79,9 @@ namespace WallBreak
             this.pb_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_Player.BackColor = Color.Transparent;
             this.pb_Player.Image = Properties.Resources.sprite_23_2;
-            this.pb_Player.Location = new System.Drawing.Point(1200, 800);
+            this.pb_Player.Location = new System.Drawing.Point(Physics.player.X, Physics.player.Y);
             this.pb_Player.Name = "pb_Player";
-            this.pb_Player.Size = new System.Drawing.Size(100, 100);
+            this.pb_Player.Size = new System.Drawing.Size(Physics.player.Size, Physics.player.Size);
             this.pb_Player.TabIndex = 0;
             this.pb_Player.TabStop = false;
             // 
@@ -111,7 +112,7 @@ namespace WallBreak
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1920, 1800);
             this.Controls.Add(this.WorldFloor);
-            
+
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -119,7 +120,7 @@ namespace WallBreak
             this.Text = " ";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Level2KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Level2KeyUp);
-            
+
             //((System.ComponentModel.ISupportInitialize)(this.pb_Player)).EndInit();
             //this.WorldFloor.ResumeLayout(false);
             //this.WorldFloor.PerformLayout();
@@ -131,11 +132,11 @@ namespace WallBreak
         public System.Windows.Forms.Panel WorldFrame;
         //private System.Windows.Forms.PictureBox back;
         private System.Windows.Forms.PictureBox WorldFloor;
-        private System.Windows.Forms.PictureBox pb_Player;
+        public System.Windows.Forms.PictureBox pb_Player;
         private System.Windows.Forms.Timer timer_Gravity;
         private System.Windows.Forms.Timer timer_Jump;
 
 
     }
 
-    }
+}
