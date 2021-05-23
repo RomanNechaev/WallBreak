@@ -27,11 +27,7 @@ namespace WallBreak
         public int SpeedFall = 4;
         public int Score = 0;
         public int Size = 100;
-<<<<<<< HEAD
-=======
-        public int X = 1200;
-        public int Y = 800;
->>>>>>> 7273fb1bd401782c202176dd3b0807e0b2234207
+
 
 
     }
