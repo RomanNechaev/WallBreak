@@ -273,6 +273,16 @@ namespace WallBreak.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sprite_23_3 {
+            get {
+                object obj = ResourceManager.GetObject("sprite_23_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap square2 {
             get {
                 object obj = ResourceManager.GetObject("square2", resourceCulture);

@@ -27,17 +27,6 @@ namespace WallBreak
             Text = "Количество монет:" + Physics.player.Score,
             TextAlign = ContentAlignment.MiddleCenter
         };
-        private Label sww = new Label()
-        {
-            BackColor = Color.Transparent,
-            Font = new Font("Century Gothic", 12F, ((FontStyle)((FontStyle.Bold | FontStyle.Italic))),
-                GraphicsUnit.Point),
-            Location = new Point(200, 32),
-            Name = "label1",
-            Size = new Size(100, 100),
-            Text = "время" + time,
-            TextAlign = ContentAlignment.MiddleCenter
-        };
 
         private PictureBox Hp = new PictureBox()
         {
@@ -48,9 +37,9 @@ namespace WallBreak
         };
         private PictureBox DeadScreen = new PictureBox()
         {
-            BackColor = Color.Gray,
+            BackColor = Color.Transparent,
             Location = new Point(710, 315),
-            Size = new Size(500, 250),
+            Size = new Size(500, 400),
             Image = Properties.Resources.gameover,
             Visible = false
         };
@@ -88,7 +77,6 @@ namespace WallBreak
             CreateCoins();
             
             WorldFrame.Controls.Add(score);
-            WorldFrame.Controls.Add(sww);
             WorldFrame.Controls.Add(Hp);
             WorldFrame.Controls.Add(DeadScreen);
         }
@@ -103,9 +91,15 @@ namespace WallBreak
         }
         private void RemovePlatforms()
         {
+            foreach (var platform in CoinsArray)
+                WorldFrame.Controls.Remove(platform);
+        }
+        private void RemoveCoins()
+        {
             foreach (var platform in WorldObjects)
                 WorldFrame.Controls.Remove(platform);
         }
+        
 
 
         private void CreateCoins()
@@ -132,12 +126,13 @@ namespace WallBreak
             {
                 case Keys.Left:
                     if (Physics.player.GameOn)
-
                         Physics.SetLeftValue(true);
+                    pb_Player.Image = Properties.Resources.sprite_23_3;
                     break;
                 case Keys.Right:
                     if (Physics.player.GameOn)
                         Physics.SetRightValue(true);
+                    pb_Player.Image = Properties.Resources.sprite_23_2;
                     break;
                 case Keys.Up:
                     if (!Physics.player.PlayerJump && !Physics.InAirNoCollision(pb_Player, WorldFrame, WorldObjects) && Physics.player.GameOn)
@@ -207,13 +202,18 @@ namespace WallBreak
         private void GravityTimer(object sender, EventArgs e)
         {
             if (!Physics.player.GameOn)
+            {
                 DeadScreen.Visible = true;
+                RemovePlatforms();
+                RemoveCoins();
+
+            }
+                
             if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjects))
             {
                 Physics.player.FallingTime++;
                 Physics.UpdateY(Physics.player.SpeedFall);
                 pb_Player.Top = Physics.player.Y;
-                sww.Text = "Время" + Physics.player.FallingTime;
             }
             if (!Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjects))
             {
