@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WallBreak": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}

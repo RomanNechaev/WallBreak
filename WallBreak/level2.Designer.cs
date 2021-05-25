@@ -44,6 +44,7 @@ namespace WallBreak
 
             this.timer_Gravity = new System.Windows.Forms.Timer(this.components);
             this.timer_Jump = new System.Windows.Forms.Timer(this.components);
+            this.timer_Cactus = new System.Windows.Forms.Timer(this.components);
             this.WorldFloor = new System.Windows.Forms.PictureBox();
 
 
@@ -94,6 +95,12 @@ namespace WallBreak
             this.pb_Player.TabStop = false;
             // 
             // timer_Gravity
+            //
+            this.timer_Cactus.Enabled = true;
+            this.timer_Cactus.Interval = 500;
+            this.timer_Cactus.Tick += new System.EventHandler(this.CactusTimer);
+            // 
+            // timer_Gravity
             //     
             this.timer_Gravity.Enabled = true;
             this.timer_Gravity.Interval = 1;
@@ -129,21 +136,15 @@ namespace WallBreak
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Level2KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Level2KeyUp);
 
-            //((System.ComponentModel.ISupportInitialize)(this.pb_Player)).EndInit();
-            //this.WorldFloor.ResumeLayout(false);
-            //this.WorldFloor.PerformLayout();
-            //this.ResumeLayout(false);
-
         }
 
         #endregion
         public System.Windows.Forms.Panel WorldFrame;
-        //private System.Windows.Forms.PictureBox back;
         private System.Windows.Forms.PictureBox WorldFloor;
         public System.Windows.Forms.PictureBox pb_Player;
         private System.Windows.Forms.Timer timer_Gravity;
         private System.Windows.Forms.Timer timer_Jump;
-
+        private System.Windows.Forms.Timer timer_Cactus;
 
     }
 

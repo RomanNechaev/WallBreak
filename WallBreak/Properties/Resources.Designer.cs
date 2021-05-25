@@ -212,6 +212,16 @@ namespace WallBreak.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cactus__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Cactus__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cansels {
             get {
                 object obj = ResourceManager.GetObject("cansels", resourceCulture);
