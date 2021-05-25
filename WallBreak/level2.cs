@@ -227,13 +227,21 @@ namespace WallBreak
                 pb_Player.Top = Physics.player.Y;
             }
             if (Physics.player.Health == 4)
+            {
                 Hp.Image = Properties.Resources._4_hp;
+            }
             if (Physics.player.Health == 3)
+            {
                 Hp.Image = Properties.Resources._3_hp;
+            }
             if (Physics.player.Health == 2)
+            {
                 Hp.Image = Properties.Resources._2_hp;
+            }
             if (Physics.player.Health == 1)
+            {
                 Hp.Image = Properties.Resources._1_hp;
+            }
             if (Physics.player.Health <= 0)
             {
                 Hp.Image = Properties.Resources._0_hp;

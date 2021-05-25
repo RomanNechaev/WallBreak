@@ -181,6 +181,15 @@ namespace WallBreak.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ab376c2f466a3ca1 {
+            get {
+                return ResourceManager.GetStream("ab376c2f466a3ca1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap background_for_game {
@@ -246,6 +255,16 @@ namespace WallBreak.Properties {
         internal static System.Drawing.Bitmap gbhfn {
             get {
                 object obj = ResourceManager.GetObject("gbhfn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pain {
+            get {
+                object obj = ResourceManager.GetObject("pain", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

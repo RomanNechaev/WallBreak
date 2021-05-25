@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Media;
 using System.Text;
 using System.Windows.Forms;
 
@@ -110,7 +111,7 @@ namespace WallBreak
 
         public static bool CanMoveRigth(PictureBox pb_Player, Panel worldFrame, List<PictureBox> WorldObjects)
         {
-            return player.PlayerRight && player.X <= worldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player, WorldObjects);
+            return player.PlayerRight && player.X + 300 <= worldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player, WorldObjects);
         }
         public static bool CanMoveLeft(PictureBox pb_Player, List<PictureBox> WorldObjects)
         {
@@ -148,14 +149,32 @@ namespace WallBreak
         }
         public static void ChangeHealth(int fallingTime)
         {
+            var SP = new SoundPlayer(Properties.Resources.ab376c2f466a3ca1);
+            
             if (fallingTime > 200)
+            {
+                SP.Play();
                 player.Health -= 4;
+            }
+                
             else if (fallingTime > 150)
+            {
+                SP.Play();
                 player.Health -= 3;
+            }
+                
             else if (fallingTime > 100)
+            {
+                SP.Play();
                 player.Health -= 2;
+            }
+                
             else if (fallingTime > 70)
+            {
+                SP.Play();
                 player.Health -= 1;
+            }
+                
         }
     }
 }
