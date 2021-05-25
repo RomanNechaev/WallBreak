@@ -16,7 +16,7 @@ namespace WallBreak
             return Collision(tar,
                     temp => temp.Location.X - 3,
                     temp => temp.Location.Y - 3,
-                    temp => temp.Width - 1,
+                    temp => temp.Width - 2,
                     _ => 1, WorldObjects);
         }
 
