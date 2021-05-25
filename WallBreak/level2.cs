@@ -11,9 +11,11 @@ namespace WallBreak
     {
         Platforms platforms = new Platforms();
         Coins coins = new Coins();
-        public static List<PictureBox> WorldObjects;
-        private List<PictureBox> CoinsArray;
+        Cactuses cactuses = new Cactuses();
         Level11 leve1 = new Level11();
+        public static List<PictureBox> CactusesArray;
+        public static List<PictureBox> WorldObjects;
+        private List<PictureBox> CoinsArray;        
         public static int time;
 
         private Label score = new Label()
@@ -73,8 +75,14 @@ namespace WallBreak
                 coins.CreateCoin(820, 725),
             };
 
+            CactusesArray = new List<PictureBox>
+            {
+                cactuses.CreateCactus(1700,953)
+            };
+
             CreatePlatforms();
             CreateCoins();
+            CreateCactuses();
             
             WorldFrame.Controls.Add(score);
             WorldFrame.Controls.Add(Hp);
@@ -87,26 +95,41 @@ namespace WallBreak
             {
                 WorldFrame.Controls.Add(platform);
             }
-
         }
-        private void RemovePlatforms()
-        {
-            foreach (var platform in CoinsArray)
-                WorldFrame.Controls.Remove(platform);
-        }
-        private void RemoveCoins()
-        {
-            foreach (var platform in WorldObjects)
-                WorldFrame.Controls.Remove(platform);
-        }
-        
-
 
         private void CreateCoins()
         {
             foreach (var coin in CoinsArray)
                 WorldFrame.Controls.Add(coin);
         }
+
+        private void CreateCactuses()
+        {
+            foreach (var cactus in CactusesArray)
+                WorldFrame.Controls.Add(cactus);
+        }
+
+
+        private void RemovePlatforms()
+        {
+            foreach (var platform in CoinsArray)
+                WorldFrame.Controls.Remove(platform);
+        }
+
+        private void RemoveCoins()
+        {
+            foreach (var platform in WorldObjects)
+                WorldFrame.Controls.Remove(platform);
+        }
+
+        private void RemoveCactuses()
+        {
+            foreach (var cactus in CactusesArray)
+                WorldFrame.Controls.Remove(cactus);
+        }
+
+
+
 
         private void CreateLevel1()
         {
@@ -135,7 +158,10 @@ namespace WallBreak
                     pb_Player.Image = Properties.Resources.sprite_23_2;
                     break;
                 case Keys.Up:
-                    if (!Physics.player.PlayerJump && !Physics.InAirNoCollision(pb_Player, WorldFrame, WorldObjects) && Physics.player.GameOn)
+                    if (!Physics.player.PlayerJump
+                        && Physics.player.GameOn
+                        && (!Physics.InAirNoCollision(pb_Player, WorldFrame, WorldObjects)
+                            || !Physics.InAirNoCollision(pb_Player, WorldFrame, CactusesArray)))
                     {
                         Physics.UpdateY(Physics.player.SpeedJump);
                         pb_Player.Top = Physics.player.Y;
@@ -167,12 +193,12 @@ namespace WallBreak
         {
             if (Physics.player.GameOn)
             {
-                if (Physics.CanMoveRigth(pb_Player, WorldFrame, WorldObjects))
+                if (Physics.CanMoveRigth(pb_Player, WorldFrame, WorldObjects) && Physics.CanMoveRigth(pb_Player, WorldFrame, CactusesArray))
                 {
                     Physics.UpdateX(Physics.player.SpeedMovement);
                     pb_Player.Left = Physics.player.X + 200;
                 }
-                if (Physics.CanMoveLeft(pb_Player, WorldObjects))
+                if (Physics.CanMoveLeft(pb_Player, WorldObjects) && Physics.CanMoveLeft(pb_Player, CactusesArray))
                 {
                     Physics.UpdateX(-Physics.player.SpeedMovement);
                     pb_Player.Left = Physics.player.X + 200;
@@ -184,7 +210,7 @@ namespace WallBreak
                 Physics.SetLeftValue(false);
             }
 
-            if (Physics.player.Force > 0)
+            if (Physics.player.Force > 0 || Physics.CollisionTop(pb_Player, CactusesArray))
             {
                 if (Physics.CollisionBottom(pb_Player, WorldObjects))
                     Physics.SetForce(0);
@@ -197,6 +223,11 @@ namespace WallBreak
             }
             else
                 Physics.SetJump(false);
+
+            ///////
+            
+            //////
+
         }
 
         private void GravityTimer(object sender, EventArgs e)
@@ -206,7 +237,7 @@ namespace WallBreak
                 DeadScreen.Visible = true;
                 RemovePlatforms();
                 RemoveCoins();
-
+                RemoveCactuses();
             }
                 
             if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjects))
@@ -215,7 +246,7 @@ namespace WallBreak
                 Physics.UpdateY(Physics.player.SpeedFall);
                 pb_Player.Top = Physics.player.Y;
             }
-            if (!Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjects))
+            if (!Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjects) || !Physics.PLayerIsFalling(pb_Player, WorldFrame, CactusesArray))
             {
                 Physics.ChangeHealth(Physics.player.FallingTime);
                 Physics.player.FallingTime = 0;
@@ -226,6 +257,14 @@ namespace WallBreak
                 Physics.UpdateY(-1);
                 pb_Player.Top = Physics.player.Y;
             }
+
+
+
+            ///////
+            
+            
+
+            /////////
             if (Physics.player.Health == 4)
             {
                 Hp.Image = Properties.Resources._4_hp;
@@ -258,6 +297,19 @@ namespace WallBreak
                         coin.Visible = false;
                     }
                 }
+            }
+        }
+        private void CactusTimer(object sender, EventArgs e)
+        {
+            if (Physics.player.GameOn)
+            {
+                if (Physics.CollisionRight(pb_Player, CactusesArray) 
+                    || Physics.CollisionLeft(pb_Player, CactusesArray)
+                    || Physics.CollisionTop(pb_Player, CactusesArray))
+                {
+                    Physics.ChangeHealth(75);
+                }
+
             }
         }
     }

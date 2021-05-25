@@ -35,7 +35,7 @@ namespace WallBreak
             return Collision(tar, temp => temp.Location.X,
                     temp => temp.Location.Y + temp.Height - 5,
                     temp => temp.Width - 2,
-                    _ => 6, WorldObjects);
+                    _ => 7, WorldObjects);
         }
 
         public static bool CollisionRight(PictureBox tar, List<PictureBox> WorldObjects)
@@ -47,7 +47,7 @@ namespace WallBreak
                     temp => temp.Height + 1, WorldObjects);
         }
 
-        public static bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
+        private static bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
             Func<PictureBox, int> getW, Func<PictureBox, int> getH, List<PictureBox> WorldObjects)
         {
             foreach (PictureBox ob in WorldObjects)
