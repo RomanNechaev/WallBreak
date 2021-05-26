@@ -4,6 +4,7 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <UseWindowsForms>true</UseWindowsForms>
+        <StartupObject>WallBreak.Program</StartupObject>
     </PropertyGroup>
 
     <ItemGroup>
@@ -44,6 +45,11 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+      <PackageReference Include="NUnit" Version="3.13.2" />
     </ItemGroup>
 
 </Project>
