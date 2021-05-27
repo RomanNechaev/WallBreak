@@ -1,10 +1,10 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=14ddc64d_002D66cb_002D4fa9_002Db168_002D2082676f587d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="OutsideWorldFrameTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=14ddc64d_002D66cb_002D4fa9_002Db168_002D2082676f587d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="OutsideWorldFrameTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::B11D518F-26D1-FEBB-F926-5DBAB44F89FF::.NETCoreApp,Version=v3.1::WallBreak.Tests.OutsideWorldFrameTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::B11D518F-26D1-FEBB-F926-5DBAB44F89FF::.NETCoreApp,Version=v3.1::WallBreak.Tests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ccfcc9f0_002D651d_002D4bfe_002D8cac_002D6a3ac42d91cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ccfcc9f0_002D651d_002D4bfe_002D8cac_002D6a3ac42d91cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::B11D518F-26D1-FEBB-F926-5DBAB44F89FF::.NETCoreApp,Version=v3.1::WallBreak.Tests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
