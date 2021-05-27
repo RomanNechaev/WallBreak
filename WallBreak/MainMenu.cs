@@ -67,7 +67,7 @@ namespace WallBreak
             };
             mainMenu.startGame.Click += (sender, args) =>
             {
-                var game = new level2();
+                var game = new Game();
                 Program.Forms.Hide();
                 game.Show();
 

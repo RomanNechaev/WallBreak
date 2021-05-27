@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace WallBreak
 {
-    partial class level2
+    partial class Game
     {
 
         //Player players = new Player(100,0);

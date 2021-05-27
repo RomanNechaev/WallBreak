@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace WallBreak
 {
-    public partial class level2 : Form
+    public partial class Game : Form
     {
-        Cactuses cactuses = new Cactuses();
         Level11 leve1 = new Level11();
         Level222 leve2 = new Level222();
         
         private List<PictureBox> WorldObjectGeneral;    
         private List<PictureBox> CactusObject;
         private List<PictureBox> CoinsObject;
+        private List<PictureBox> TrumpObject;
         public bool GameLevel1 = true;
         public int delay;
 
@@ -55,18 +56,19 @@ namespace WallBreak
             Image = Properties.Resources.gameover,
             Visible = false
         };
-        public level2()
+        public Game()
         {
             InitializeComponent();
             CreateLevel1();
             ChangeLevel();
-            
-            
 
+
+            
             CreatePlatforms();
             CreateCoins();
             CreateCactuses();
-            
+            CreateTrumps();
+
             WorldFrame.Controls.Add(score);
             WorldFrame.Controls.Add(Hp);
             WorldFrame.Controls.Add(DeadScreen);
@@ -80,6 +82,7 @@ namespace WallBreak
                 WorldObjectGeneral = leve1.WorldObjects;
                 CoinsObject = leve1.CoinsObject;
                 CactusObject = leve1.CactusObject;
+                TrumpObject = leve1.TrumpObject;
             }
 
             if (Physics.player.Score == leve1.CoinsScore)
@@ -94,6 +97,23 @@ namespace WallBreak
                 CreateCoins();
                 CreateCactuses();
 
+            }
+        }
+
+        private void CreateTrumps()
+        {
+            for (var i = 0; i < TrumpObject.Count(); i++)
+            {
+                leve1.trumpsList.ElementAt(i).X = TrumpObject.ElementAt(i).Left;
+                leve1.trumpsList.ElementAt(i).Y = TrumpObject.ElementAt(i).Top;
+                leve1.trumpsList.ElementAt(i).StartPosition =
+                    TrumpObject.ElementAt(i).Left + TrumpObject.ElementAt(i).Size.Width / 2;
+            }
+            
+            foreach (var trump in TrumpObject)
+            {
+                
+                WorldFrame.Controls.Add(trump);
             }
         }
 
@@ -232,9 +252,43 @@ namespace WallBreak
             else
                 Physics.SetJump(false);
 
-            ///////
+            for (var i = 0; i < TrumpObject.Count(); i++)
+            {
+                if (leve1.trumpsList.ElementAt(i).MovingLeft)
+                {
+                    TrumpObject.ElementAt(i).Image = Properties.Resources.TrumpLeft;
+                    Physics.UpdateTrumpX(-1, leve1.trumpsList.ElementAt(i));
+                    TrumpObject.ElementAt(i).Left = leve1.trumpsList.ElementAt(i).X;
+                }
+                else
+                {
+                    TrumpObject.ElementAt(i).Image = Properties.Resources.TrumpRight;
+                    Physics.UpdateTrumpX(1, leve1.trumpsList.ElementAt(i));
+                    TrumpObject.ElementAt(i).Left = leve1.trumpsList.ElementAt(i).X;
+                }
+
+                if (leve1.trumpsList.ElementAt(i).X < leve1.trumpsList.ElementAt(i).StartPosition - 150)
+                    leve1.trumpsList.ElementAt(i).MovingLeft = false;
+
+                if (leve1.trumpsList.ElementAt(i).X > leve1.trumpsList.ElementAt(i).StartPosition + 50)
+                    leve1.trumpsList.ElementAt(i).MovingLeft = true;
+                if (Physics.CollisionRightWithTrump(pb_Player, TrumpObject.ElementAt(i))
+                    || Physics.CollisionLeftWithTrump(pb_Player, TrumpObject.ElementAt(i)))
+                {
+                    Physics.player.GameOn = false;
+                    Physics.ChangeHealth(250);
+                }
+
+                if (Physics.CollisionTopWithTrump(pb_Player, TrumpObject.ElementAt(i)))
+                {
+                    TrumpObject.ElementAt(i).Visible = false;
+                }
+            }
+
             
-            //////
+                
+
+            
 
         }
 
@@ -286,7 +340,7 @@ namespace WallBreak
 
             ///////
             
-            
+
 
             /////////
             if (Physics.player.Health == 4)

@@ -9,6 +9,7 @@ namespace WallBreak
         static Coins coins = new Coins();
         static Platforms platforms = new Platforms();
         static Cactuses cactuses = new Cactuses();
+        public static Trump trumps = new Trump();
         
         public List<PictureBox> CactusObject = new List<PictureBox>
         {
@@ -38,6 +39,19 @@ namespace WallBreak
             coins.CreateCoin(820, 725),
 
         };
-        public readonly int CoinsScore = 1;
+        public List<PictureBox> TrumpObject = new List<PictureBox>
+        {
+            trumps.CreateTrump(315,140),
+            trumps.CreateTrump(900,75),
+            trumps.CreateTrump(725,350)
+        };
+
+        public List<Trump> trumpsList = new List<Trump>
+        {
+            new Trump(),
+            new Trump(),
+            new Trump()
+        };
+        public readonly int CoinsScore = 6;
     }
 }

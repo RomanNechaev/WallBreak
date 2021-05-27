@@ -10,6 +10,7 @@ namespace WallBreak
     class Physics
     {
         public static Player player = new Player(5, 0, 1200, 800);
+        
 
         public static bool CollisionTop(PictureBox tar, List<PictureBox> WorldObjects)
         {
@@ -64,6 +65,45 @@ namespace WallBreak
 
             return false;
         }
+
+        public static bool CollisionLeftWithTrump(PictureBox tar, PictureBox trumpPictureBox)
+        {
+            return CollisionWithTrump(tar,
+                temp => temp.Location.X - 5,
+                temp => temp.Location.Y + 1,
+                _ => 1,
+                temp => temp.Height + 1, trumpPictureBox);
+        }
+        public static bool CollisionRightWithTrump(PictureBox tar, PictureBox trumpPictureBox)
+        {
+            return CollisionWithTrump(tar,
+                temp => temp.Location.X + temp.Width + 1,
+                temp => temp.Location.Y + 1,
+                _ => 2,
+                temp => temp.Height + 1, trumpPictureBox);
+        }
+        public static bool CollisionTopWithTrump(PictureBox tar, PictureBox trumpPictureBox)
+        {
+            return CollisionWithTrump(tar,
+                temp => temp.Location.X - 3,
+                temp => temp.Location.Y - 3,
+                temp => temp.Width - 2,
+                _ => 1, trumpPictureBox);
+        }
+        private static bool CollisionWithTrump(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
+            Func<PictureBox, int> getW, Func<PictureBox, int> getH, PictureBox trumpPictureBox)
+        {
+            if (trumpPictureBox.Visible)
+            {
+                PictureBox temp = new PictureBox();
+                temp.Bounds = trumpPictureBox.Bounds;
+                temp.SetBounds(getX(temp), getY(temp), getW(temp), getH(temp));
+                if (tar.Bounds.IntersectsWith(temp.Bounds))
+                    return true;
+            }
+            return false;
+        }
+
         public static bool InAirNoCollision(PictureBox tar, Panel WorldFrame, List<PictureBox> worldobjects)
         {
             if (!OutsideWorldFrame(tar, WorldFrame, worldobjects))
@@ -108,6 +148,8 @@ namespace WallBreak
         public static void UpdateY(int value) => player.Y += value;
 
         public static void UpdateX(int value) => player.X += value;
+
+        public static void UpdateTrumpX(int value, Trump trump) => trump.X += value;
 
         public static bool CanMoveRigth(PictureBox pb_Player, Panel worldFrame, List<PictureBox> WorldObjects)
         {
