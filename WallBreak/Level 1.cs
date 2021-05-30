@@ -11,39 +11,38 @@ namespace WallBreak
         static Cactuses cactuses = new Cactuses();
         public static Trump trumps = new Trump();
         
-        public List<PictureBox> CactusObject = new List<PictureBox>
+        public Tuple<int, int>[] coordsCactus =
         {
-            cactuses.CreateCactus(1700,953)
+            Tuple.Create(1700,953)
         };
-        public  List<PictureBox> WorldObjects = new List<PictureBox>
+        public Tuple<int, int>[] coordsPlatform =
         {
-            platforms.CreatePlatform(160, 900),
-            platforms.CreatePlatform(360, 720),
-            platforms.CreatePlatform(140, 540),
-            platforms.CreatePlatform(760, 775),
-            platforms.CreatePlatform(640, 430),
-            platforms.CreatePlatform(236, 240),
-            platforms.CreatePlatform(800, 180),
-            platforms.CreatePlatform(1100, 530),
-            platforms.CreatePlatform(1400, 730),
-            platforms.CreatePlatform(1100, 950),
-            platforms.CreatePlatform(1436, 358)
+            Tuple.Create(160, 900),
+            Tuple.Create(360, 720),
+            Tuple.Create(140, 540),
+            Tuple.Create(760, 775),
+            Tuple.Create(640, 430),
+            Tuple.Create(236, 240),
+            Tuple.Create(800, 180),
+            Tuple.Create(1100, 530),
+            Tuple.Create(1400, 730),
+            Tuple.Create(1100, 950),
+            Tuple.Create(1436, 358)
         };
-
-        public List<PictureBox> CoinsObject = new List<PictureBox>
+        public Tuple<int, int>[] coordsCoins =
         {
-            coins.CreateCoin(800, 900),
-            coins.CreateCoin(190, 850),
-            coins.CreateCoin(410, 670),
-            coins.CreateCoin(180, 490),
-            coins.CreateCoin(820, 725),
-
+            Tuple.Create(800, 900),
+            Tuple.Create(190, 850),
+            Tuple.Create(410, 670),
+            Tuple.Create(180, 490),
+            Tuple.Create(820, 725)
         };
-        public List<PictureBox> TrumpObject = new List<PictureBox>
+        
+        public Tuple<int, int>[] TrumpCoords =
         {
-            trumps.CreateTrump(315,140),
-            trumps.CreateTrump(900,75),
-            trumps.CreateTrump(725,350)
+            Tuple.Create(315,140),
+            Tuple.Create(900,75),
+            Tuple.Create(725,350)
         };
 
         public List<Trump> trumpsList = new List<Trump>
@@ -52,6 +51,6 @@ namespace WallBreak
             new Trump(),
             new Trump()
         };
-        public readonly int CoinsScore = 6;
+        public readonly int CoinsScore = 1;
     }
 }

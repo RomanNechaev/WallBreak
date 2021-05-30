@@ -48,21 +48,21 @@ namespace WallBreak
             Location = new Point(30, 931)
         };
         
-        [Test]
-        public void OutsideWorldFrameTest()  
-        {
-            Assert.AreEqual(true, Physics.OutsideWorldFrame(tar1, WorldFrame, level1.WorldObjects));
-        }
-        [Test]
-        public void OutsideWorldFrameTest2()  
-        {
-            Assert.AreEqual(true, Physics.OutsideWorldFrame(tar2, WorldFrame, level1.WorldObjects));
-        }
-        [Test]
-        public void OutsideWorldFrameTest3()  
-        {
-            Assert.AreEqual(true, Physics.OutsideWorldFrame(tar3, WorldFrame, level1.WorldObjects));
-        }
+        // [Test]
+        // public void OutsideWorldFrameTest()  
+        // {
+        //     Assert.AreEqual(true, Physics.OutsideWorldFrame(tar1, WorldFrame, level1.WorldObjects));
+        // }
+        // [Test]
+        // public void OutsideWorldFrameTest2()  
+        // {
+        //     Assert.AreEqual(true, Physics.OutsideWorldFrame(tar2, WorldFrame, level1.WorldObjects));
+        // }
+        // [Test]
+        // public void OutsideWorldFrameTest3()  
+        // {
+        //     Assert.AreEqual(true, Physics.OutsideWorldFrame(tar3, WorldFrame, level1.WorldObjects));
+        // }
 
         [Test]
         public void CollisionRightTest()

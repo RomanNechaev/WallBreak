@@ -10,27 +10,28 @@ namespace WallBreak
         static Platforms platforms = new Platforms();
         static Cactuses cactuses = new Cactuses();
         
-        public List<PictureBox> CactusObject = new List<PictureBox>
+        public Tuple<int, int>[] coordsCactus =
         {
-            cactuses.CreateCactus(1300,953)
+            Tuple.Create(1300,953)
         };
         
-        public  List<PictureBox> WorldObjects = new List<PictureBox>
+        public Tuple<int, int>[] coordsPlatform =
         {
-            platforms.CreatePlatform(160, 900),
-            platforms.CreatePlatform(360, 720),
-            platforms.CreatePlatform(140, 540),
+            Tuple.Create(160, 900),
+            Tuple.Create(360, 720),
+            Tuple.Create(140, 540),
+        };
+        
+        public Tuple<int, int>[] coordsCoins =
+        {
+            Tuple.Create(800, 900),
         };
 
-        public List<PictureBox> CoinsObject = new List<PictureBox>
+        public Tuple<int, int>[] TrumpCoords =
         {
-            coins.CreateCoin(800, 900),
-            coins.CreateCoin(190, 850),
-            coins.CreateCoin(410, 670),
-            coins.CreateCoin(180, 490),
-            coins.CreateCoin(820, 725),
-
+            Tuple.Create<int, int>(100, 900),
         };
+        
         
         public readonly int CoinsScore = 5;
     }

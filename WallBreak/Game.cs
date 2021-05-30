@@ -10,10 +10,15 @@ namespace WallBreak
 {
     public partial class Game : Form
     {
-        Level11 leve1 = new Level11();
-        Level222 leve2 = new Level222();
+        Level11 Level1 = new Level11();
+        Level222 Level2 = new Level222();
+        Platforms platforms = new Platforms();
+        Coins coins = new Coins();
+        Cactuses cactuses = new Cactuses();
+        Trump trumps = new Trump();
         
-        private List<PictureBox> WorldObjectGeneral;    
+        
+        public List<PictureBox> WorldObjectGeneral;    
         private List<PictureBox> CactusObject;
         private List<PictureBox> CoinsObject;
         private List<PictureBox> TrumpObject;
@@ -61,11 +66,12 @@ namespace WallBreak
         {
             InitializeComponent();
             CreateLevel1();
+            WorldObjectGeneral = new List<PictureBox>();
+            CoinsObject = new List<PictureBox>();
+            CactusObject = new List<PictureBox>();
+            TrumpObject = new List<PictureBox>();
             ChangeLevel();
 
-
-            
-            CreatePlatforms();
             CreateCoins();
             CreateCactuses();
             CreateTrumps();
@@ -80,22 +86,18 @@ namespace WallBreak
         {
             if (Physics.player.Score == 0)
             {
-                WorldObjectGeneral = leve1.WorldObjects;
-                CoinsObject = leve1.CoinsObject;
-                CactusObject = leve1.CactusObject;
-                TrumpObject = leve1.TrumpObject;
-                TrumpList = leve1.trumpsList;
+                WorldObjectGeneral = CreateWorldObjects(1);
+                CoinsObject = CreateCoinsObjects(1);
+                CactusObject = CreateCactusObjects(1);
+                TrumpObject = CreateTrumpObjects(1);
+                TrumpList = Level1.trumpsList;
             }
 
-            if (Physics.player.Score == leve1.CoinsScore)
+            if (Physics.player.Score == Level1.CoinsScore)
             {
-                RemoveCoins();
-                RemovePlatforms(); 
-                RemoveCactuses();
-                WorldObjectGeneral = leve2.WorldObjects;
-                CoinsObject = leve2.CoinsObject;
-                CactusObject = leve2.CactusObject;
-                CreatePlatforms();
+                WorldObjectGeneral = CreateWorldObjects(2);
+                CoinsObject = CreateCoinsObjects(2);
+                CactusObject = CreateCactusObjects(2);
                 CreateCoins();
                 CreateCactuses();
 
@@ -117,9 +119,133 @@ namespace WallBreak
             
             foreach (var trump in TrumpObject)
             {
-                
                 WorldFrame.Controls.Add(trump);
             }
+        }
+        public List<PictureBox> CreateWorldObjects(int levelNumber) 
+        {
+            switch (levelNumber)
+            {
+                case 1:
+                    for (int i = 0; i < Level1.coordsPlatform.Length; i++)
+                    {
+                        WorldObjectGeneral.Add(platforms.CreatePlatform(Level1.coordsPlatform[i].Item1, Level1.coordsPlatform[i].Item2));
+                        var temp = WorldObjectGeneral[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < Level2.coordsPlatform.Length; i++)
+                    {
+                        WorldObjectGeneral.Add(platforms.CreatePlatform(Level2.coordsPlatform[i].Item1, Level2.coordsPlatform[i].Item2));
+                        var temp = WorldObjectGeneral[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < Level1.coordsPlatform.Length; i++)
+                    {
+                        WorldObjectGeneral.Add(platforms.CreatePlatform(Level1.coordsPlatform[i].Item1, Level1.coordsPlatform[i].Item2));
+                        var temp = WorldObjectGeneral[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+            }
+            return WorldObjectGeneral;
+        }
+
+        public List<PictureBox> CreateCoinsObjects(int levelNumber)
+        {
+            switch (levelNumber)
+            {
+                case 1:
+                    for (int i = 0; i < Level1.coordsCoins.Length; i++)
+                    {
+                        CoinsObject.Add(coins.CreateCoin(Level1.coordsCoins[i].Item1, Level1.coordsCoins[i].Item2));
+                        var temp = CoinsObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < Level2.coordsCoins.Length; i++)
+                    {
+                        CoinsObject.Add(coins.CreateCoin(Level2.coordsCoins[i].Item1, Level2.coordsCoins[i].Item2));
+                        var temp = CoinsObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < Level1.coordsCoins.Length; i++)
+                    {
+                        CoinsObject.Add(coins.CreateCoin(Level1.coordsCoins[i].Item1, Level1.coordsCoins[i].Item2));
+                        var temp = CoinsObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+            }
+            return CoinsObject;
+        }
+        public List<PictureBox> CreateCactusObjects(int levelNumber)
+        {
+            switch (levelNumber)
+            {
+                case 1:
+                    for (int i = 0; i < Level1.coordsCactus.Length; i++)
+                    {
+                        CactusObject.Add(cactuses.CreateCactus(Level1.coordsCactus[i].Item1, Level1.coordsCactus[i].Item2));
+                        var temp = CactusObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < Level2.coordsCactus.Length; i++)
+                    {
+                        CactusObject.Add(cactuses.CreateCactus(Level2.coordsCactus[i].Item1, Level2.coordsCactus[i].Item2));
+                        var temp = CactusObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < Level1.coordsCoins.Length; i++)
+                    {
+                        CactusObject.Add(cactuses.CreateCactus(Level1.coordsCoins[i].Item1, Level1.coordsCoins[i].Item2));
+                        var temp = CactusObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+            }
+            return CactusObject;
+        }
+        public List<PictureBox> CreateTrumpObjects(int levelNumber) 
+        {
+            switch (levelNumber)
+            {
+                case 1:
+                    for (int i = 0; i < Level1.TrumpCoords.Length; i++)
+                    {
+                        TrumpObject.Add(trumps.CreateTrump(Level1.TrumpCoords[i].Item1, Level1.TrumpCoords[i].Item2));
+                        var temp = TrumpObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < Level2.TrumpCoords.Length; i++)
+                    {
+                        TrumpObject.Add(trumps.CreateTrump(Level2.TrumpCoords[i].Item1, Level2.TrumpCoords[i].Item2));
+                        var temp = TrumpObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < Level1.TrumpCoords.Length; i++)
+                    {
+                        TrumpObject.Add(trumps.CreateTrump(Level1.TrumpCoords[i].Item1, Level1.TrumpCoords[i].Item2));
+                        var temp = TrumpObject[i];
+                        WorldFrame.Controls.Add(temp);
+                    }
+                    break;
+            }
+            return TrumpObject;
         }
 
         private void CreatePlatforms()
@@ -309,7 +435,7 @@ namespace WallBreak
             //    RemoveCoins();
             //    RemoveCactuses();
             //}
-            if (Physics.player.Score == leve1.CoinsScore && GameLevel1)
+            if (Physics.player.Score == Level1.CoinsScore && GameLevel1)
             {
                 Physics.player.GameOn = false;
                 RemovePlatforms();
@@ -319,6 +445,8 @@ namespace WallBreak
                 if (delay > 100)
                 {
                     Physics.player.GameOn = true;
+                    WorldObjectGeneral.Clear();
+                    CactusObject.Clear();
                     ChangeLevel();
                     GameLevel1= false;
                     Loading.Visible = false;
