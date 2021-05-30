@@ -61,6 +61,6 @@ namespace WallBreak
             new Trump(), 
             new Trump(),
         };
-        public readonly int CoinsScore = 1;
+        public readonly int CoinsScore = 8;
     }
 }

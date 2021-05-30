@@ -117,7 +117,7 @@ namespace WallBreak
 
         public static bool CanMoveRigth(PictureBox pb_Player, Panel worldFrame, List<PictureBox> WorldObjects)
         {
-            return player.PlayerRight && player.X + 300 <= worldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player, WorldObjects);
+            return player.PlayerRight && player.X + 260 <= worldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player, WorldObjects);
         }
         public static bool CanMoveLeft(PictureBox pb_Player, List<PictureBox> WorldObjects)
         {

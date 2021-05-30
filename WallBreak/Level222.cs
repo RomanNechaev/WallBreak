@@ -36,8 +36,18 @@ namespace WallBreak
         
         public Tuple<int, int>[] coordsCoins =
         {
-            Tuple.Create(800, 900),
+            Tuple.Create(132, 630),
+            Tuple.Create(410, 650),
+            Tuple.Create(480, 390),
+            Tuple.Create(70, 150),
+            Tuple.Create(430,170),
+            Tuple.Create(930,300),
+            Tuple.Create(1000,730),
+            Tuple.Create(1700,100),
+            Tuple.Create(1600,380),
+            Tuple.Create(1800,610),
             
+
         };
 
         public Tuple<int, int>[] TrumpCoords =
@@ -61,6 +71,6 @@ namespace WallBreak
         };
         
         
-        public readonly int CoinsScore = 1;
+        public readonly int CoinsScore = 10;
     }
 }

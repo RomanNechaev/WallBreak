@@ -28,6 +28,7 @@ namespace WallBreak
         public int Score = 0;
         public int Size = 100;
         public int FallingTime;
+        public bool Dead;
 
 
 
