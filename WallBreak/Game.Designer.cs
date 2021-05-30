@@ -83,9 +83,9 @@ namespace WallBreak
             this.pb_Player.BackColor = Color.Transparent;
             this.pb_Player.Image = Properties.Resources.sprite_23_2;
 
-            this.pb_Player.Location = new System.Drawing.Point(Physics.player.X, Physics.player.Y);
+            this.pb_Player.Location = new System.Drawing.Point(Physics.Player.X, Physics.Player.Y);
             this.pb_Player.Name = "pb_Player";
-            this.pb_Player.Size = new System.Drawing.Size(60, Physics.player.Size);
+            this.pb_Player.Size = new System.Drawing.Size(60, Physics.Player.Size);
 
             this.pb_Player.TabIndex = 0;
             this.pb_Player.TabStop = false;

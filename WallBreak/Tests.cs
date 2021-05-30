@@ -9,19 +9,30 @@ namespace WallBreak
     [TestFixture]
     public class Tests
     {
-        static Cactuses cactus = new Cactuses();
-        Level11 level1 = new Level11();
+        static Cactuses Cactus = new Cactuses();
+        Level11 Level1 = new Level11();
+        static Platforms Platforms = new Platforms();
+
+        public List<PictureBox> WorldObjects = new List<PictureBox>()
+        {
+            Platforms.CreatePlatform(162, 900),
+            Platforms.CreatePlatform(362, 720),
+            Platforms.CreatePlatform(142, 540),
+            Platforms.CreatePlatform(762, 775),
+
+        };
+        
         public static Panel WorldFrame = new Panel()
         {
-            //Dock = DockStyle.Fill,
             Location = new System.Drawing.Point(0, 0),
             Name = "WorldFloor",
             Size = new System.Drawing.Size(1920, 1080)
         };
+        
 
         public List<PictureBox> worldobjectTest = new List<PictureBox>()
         {
-            cactus.CreateCactus(1700,953)
+            Cactus.CreateCactus(1700,953)
         };
 
         public static PictureBox tar1 = new PictureBox()
@@ -48,21 +59,21 @@ namespace WallBreak
             Location = new Point(30, 931)
         };
         
-        // [Test]
-        // public void OutsideWorldFrameTest()  
-        // {
-        //     Assert.AreEqual(true, Physics.OutsideWorldFrame(tar1, WorldFrame, level1.WorldObjects));
-        // }
-        // [Test]
-        // public void OutsideWorldFrameTest2()  
-        // {
-        //     Assert.AreEqual(true, Physics.OutsideWorldFrame(tar2, WorldFrame, level1.WorldObjects));
-        // }
-        // [Test]
-        // public void OutsideWorldFrameTest3()  
-        // {
-        //     Assert.AreEqual(true, Physics.OutsideWorldFrame(tar3, WorldFrame, level1.WorldObjects));
-        // }
+         [Test]
+        public void OutsideWorldFrameTest()  
+         {
+           Assert.AreEqual(true, Physics.OutsideWorldFrame(tar1, WorldFrame, WorldObjects));
+         }
+         [Test]
+         public void OutsideWorldFrameTest2()  
+         {
+            Assert.AreEqual(true, Physics.OutsideWorldFrame(tar2, WorldFrame, WorldObjects));
+         }
+         [Test]
+         public void OutsideWorldFrameTest3()  
+        {
+             Assert.AreEqual(true, Physics.OutsideWorldFrame(tar3, WorldFrame, WorldObjects));
+         }
 
         [Test]
         public void CollisionRightTest()

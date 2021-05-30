@@ -6,10 +6,7 @@ namespace WallBreak
 {
     public class Level11
     {
-        static Coins coins = new Coins();
-        static Platforms platforms = new Platforms();
-        static Cactuses cactuses = new Cactuses();
-        public static Trump trumps = new Trump();
+        public readonly int CoinsScore = 1;//12;
         
         public Tuple<int, int>[] coordsCactus =
         {
@@ -61,6 +58,5 @@ namespace WallBreak
             new Trump(), 
             new Trump(),
         };
-        public readonly int CoinsScore = 1;
     }
 }

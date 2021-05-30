@@ -6,11 +6,12 @@ namespace WallBreak
 {
     public class Level3
     {
-        public Tuple<int, int>[] coordsCactus =
+        public readonly int CoinsScore = 47;
+        public Tuple<int, int>[] CoordsCactus =
         {
             Tuple.Create(-100,-100)
         };
-        public Tuple<int, int>[] coordsPlatform =
+        public Tuple<int, int>[] CoordsPlatform =
         {
             Tuple.Create(0, 875),
             Tuple.Create(1650, 900),
@@ -66,6 +67,5 @@ namespace WallBreak
             new Trump(),
             new Trump(),
         };
-        public readonly int CoinsScore = 5;
     }
 }
