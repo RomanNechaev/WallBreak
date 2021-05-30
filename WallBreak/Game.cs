@@ -375,7 +375,7 @@ namespace WallBreak
                 Physics.SetLeftValue(false);
             }
 
-            if (Physics.player.Force > 0 || Physics.CollisionTop(pb_Player, CactusObject))
+            if (Physics.player.Force > 0)
             {
                 if (Physics.CollisionBottom(pb_Player, WorldObjectGeneral))
                     Physics.SetForce(0);
@@ -462,7 +462,7 @@ namespace WallBreak
                 delay++;
             }
                 
-            if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjectGeneral))
+            if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjectGeneral) && Physics.PLayerIsFalling(pb_Player,WorldFrame,CactusObject))
             {
                 Physics.InrementFallingTime();
                 Physics.UpdateY(Physics.player.SpeedFall);

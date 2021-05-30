@@ -37,6 +37,7 @@ namespace WallBreak
         public Tuple<int, int>[] coordsCoins =
         {
             Tuple.Create(800, 900),
+            
         };
 
         public Tuple<int, int>[] TrumpCoords =
@@ -47,8 +48,6 @@ namespace WallBreak
             Tuple.Create(1282,500),
             Tuple.Create(1292,102), 
             Tuple.Create(1682,800),
-            
-            
         };
 
         public List<Trump> trumpsList = new List<Trump>
