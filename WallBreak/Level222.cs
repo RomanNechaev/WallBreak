@@ -12,7 +12,11 @@ namespace WallBreak
         
         public Tuple<int, int>[] coordsCactus =
         {
-            Tuple.Create(1300,953)
+            Tuple.Create(1300,953),
+            Tuple.Create(650,953),
+            Tuple.Create(250,300),
+            Tuple.Create(994,280),
+            Tuple.Create(914,730),
         };
         
         public Tuple<int, int>[] coordsPlatform =
@@ -26,7 +30,8 @@ namespace WallBreak
             Tuple.Create(1202,600), 
             Tuple.Create(814,812),
             Tuple.Create(1458,448),
-            Tuple.Create(1202,228), 
+            Tuple.Create(1212,202), 
+            Tuple.Create(1602,900), 
         };
         
         public Tuple<int, int>[] coordsCoins =
@@ -36,15 +41,22 @@ namespace WallBreak
 
         public Tuple<int, int>[] TrumpCoords =
         {
-            Tuple.Create(875,80),
+            Tuple.Create(182, 800),
+            Tuple.Create(710, 430),
+            Tuple.Create(582,120),
+            Tuple.Create(1282,500),
+            Tuple.Create(1292,102), 
+            Tuple.Create(1682,800),
+            
             
         };
 
         public List<Trump> trumpsList = new List<Trump>
         {
             new Trump(),
+             new Trump(),
             new Trump(),
-            new Trump(), 
+            new Trump(),
             new Trump(),
             new Trump()
         };

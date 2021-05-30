@@ -74,7 +74,7 @@ namespace WallBreak
 
             CreateCoins();
             CreateCactuses();
-            CreateTrumps();
+            
 
             WorldFrame.Controls.Add(score);
             WorldFrame.Controls.Add(Hp);
@@ -91,25 +91,28 @@ namespace WallBreak
                 CactusObject = CreateCactusObjects(1);
                 TrumpObject = CreateTrumpObjects(1);
                 TrumpList = Level1.trumpsList;
+                CreateTrumps();
             }
 
             if (Physics.player.Score == Level1.CoinsScore)
             {
-                Physics.player.X = 0;
-                Physics.player.Y = 1000;
-                pb_Player.Left = Physics.player.X;
+                CactusObject.Clear(); 
+                WorldObjectGeneral.Clear();
+                TrumpList.Clear();
+                TrumpObject.Clear();
                 WorldObjectGeneral = CreateWorldObjects(2);
                 CoinsObject = CreateCoinsObjects(2);
                 CactusObject = CreateCactusObjects(2);
-                TrumpObject = CreateTrumpObjects(2);
                 TrumpList = Level2.trumpsList;
+                TrumpObject = CreateTrumpObjects(2);
+                CreateTrumps();
 
             }
         }
 
         private void CreateTrumps()
         {
-            for (var i = 0; i < TrumpObject.Count(); i++)
+            for (var i = 0; i < TrumpObject.Count; i++)
             {
                 TrumpList.ElementAt(i).X = TrumpObject.ElementAt(i).Left;
                 TrumpList.ElementAt(i).Y = TrumpObject.ElementAt(i).Top;
@@ -446,13 +449,12 @@ namespace WallBreak
                 RemoveCoins();
                 RemoveCactuses();
                 RemoveTrump();
-               
+
+
                 Loading.Visible = true;
                 if (delay > 100)
                 {
                     Physics.player.GameOn = true;
-                    WorldObjectGeneral.Clear();
-                    CactusObject.Clear();
                     ChangeLevel();
                     GameLevel1= false;
                     Loading.Visible = false;
