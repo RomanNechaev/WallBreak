@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -25,7 +24,9 @@ namespace WallBreak
         private List<PictureBox> TrumpObject;
         private List<Trump> TrumpList;
         public bool GameLevel1 = true;
-        public int delay;
+        public bool GameLevel2 = true;
+        public int delayLevel1;
+        public int delayLevel2;
 
 
         private Label score = new Label()
@@ -84,11 +85,6 @@ namespace WallBreak
             CactusObject = new List<PictureBox>();
             TrumpObject = new List<PictureBox>();
             ChangeLevel();
-
-            CreateCoins();
-            CreateCactuses();
-            
-
             WorldFrame.Controls.Add(score);
             WorldFrame.Controls.Add(Hp);
             WorldFrame.Controls.Add(DeadScreen);
@@ -120,21 +116,6 @@ namespace WallBreak
                 CactusObject = CreateCactusObjects(2);
                 TrumpList = Level2.trumpsList;
                 TrumpObject = CreateTrumpObjects(2);
-                CreateTrumps();
-
-            }
-            if (Physics.player.Score == level3.CoinsScore)
-            {
-                CactusObject.Clear(); 
-                WorldObjectGeneral.Clear();
-                CoinsObject.Clear();
-                TrumpList.Clear();
-                TrumpObject.Clear();
-                WorldObjectGeneral = CreateWorldObjects(3);
-                CoinsObject = CreateCoinsObjects(3);
-                CactusObject = CreateCactusObjects(3);
-                TrumpList = level3.trumpsList;
-                TrumpObject = CreateTrumpObjects(3);
                 CreateTrumps();
 
             }
@@ -373,8 +354,8 @@ namespace WallBreak
                         WorldObjectGeneral = CreateWorldObjects(1);
                         CoinsObject = CreateCoinsObjects(1);
                         CactusObject = CreateCactusObjects(1);
-                         //TrumpList = Level1.trumpsList;
-                         TrumpObject = CreateTrumpObjects(1);
+                        TrumpList = Level1.trumpsList;
+                        TrumpObject = CreateTrumpObjects(1);
                         CreateTrumps();
                     }
                     break;
@@ -467,11 +448,6 @@ namespace WallBreak
                 }
             }
 
-            
-                
-
-            
-
         }
 
         
@@ -481,7 +457,6 @@ namespace WallBreak
         {
             if (Physics.player.Health<=0)
             {
-                Physics.player.GameOn = false;
                 DeadScreen.Visible = true;
                 DeadText.Visible = true;
                 RemovePlatforms();
@@ -493,7 +468,8 @@ namespace WallBreak
                 pb_Player.Visible = false;
 
             }
-            if (Physics.player.Score == level3.CoinsScore && GameLevel1)
+
+            if (Physics.player.Score == Level1.CoinsScore && GameLevel1)
             {
                 Physics.player.GameOn = false;
                 RemovePlatforms();
@@ -503,16 +479,16 @@ namespace WallBreak
 
 
                 Loading.Visible = true;
-                if (delay > 100)
+                if (delayLevel1 > 100)
                 {
                     Physics.player.GameOn = true;
                     ChangeLevel();
-                    GameLevel1= false;
+                    GameLevel1 = false;
                     Loading.Visible = false;
                 }
-                delay++;
+
+                delayLevel1++;
             }
-            
 
             if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjectGeneral) && Physics.PLayerIsFalling(pb_Player,WorldFrame,CactusObject))
             {
@@ -577,6 +553,15 @@ namespace WallBreak
                 }
             }
         }
+
+        private void RemoveAllItems()
+        {
+            RemovePlatforms();
+            RemoveCoins();
+            RemoveCactuses();
+            RemoveTrump();
+        }
+
         private void CactusTimer(object sender, EventArgs e)
         {
             if (Physics.player.GameOn)

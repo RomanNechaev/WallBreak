@@ -6,10 +6,6 @@ namespace WallBreak
 {
     public class Level222
     {
-        static Coins coins = new Coins();
-        static Platforms platforms = new Platforms();
-        static Cactuses cactuses = new Cactuses();
-        
         public Tuple<int, int>[] coordsCactus =
         {
             Tuple.Create(1300,953),
@@ -71,6 +67,6 @@ namespace WallBreak
         };
         
         
-        public readonly int CoinsScore = 10;
+        public readonly int CoinsScore = 2;
     }
 }
