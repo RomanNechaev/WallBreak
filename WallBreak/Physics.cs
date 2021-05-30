@@ -132,6 +132,10 @@ namespace WallBreak
 
         public static void InrementScore() => player.Score++;
 
+        public static void InrementFallingTime() => player.FallingTime++;
+        public static void SetFallingTime(int value) => player.FallingTime = value;
+
+
         public static bool PLayerIsFalling(PictureBox pb_Player, Panel WorldFrame, List<PictureBox> WorldObjects)
         {
             return !player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&

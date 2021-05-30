@@ -17,7 +17,7 @@ namespace WallBreak
             {
                 BackColor = Color.Brown,
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                Size = new Size(100, 100),
+                Size = new Size(60, 100),
                 Image = Properties.Resources.TrumpLeft,
                 Location = new Point(x, y)
             };

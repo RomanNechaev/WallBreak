@@ -80,16 +80,12 @@ namespace WallBreak
             // pb_Player
             // 
             this.pb_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_Player.BackColor = Color.Transparent;
+            this.pb_Player.BackColor = Color.Black;
             this.pb_Player.Image = Properties.Resources.sprite_23_2;
 
             this.pb_Player.Location = new System.Drawing.Point(Physics.player.X, Physics.player.Y);
             this.pb_Player.Name = "pb_Player";
-            this.pb_Player.Size = new System.Drawing.Size(Physics.player.Size, Physics.player.Size);
-
-            this.pb_Player.Location = new System.Drawing.Point(Physics.player.X, Physics.player.Y);
-            this.pb_Player.Name = "pb_Player";
-            this.pb_Player.Size = new System.Drawing.Size(Physics.player.Size, Physics.player.Size);
+            this.pb_Player.Size = new System.Drawing.Size(60, Physics.player.Size);
 
             this.pb_Player.TabIndex = 0;
             this.pb_Player.TabStop = false;

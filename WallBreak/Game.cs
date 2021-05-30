@@ -111,7 +111,7 @@ namespace WallBreak
                 TrumpList.ElementAt(i).X = TrumpObject.ElementAt(i).Left;
                 TrumpList.ElementAt(i).Y = TrumpObject.ElementAt(i).Top;
                 TrumpList.ElementAt(i).StartPosition =
-                    TrumpObject.ElementAt(i).Left + TrumpObject.ElementAt(i).Size.Width / 2;
+                    TrumpObject.ElementAt(i).Left + TrumpObject.ElementAt(i).Size.Width / 2 + 40;
                 if (i % 2 == 0)
                     TrumpList.ElementAt(i).MovingLeft = false;
 
@@ -412,6 +412,7 @@ namespace WallBreak
 
                 if (TrumpPhysics.CollisionTopWithTrump(pb_Player, TrumpObject.ElementAt(i)))
                 {
+                    Physics.SetFallingTime(0);
                     TrumpPhysics.ChangeVisible(TrumpObject.ElementAt(i));
                 }
             }
@@ -456,7 +457,7 @@ namespace WallBreak
                 
             if (Physics.PLayerIsFalling(pb_Player, WorldFrame, WorldObjectGeneral))
             {
-                Physics.player.FallingTime++;
+                Physics.InrementFallingTime();
                 Physics.UpdateY(Physics.player.SpeedFall);
                 pb_Player.Top = Physics.player.Y;
             }

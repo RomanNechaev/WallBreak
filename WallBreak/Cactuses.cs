@@ -12,7 +12,7 @@ namespace WallBreak
         {
             return new PictureBox
             {
-                BackColor = Color.Transparent,
+                BackColor = Color.BlueViolet,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Size = new Size(75, 100),
                 Image = Properties.Resources.Cactus__1_,
