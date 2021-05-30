@@ -51,7 +51,7 @@ namespace WallBreak
             Tuple.Create(875,80),
             Tuple.Create(725,330),
             Tuple.Create(430,620),
-            Tuple.Create(1180,430)
+            Tuple.Create(1180,430),
         };
 
         public List<Trump> trumpsList = new List<Trump>
@@ -59,8 +59,8 @@ namespace WallBreak
             new Trump(),
             new Trump(),
             new Trump(), 
-            new Trump()
+            new Trump(),
         };
-        public readonly int CoinsScore = 6;
+        public readonly int CoinsScore = 1;
     }
 }

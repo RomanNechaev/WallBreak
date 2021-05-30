@@ -95,11 +95,14 @@ namespace WallBreak
 
             if (Physics.player.Score == Level1.CoinsScore)
             {
+                Physics.player.X = 0;
+                Physics.player.Y = 1000;
+                pb_Player.Left = Physics.player.X;
                 WorldObjectGeneral = CreateWorldObjects(2);
                 CoinsObject = CreateCoinsObjects(2);
                 CactusObject = CreateCactusObjects(2);
-                CreateCoins();
-                CreateCactuses();
+                TrumpObject = CreateTrumpObjects(2);
+                TrumpList = Level2.trumpsList;
 
             }
         }
@@ -114,12 +117,6 @@ namespace WallBreak
                     TrumpObject.ElementAt(i).Left + TrumpObject.ElementAt(i).Size.Width / 2 + 40;
                 if (i % 2 == 0)
                     TrumpList.ElementAt(i).MovingLeft = false;
-
-            }
-            
-            foreach (var trump in TrumpObject)
-            {
-                WorldFrame.Controls.Add(trump);
             }
         }
         public List<PictureBox> CreateWorldObjects(int levelNumber) 
@@ -274,6 +271,12 @@ namespace WallBreak
             foreach (var platform in WorldObjectGeneral)
                 WorldFrame.Controls.Remove(platform);
         }
+        private void RemoveTrump()
+        {
+            foreach (var trump in TrumpObject)
+                WorldFrame.Controls.Remove(trump);
+        }
+        
 
         private void RemoveCoins()
         {
@@ -442,6 +445,8 @@ namespace WallBreak
                 RemovePlatforms();
                 RemoveCoins();
                 RemoveCactuses();
+                RemoveTrump();
+               
                 Loading.Visible = true;
                 if (delay > 100)
                 {
