@@ -20,7 +20,6 @@ namespace WallBreak
         public bool PlayerRight;
         public bool GameOn = true;
         public int Gravity = 48;
-        public int Anim = 0;
         public int Force = 0;
         public int SpeedMovement = 4;
         public int SpeedJump = -4;
@@ -28,7 +27,6 @@ namespace WallBreak
         public int Score = 0;
         public int Size = 100;
         public int FallingTime;
-        public bool Dead;
 
 
 

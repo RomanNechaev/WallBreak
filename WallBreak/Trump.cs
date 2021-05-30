@@ -7,15 +7,13 @@ namespace WallBreak
     {
         public int Y { get; set; }
         public int X { get; set; }
-        public int SpeedMovement = 4;
-        public bool IsVisible;
         public bool MovingLeft = true;
         public int StartPosition;
         public PictureBox CreateTrump(int x, int y)
         {
             return new PictureBox
             {
-                BackColor = Color.Brown,
+                BackColor = Color.Transparent,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Size = new Size(60, 100),
                 Image = Properties.Resources.TrumpLeft,

@@ -18,7 +18,8 @@ namespace WallBreak
                     temp => temp.Location.X - 3,
                     temp => temp.Location.Y - 3,
                     temp => temp.Width - 2,
-                    _ => 1, WorldObjects);
+                    temp => 1,
+                    WorldObjects);
         }
 
 
@@ -27,16 +28,19 @@ namespace WallBreak
             return Collision(tar,
                     temp => temp.Location.X - 5,
                     temp => temp.Location.Y + 1,
-                    _ => 1,
-                    temp => temp.Height + 1, WorldObjects);
+                    temp => 1,
+                    temp => temp.Height + 1,
+                    WorldObjects);
         }
 
         public static bool CollisionBottom(PictureBox tar, List<PictureBox> WorldObjects)
         {
-            return Collision(tar, temp => temp.Location.X,
-                    temp => temp.Location.Y + temp.Height - 5,
-                    temp => temp.Width - 2,
-                    _ => 7, WorldObjects);
+            return Collision(tar,
+                temp => temp.Location.X,
+                temp => temp.Location.Y + temp.Height - 5,
+                temp => temp.Width - 2,
+                temp => 7,
+                WorldObjects);
         }
 
         public static bool CollisionRight(PictureBox tar, List<PictureBox> WorldObjects)
@@ -44,8 +48,9 @@ namespace WallBreak
             return Collision(tar,
                     temp => temp.Location.X + temp.Width + 1,
                     temp => temp.Location.Y + 1,
-                    _ => 2,
-                    temp => temp.Height + 1, WorldObjects);
+                    temp => 2,
+                    temp => temp.Height + 1,
+                    WorldObjects);
         }
 
         private static bool Collision(PictureBox tar, Func<PictureBox, int> getX, Func<PictureBox, int> getY,
@@ -62,11 +67,8 @@ namespace WallBreak
                         return true;
                 }
             }
-
             return false;
         }
-
-
 
         public static bool InAirNoCollision(PictureBox tar, Panel WorldFrame, List<PictureBox> worldobjects)
         {
@@ -81,7 +83,6 @@ namespace WallBreak
                     }
                 }
             }
-
             return false;
         }
 
@@ -101,49 +102,61 @@ namespace WallBreak
                         return true;
                 }
             }
-
             return false;
+        }
+
+        public static bool CanMoveRigth(PictureBox pb_Player, Panel worldFrame, List<PictureBox> WorldObjects)
+        {
+            return Player.PlayerRight && Player.X + 260 <= worldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player, WorldObjects);
+        }
+
+        public static bool CanMoveLeft(PictureBox pb_Player, List<PictureBox> WorldObjects)
+        {
+            return Player.PlayerLeft && pb_Player.Left >= 3 && !Physics.CollisionRight(pb_Player, WorldObjects);
         }
 
         public static void SetLeftValue(bool value) => Player.PlayerLeft = value;
         
         public static void SetRightValue(bool value) => Player.PlayerRight = value;
 
+        public static void SetFallingTime(int value) => Player.FallingTime = value;
+
+        public static void SetForce(int value) => Player.Force = value;
+
+        public static void SetJump(bool value) => Player.PlayerJump = value;
+
+        public static void SetHp(int value) => Player.Health = value;
+
+        public static void SetScore(int value) => Player.Score = value;
+
+        public static void SetGameOn(bool value) => Player.GameOn = value;
+
         public static void UpdateY(int value) => Player.Y += value;
 
         public static void UpdateX(int value) => Player.X += value;
-
-        
-
-        public static bool CanMoveRigth(PictureBox pb_Player, Panel worldFrame, List<PictureBox> WorldObjects)
-        {
-            return Player.PlayerRight && Player.X + 260 <= worldFrame.Width - 3 && !Physics.CollisionLeft(pb_Player, WorldObjects);
-        }
-        public static bool CanMoveLeft(PictureBox pb_Player, List<PictureBox> WorldObjects)
-        {
-            return Player.PlayerLeft && pb_Player.Left >= 3 && !Physics.CollisionRight(pb_Player, WorldObjects);
-        }
-
-        public static void SetForce(int value) => Player.Force = value;
-        
-        public static void SetJump(bool value) => Player.PlayerJump = value;
 
         public static void UpdateForce(int value) => Player.Force += value;
 
         public static void InrementScore() => Player.Score++;
 
         public static void InrementFallingTime() => Player.FallingTime++;
-        public static void SetFallingTime(int value) => Player.FallingTime = value;
 
+        public static void TeleportPlayer(int x, int y)
+        {
+            Player.X = x;
+            Player.Y = y;
+        }
 
         public static bool PLayerIsFalling(PictureBox pb_Player, Panel WorldFrame, List<PictureBox> WorldObjects)
         {
-            return !Player.PlayerJump && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height &&
-                            !CollisionTop(pb_Player, WorldObjects);
+            return !Player.PlayerJump 
+                   && pb_Player.Location.Y + pb_Player.Height < WorldFrame.Height 
+                   && !CollisionTop(pb_Player, WorldObjects);
         }
         public static bool PlayerCanJump(PictureBox pb_Player, Panel WorldFrame)
         {
-            return !Player.PlayerJump && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height;
+            return !Player.PlayerJump 
+                   && pb_Player.Location.Y + pb_Player.Height > WorldFrame.Height;
         }
         public static bool PlayerTookCoin(PictureBox tar, PictureBox coin)
         {
@@ -154,7 +167,6 @@ namespace WallBreak
                 if (!tar.Bounds.IntersectsWith(temp.Bounds))
                     return false;
             }
-
             return true;
         }
         public static void ChangeHealth(int fallingTime)
@@ -166,25 +178,24 @@ namespace WallBreak
                 SP.Play();
                 Player.Health -= 4;
             }
-                
+
             else if (fallingTime > 150)
             {
                 SP.Play();
                 Player.Health -= 3;
             }
-                
+
             else if (fallingTime > 100)
             {
                 SP.Play();
                 Player.Health -= 2;
             }
-                
+
             else if (fallingTime > 70)
             {
                 SP.Play();
                 Player.Health -= 1;
             }
-                
         }
     }
 }

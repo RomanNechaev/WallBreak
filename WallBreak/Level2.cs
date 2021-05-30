@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace WallBreak
 {
-    public class Level222
+    public class Level2
     {
-        public readonly int CoinsScore = 2;//28;
+        public readonly int CoinsScore = 28;//28;
         public Tuple<int, int>[] coordsCactus =
         {
             Tuple.Create(1300,953),
@@ -60,7 +60,7 @@ namespace WallBreak
         public List<Trump> trumpsList = new List<Trump>
         {
             new Trump(),
-             new Trump(),
+            new Trump(),
             new Trump(),
             new Trump(),
             new Trump(),
