@@ -17,6 +17,7 @@ namespace WallBreak
         private List<PictureBox> CactusObject;
         private List<PictureBox> CoinsObject;
         private List<PictureBox> TrumpObject;
+        private List<Trump> TrumpList;
         public bool GameLevel1 = true;
         public int delay;
 
@@ -83,6 +84,7 @@ namespace WallBreak
                 CoinsObject = leve1.CoinsObject;
                 CactusObject = leve1.CactusObject;
                 TrumpObject = leve1.TrumpObject;
+                TrumpList = leve1.trumpsList;
             }
 
             if (Physics.player.Score == leve1.CoinsScore)
@@ -104,10 +106,13 @@ namespace WallBreak
         {
             for (var i = 0; i < TrumpObject.Count(); i++)
             {
-                leve1.trumpsList.ElementAt(i).X = TrumpObject.ElementAt(i).Left;
-                leve1.trumpsList.ElementAt(i).Y = TrumpObject.ElementAt(i).Top;
-                leve1.trumpsList.ElementAt(i).StartPosition =
+                TrumpList.ElementAt(i).X = TrumpObject.ElementAt(i).Left;
+                TrumpList.ElementAt(i).Y = TrumpObject.ElementAt(i).Top;
+                TrumpList.ElementAt(i).StartPosition =
                     TrumpObject.ElementAt(i).Left + TrumpObject.ElementAt(i).Size.Width / 2;
+                if (i % 2 == 0)
+                    TrumpList.ElementAt(i).MovingLeft = false;
+
             }
             
             foreach (var trump in TrumpObject)
@@ -254,34 +259,34 @@ namespace WallBreak
 
             for (var i = 0; i < TrumpObject.Count(); i++)
             {
-                if (leve1.trumpsList.ElementAt(i).MovingLeft)
+                if (TrumpPhysics.MovingLeft(TrumpList.ElementAt(i)))
                 {
                     TrumpObject.ElementAt(i).Image = Properties.Resources.TrumpLeft;
-                    Physics.UpdateTrumpX(-1, leve1.trumpsList.ElementAt(i));
-                    TrumpObject.ElementAt(i).Left = leve1.trumpsList.ElementAt(i).X;
+                    TrumpPhysics.UpdateTrumpX(-1, TrumpList.ElementAt(i));
+                    TrumpObject.ElementAt(i).Left = TrumpList.ElementAt(i).X;
                 }
                 else
                 {
                     TrumpObject.ElementAt(i).Image = Properties.Resources.TrumpRight;
-                    Physics.UpdateTrumpX(1, leve1.trumpsList.ElementAt(i));
-                    TrumpObject.ElementAt(i).Left = leve1.trumpsList.ElementAt(i).X;
+                    TrumpPhysics.UpdateTrumpX(1, TrumpList.ElementAt(i));
+                    TrumpObject.ElementAt(i).Left = TrumpList.ElementAt(i).X;
                 }
 
-                if (leve1.trumpsList.ElementAt(i).X < leve1.trumpsList.ElementAt(i).StartPosition - 150)
-                    leve1.trumpsList.ElementAt(i).MovingLeft = false;
+                if (TrumpPhysics.TrumpGetLeftBorder(TrumpList.ElementAt(i)))
+                    TrumpPhysics.ChangeDirectionToLeft(TrumpList.ElementAt(i), false);
 
-                if (leve1.trumpsList.ElementAt(i).X > leve1.trumpsList.ElementAt(i).StartPosition + 50)
-                    leve1.trumpsList.ElementAt(i).MovingLeft = true;
-                if (Physics.CollisionRightWithTrump(pb_Player, TrumpObject.ElementAt(i))
-                    || Physics.CollisionLeftWithTrump(pb_Player, TrumpObject.ElementAt(i)))
+                if (TrumpPhysics.TrumpGetRightBorder(TrumpList.ElementAt(i)))
+                    TrumpPhysics.ChangeDirectionToLeft(TrumpList.ElementAt(i), true);
+                if (TrumpPhysics.CollisionRightWithTrump(pb_Player, TrumpObject.ElementAt(i))
+                    || TrumpPhysics.CollisionLeftWithTrump(pb_Player, TrumpObject.ElementAt(i)))
                 {
                     Physics.player.GameOn = false;
                     Physics.ChangeHealth(250);
                 }
 
-                if (Physics.CollisionTopWithTrump(pb_Player, TrumpObject.ElementAt(i)))
+                if (TrumpPhysics.CollisionTopWithTrump(pb_Player, TrumpObject.ElementAt(i)))
                 {
-                    TrumpObject.ElementAt(i).Visible = false;
+                    TrumpPhysics.ChangeVisible(TrumpObject.ElementAt(i));
                 }
             }
 
@@ -292,15 +297,18 @@ namespace WallBreak
 
         }
 
+        
+
+
         private void GravityTimer(object sender, EventArgs e)
         {
-            // if (!Physics.player.GameOn)
-            // {
-            //     DeadScreen.Visible = true;
-            //     RemovePlatforms();
-            //     RemoveCoins();
-            //     RemoveCactuses();
-            // }
+            //if (!Physics.player.GameOn)
+            //{
+            //    DeadScreen.Visible = true;
+            //    RemovePlatforms();
+            //    RemoveCoins();
+            //    RemoveCactuses();
+            //}
             if (Physics.player.Score == leve1.CoinsScore && GameLevel1)
             {
                 Physics.player.GameOn = false;
