@@ -415,6 +415,7 @@ namespace WallBreak
                 case Keys.Space:
                     if (Physics.Player.Health <= 0)
                     {
+                        Physics.Player.IsDead = false;
                         pb_Player.Visible = true;
                         DeadScreen.Visible = false;
                         DeadText.Visible = false;
@@ -518,6 +519,7 @@ namespace WallBreak
                     {
                         Physics.SetGameOn(false);
                         Physics.ChangeHealth(250);
+                        Physics.Player.IsDead = true;
                     }
 
                     if (TrumpPhysics.CollisionTopWithTrump(pb_Player, TrumpObject.ElementAt(i)))
@@ -545,7 +547,7 @@ namespace WallBreak
 
         private void GravityTimer(object sender, EventArgs e)
         {
-            if (Physics.Player.Health <= 0)
+            if (Physics.Player.Health <= 0 || Physics.Player.IsDead)
             {
                 Physics.SetGameOn(false);
                 DeadScreen.Visible = true;
