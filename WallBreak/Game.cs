@@ -425,7 +425,7 @@ namespace WallBreak
                         Physics.SetHp(5);
                         Physics.SetGameOn(true);
                         Physics.SetScore(0);
-                        score.Text = "Количество монет:" + Physics.Player.Score;
+                        score.Text = "Количество очков:" + Physics.Player.Score;
                         Physics.TeleportPlayer(1200, 800);
                         Physics.SetFallingTime(0);
                         pb_Player.Top = Physics.Player.Y;
@@ -525,7 +525,7 @@ namespace WallBreak
                         Physics.SetFallingTime(0);
                         TrumpPhysics.ChangeVisible(TrumpObject.ElementAt(i));
                         Physics.InrementScore();
-                        score.Text ="Количество монет:" + Physics.Player.Score; 
+                        score.Text ="Количество очков:" + Physics.Player.Score; 
                     }
                 }
                 else
@@ -670,7 +670,7 @@ namespace WallBreak
                     if (coin.Visible)
                     {
                         Physics.InrementScore();
-                        score.Text = "Количество монет:" + Physics.Player.Score;
+                        score.Text = "Количество очков:" + Physics.Player.Score;
                         coin.Visible = false;
                     }
                 }
