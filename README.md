@@ -1,1 +1,1 @@
-# Game
+# The simple 2d platformer
